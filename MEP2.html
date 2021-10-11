@@ -1,0 +1,321 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Modelling Earth Processes, week 2 - Diffusion</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="https://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-10-11"><meta name="DC.source" content="MEP2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Modelling Earth Processes, week 2 - Diffusion</h1><!--introduction--><p>Prof Jeroen van Hunen</p><p>Department of Earth Sciences</p><p>Durham University</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">This session's learning objectives</a></li><li><a href="#2">Practical 2, One-dimensional diffusion</a></li></ul></div><h2 id="1">This session's learning objectives</h2><p>At the end of this session, you will understand:</p><div><ul><li>(Heat) Diffusion and its governing equation</li><li>Numerical modelling of spatial variations</li><li>Numerical modelling of 1-D, time-dependent heat diffusion</li></ul></div><h2 id="2">Practical 2, One-dimensional diffusion</h2><p>We will look at a scenario in which a variable (in this case temperature <span class="MathJax_Preview"><img src="MEP2_eq14047577632175690031.png" alt="$T$"></span><script type="math/tex">T</script>) changes its value not only through time (as we looked at last week), but also with location. As elaborated in the lecture notes, the 1-D heat diffusion equation (for constant material parameters, combined into a single parameter <span class="MathJax_Preview"><img src="MEP2_eq16107531617707909724.png" alt="$\kappa$"></span><script type="math/tex">\kappa</script>, the <i>heat diffusivity</i>) is given by</p><p><span class="MathJax_Preview"><img src="MEP2_eq14513160303497238886.png" alt="$\frac{\partial T}{\partial t}=\kappa \frac{\partial^2T}{\partial z^2}$"></span><script type="math/tex">\frac{\partial T}{\partial t}=\kappa \frac{\partial^2T}{\partial z^2}</script></p><p>
+<table border=1><tr><td>
+<font color="#8A2BE2">
+<b>Note on Partial differential equations.</b><br>
+In the equation above, the partial derivative symbol &#8706
+indicates that in the equation <it>T</it> has derivatives to more than one variable (in this
+case to time <it>t</it> and depth <it>z</it>). A differential equation such as this one is therefore
+called a <it>partial differential equation</it> (PDE), and, in contrast, the differential equations that we saw
+last week (with derivatives to only one variable, such as time <it>t</it>) are usually referred to as <it>ordinary
+differential equations</it>, ODEs.
+</font>
+</td>
+</table>
+</p><p>In this exercise, we will solve the one-dimensional heat diffusion equation for a situation of a cooling oceanic lithosphere: a 1-D vertical, hot column of mantle material (with temperature <span class="MathJax_Preview"><img src="MEP2_eq03278126176292972058.png" alt="$T=T_m=1350^oC$"></span><script type="math/tex">T=T_m=1350^oC</script>) is emplaced at a mid-ocean ridge, where it suddenly, at time <span class="MathJax_Preview"><img src="MEP2_eq16912281546434447644.png" alt="$t=0$"></span><script type="math/tex">t=0</script>, will be brought in contact with cold sea water of constant temperature <span class="MathJax_Preview"><img src="MEP2_eq12679475780752375713.png" alt="$T=T_0=0^oC$"></span><script type="math/tex">T=T_0=0^oC</script>. This column will start cooling from above, and in this exercise we would like to calculate how the column cools over time.</p><p>2.1a) Sketch (on paper) this temperature distribution <span class="MathJax_Preview"><img src="MEP2_eq14047577632175690031.png" alt="$T$"></span><script type="math/tex">T</script> as a function of depth <span class="MathJax_Preview"><img src="MEP2_eq17119888974628994297.png" alt="$z$"></span><script type="math/tex">z</script> for time <span class="MathJax_Preview"><img src="MEP2_eq16912281546434447644.png" alt="$t=0$"></span><script type="math/tex">t=0</script> over a depth range between 0 and 300 km. This temperature distribution will be a good initial condition for our modelling exercise.</p><p>2.1b) Next, draw how you would expect this temperature distribution in the lithosphere to change through time. Consider the following aspects when making your sketch:</p><div><ul><li>Would the temperature at each of the boundaries change?</li><li>Are there areas where you would expect temperature to change quicker than elsewhere?</li><li>On what timescale do you think the temperature typically varies?</li></ul></div><p>2.2) In the remainder of this practical, we will build a numerical model for this situation. We already have a governing equation (the heat diffusion equation described above) and an initial condition (defined in question 2.1a). To obtain a unique solution, we need to provide boundary conditions at the boundaries (i.e. end points) of the vertical one-dimensional domain, e.g. a fixed temperature, that applies at every time step at the ends of our domain. What would be good boundary conditions for the temperature <span class="MathJax_Preview"><img src="MEP2_eq14047577632175690031.png" alt="$T$"></span><script type="math/tex">T</script> at <span class="MathJax_Preview"><img src="MEP2_eq08525924456163593167.png" alt="$z=0$"></span><script type="math/tex">z=0</script> and <span class="MathJax_Preview"><img src="MEP2_eq10670896496507903836.png" alt="$z=300$"></span><script type="math/tex">z=300</script> km?</p><p>2.3) In the second video of this week, lecture 2.2 (slide 11, bottom equation), we derived the finite difference form for the 1-D heat diffusion equation. Rewrite this equation such that the solution for the new timestep <span class="MathJax_Preview"><img src="MEP2_eq12814944585407198159.png" alt="$j+1$"></span><script type="math/tex">j+1</script> for point <span class="MathJax_Preview"><img src="MEP2_eq05671228016298599287.png" alt="$i$"></span><script type="math/tex">i</script>, <span class="MathJax_Preview"><img src="MEP2_eq11953969551661818064.png" alt="$T_i^{j+1}$"></span><script type="math/tex">T_i^{j+1}</script>, is written as a function of the old solution <span class="MathJax_Preview"><img src="MEP2_eq15180198072183483029.png" alt="$T^j$"></span><script type="math/tex">T^j</script>.</p><p>2.4) Let us now design a finite difference system, in which the mantle column is described by just 5 grid points (i.e. <span class="MathJax_Preview"><img src="MEP2_eq12684994882133834298.png" alt="$i =[1,2,3,4,5]$"></span><script type="math/tex">i =[1,2,3,4,5]</script>), equally spaced between 0 and 300 km depth, i.e. 75 km apart. We will call the initial condition</p><p><span class="MathJax_Preview"><img src="MEP2_eq01261335188830609993.png" alt="$T^1= \displaystyle \left(  \matrix{T_1^1 \cr          T_2^1\cr          T_3^1\cr          T_4^1 \cr          T_5^1}  \right)$"></span><script type="math/tex">T^1= \displaystyle \left(  \matrix{T_1^1 \cr          T_2^1\cr          T_3^1\cr          T_4^1 \cr          T_5^1}  \right)</script></p><p>At the boundaries (points <span class="MathJax_Preview"><img src="MEP2_eq02044933183722625800.png" alt="$i=1$"></span><script type="math/tex">i=1</script> and <span class="MathJax_Preview"><img src="MEP2_eq03634903904193689639.png" alt="$i=5$"></span><script type="math/tex">i=5</script>) boundary conditions <span class="MathJax_Preview"><img src="MEP2_eq17606807927003692725.png" alt="$T_1^1$"></span><script type="math/tex">T_1^1</script> ans <span class="MathJax_Preview"><img src="MEP2_eq01631607221528425962.png" alt="$T_5^1$"></span><script type="math/tex">T_5^1</script> as deined in Question 2.2 apply, respectively, and at the remaining, interior points, the finite difference equation from Question 2.3 applies. Calculate (on paper, not in Matlab) the solution for the new time step <span class="MathJax_Preview"><img src="MEP2_eq05730784047013419187.png" alt="$T_i^2$"></span><script type="math/tex">T_i^2</script>, for all points <span class="MathJax_Preview"><img src="MEP2_eq02044933183722625800.png" alt="$i=1$"></span><script type="math/tex">i=1</script> to <span class="MathJax_Preview"><img src="MEP2_eq17414748974537904790.png" alt="$5$"></span><script type="math/tex">5</script>. Use the following parameter values: <span class="MathJax_Preview"><img src="MEP2_eq17955568450996505783.png" alt="$\kappa =10^{-6} m^2$"></span><script type="math/tex">\kappa =10^{-6} m^2</script>/s, <span class="MathJax_Preview"><img src="MEP2_eq10613080303757337543.png" alt="$\Delta t=5$"></span><script type="math/tex">\Delta t=5</script> Myr, <span class="MathJax_Preview"><img src="MEP2_eq00791872774966708780.png" alt="$\Delta z =75$"></span><script type="math/tex">\Delta z =75</script> km. Note that different units of time and space are used here, so first convert everything to seconds and metres.</p><p>2.5) Implement this procedure in a Matlab code, taking into account all of the following aspects:</p><div><ul><li>Build a Matlab function that calculates a new temperature distribution   for just one diffusion timestep.</li><li>The input into this function will be a vector containing   the old temperature distribution, plus whatever information is needed to do the   calculation (timestep, spatial discretization, number of points in   array, etc).</li><li>Inside the function, new temperatures will need to be   calculated for all internal points, and a loop over those points is the   easiest solution. Note that the basic operation performed here is   calculating a double derivative in space, and in the process, the   result is an output vector that is two points shorter than the input   vectore (convince yourself that that is the case). The output vector applies to all internal points   but not the end points (the boundary points). These boundary points   have a fixed value.</li><li>The function will return a vector with the same length as the old temperature   which contains the new temperature for all points, i.e. both the boundary points and internal points.   So you will need to concatenate the top boundary point, the internal   points, and the bottom boundary point into one single output vector.</li><li>To test your new function, define (in the Matlab Command Window) the same   5-point array <tt>Told</tt> and additional information as used in the manual calculation in Question 2.4.   Then call your new function (also from the Command Window) and check that   the output fits your answer from Question 2.4.</li></ul></div><p>2.6) If you haven't already done so, rewrite your function above into one that uses vector notation. Tip: when making significant changes to a code, make a backup copy before you begin, so that, if things go wrong, you can always revert to the original file.</p><p>
+<table border=1><tr><td>
+<font color="#8A2BE2">
+<b>Make backups or versions of your code </b><br>
+A general advice when modifying your code: regularly make copies of your
+Matlab scripts. Certainly if you have a script working, then save it
+under a different name, so that you can go back to it later on if needed.
+Or give each version of your code or function a
+different version name, e.g. <code>myfunction_v1</code>, <code>myfunction_v2</code> etc.
+</font>
+</td>
+</table>
+</p><p>A general advice when modifying your code: regularly make copies of your Matlab scripts. Certainly if you have a script working, then save it under a different name, so that you can go back to it later on if needed. Or give each version of your code or function a different version name, e.g. <tt>myfunction_v1</tt>, <tt>myfunction_v2</tt> etc.</p><p>You should always try to make your functions as generally applicable as possible so that you can re-use your function for different situations and parameters. A few tips to make functions more applicable:</p><div><ul><li>The variable passed from a main function to a subfuction via the   argument list doesn't have to have the same name throughout. So a variable <tt>T</tt> (e.g. referring to temperature in one application) could be named <tt>var</tt> in a sub-function, and if the same function can later on be used to calculate, say, pressure <tt>p</tt>, then the generic name <tt>var</tt> is an appropriate one. For example:</li></ul></div><pre class="codeinput"><span class="keyword">function</span> calc_area
+   length=5
+   area = mysquare(length)
+<span class="keyword">end</span>
+<span class="keyword">function</span> output = mysquare(input)
+   output = input^2;
+<span class="keyword">end</span>
+</pre><div><ul><li>The keyword <tt>end</tt> used inside an array serves as the last entry of that   array. So, for example, if <tt>x</tt> is a 3-by-4 sized array, then <tt>x(3,2)</tt>   and <tt>x(end,2)</tt> refer to the same component of that array. Using <tt>end</tt>   in this way allows you to build a function that works for arrays of any   size.</li><li>The colon symbol (<tt>:</tt>) used inside an array is short for <tt>1:end</tt>, and refers to all entries in a   particular dimension of an array. So, for example, if <tt>x</tt> is a 3-by-4 sized array, then <tt>x(3,:)</tt>   refers to all 4 elements in the 3rd row of the array.</li></ul></div><p>2.7) Now re-write your function so that it works for a temperature array of any size, and that variable names are logical even if the function would apply to other quantities than temperature.</p><p>2.8) Copy your script into a new one and extend it to build a self-contained Matlab script that sets up variables for your problem, calls the diffusion function to calculate the solution after one timestep, and plots both solutions together in one plot.</p><p>2.9) Ultimately, we would like to create a code that works not just for 5 points and a timestep of 5 Myrs, but for any number of points and any timestep. Before moving on to the next question, it might be useful to spend some time on creating a program with a more general structure and set variable names.</p><p>2.10) As the code becomes larger and more complex, it is essential that you provide useful comments so that future users of the code, including yourself, can easily understand how the code works. Before moving to the next question, make sure your code has sufficient comments.</p><p>2.11) Sofar, your code probably still only performs one timestep. If so,   adjust your script to call the function (and the plotting) repeatedly in a time loop.   Re-use the vectors for the old and the new timestep solution by   copying the newly calculated solution into the 'old'   solution at the end of the loop.   To plot a new curve in an already existing plot without erasing the old   plot, use the <tt>hold on</tt> command at the start, and, once finished with all   plotting, use <tt>hold off</tt>. You may need to give   the <tt>drawnow</tt> command at the end of the plotting routine to ensure Matlab   re-draws the figure after each timestep.</p><p>2.12) Now try your code on a larger problem with more grid points in the   vector: use <span class="MathJax_Preview"><img src="MEP2_eq02922358532700113794.png" alt="$\Delta x=10$"></span><script type="math/tex">\Delta x=10</script> km and <span class="MathJax_Preview"><img src="MEP2_eq11228671850724787456.png" alt="$\Delta t=0.15$"></span><script type="math/tex">\Delta t=0.15</script> Myrs.</p><p>2.13) The analytical solution for this cooling lithosphere is given by <span class="MathJax_Preview"><img src="MEP2_eq15735224314040643223.png" alt="$T=T_m erf{\frac{z}{2\sqrt{\kappa t}}}$"></span><script type="math/tex">T=T_m erf{\frac{z}{2\sqrt{\kappa t}}}</script> with <span class="MathJax_Preview"><img src="MEP2_eq04690510883228114220.png" alt="$erf$"></span><script type="math/tex">erf</script> the error function (for more information on the error function, type <tt>help erf</tt> on the Matlab command line). Add a function to your Matlab script, which calculates this analytical solution every timestep for all grid points, and add the results to the plot. Test the numerical and analytical results against each other.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Modelling Earth Processes, week 2 - Diffusion
+%
+% Prof Jeroen van Hunen
+%
+% Department of Earth Sciences
+%
+% Durham University
+%
+%% This session's learning objectives
+%
+% At the end of this session, you will understand:
+% 
+% * (Heat) Diffusion and its governing equation
+% * Numerical modelling of spatial variations
+% * Numerical modelling of 1-D, time-dependent heat diffusion
+
+%% Practical 2, One-dimensional diffusion
+%
+% We will look at a scenario in which a variable (in this case
+% temperature $T$) changes its value not only through time (as we looked at last week), 
+% but also with location. As elaborated in the lecture notes, 
+% the 1-D heat diffusion equation (for constant material 
+% parameters, combined into a single parameter $\kappa$, the _heat diffusivity_) is given by  
+% 
+% $\frac{\partial T}{\partial t}=\kappa \frac{\partial^2T}{\partial z^2}$
+% 
+% <html>
+% <table border=1><tr><td>
+% <font color="#8A2BE2"> 
+% <b>Note on Partial differential equations.</b><br>
+% In the equation above, the partial derivative symbol &#8706
+% indicates that in the equation <it>T</it> has derivatives to more than one variable (in this
+% case to time <it>t</it> and depth <it>z</it>). A differential equation such as this one is therefore
+% called a <it>partial differential equation</it> (PDE), and, in contrast, the differential equations that we saw
+% last week (with derivatives to only one variable, such as time <it>t</it>) are usually referred to as <it>ordinary
+% differential equations</it>, ODEs.
+% </font>
+% </td>
+% </table>
+% </html>
+%
+% In this exercise, we will solve the one-dimensional heat diffusion equation for a situation of a cooling
+% oceanic lithosphere: a 1-D vertical, hot column of mantle material (with temperature $T=T_m=1350^oC$)
+% is emplaced at a mid-ocean ridge, where it suddenly, at time $t=0$, will be brought in contact
+% with cold sea water of constant temperature $T=T_0=0^oC$. This column will start cooling from above,
+% and in this exercise we would like to calculate how the column cools over time.
+%
+% 2.1a) Sketch (on paper) this temperature distribution $T$ as a function of depth $z$ for
+% time $t=0$ over a depth range between 0 and 300 km. This temperature distribution will be a good initial condition for our
+% modelling exercise.
+% 
+% 2.1b) Next, draw how you would expect this temperature distribution
+% in the lithosphere to change through time. Consider the following aspects
+% when making your sketch: 
+% 
+% * Would the temperature at each of the boundaries change? 
+% * Are there areas where you would expect temperature to change quicker
+% than elsewhere? 
+% * On what timescale do you think the temperature typically varies? 
+%
+% 2.2) In the remainder of this practical, we will build a numerical model for this situation.
+% We already have a governing equation (the heat diffusion equation described
+% above) and an initial condition (defined in question 2.1a). To obtain a unique solution, we need to provide
+% boundary conditions at the boundaries (i.e. end points) of the vertical one-dimensional domain,
+% e.g. a fixed temperature, that applies at every time step at the ends of our domain. What
+% would be good boundary conditions for the temperature $T$ at $z=0$ and $z=300$ km?
+%
+% 2.3) In the second video of this week, lecture 2.2 (slide 11, bottom equation), we derived the finite difference form for the 1-D heat diffusion equation. Rewrite this 
+% equation such that the solution for the new timestep $j+1$ for point $i$, $T_i^{j+1}$, is written as a 
+% function of the old solution $T^j$.
+%
+% 2.4) Let us now design a finite difference system, in which the mantle column 
+% is described by just 5 grid points (i.e. $i =[1,2,3,4,5]$), equally spaced 
+% between 0 and 300 km depth, i.e. 75 km apart. 
+% We will call the initial condition 
+%
+% $T^1=
+% \displaystyle \left( 
+%  \matrix{T_1^1 \cr
+%          T_2^1\cr
+%          T_3^1\cr
+%          T_4^1 \cr
+%          T_5^1} 
+%  \right)$ 
+% 
+% At the boundaries (points $i=1$ and $i=5$) boundary conditions
+% $T_1^1$ ans $T_5^1$ as deined in Question 2.2 apply, respectively, 
+% and at the remaining, interior points, the finite difference
+% equation from Question 2.3 applies. 
+% Calculate (on paper, not in Matlab) the solution for the new time step 
+% $T_i^2$, for all points $i=1$ to $5$. 
+% Use the following parameter values: $\kappa =10^{-6} m^2$/s, $\Delta
+% t=5$ Myr, $\Delta z =75$ km. 
+% Note that different units of time and space are used here, so first convert 
+% everything to seconds and metres.
+% 
+% 2.5) Implement this procedure in a Matlab code, taking into account all of the following aspects:
+% 
+% * Build a Matlab function that calculates a new temperature distribution
+%   for just one diffusion timestep. 
+% * The input into this function will be a vector containing 
+%   the old temperature distribution, plus whatever information is needed to do the
+%   calculation (timestep, spatial discretization, number of points in
+%   array, etc). 
+% * Inside the function, new temperatures will need to be
+%   calculated for all internal points, and a loop over those points is the
+%   easiest solution. Note that the basic operation performed here is
+%   calculating a double derivative in space, and in the process, the
+%   result is an output vector that is two points shorter than the input
+%   vectore (convince yourself that that is the case). The output vector applies to all internal points
+%   but not the end points (the boundary points). These boundary points
+%   have a fixed value.
+% * The function will return a vector with the same length as the old temperature 
+%   which contains the new temperature for all points, i.e. both the boundary points and internal points. 
+%   So you will need to concatenate the top boundary point, the internal
+%   points, and the bottom boundary point into one single output vector.
+% * To test your new function, define (in the Matlab Command Window) the same 
+%   5-point array |Told| and additional information as used in the manual calculation in Question 2.4.
+%   Then call your new function (also from the Command Window) and check that 
+%   the output fits your answer from Question 2.4. 
+%
+% 2.6) If you haven't already done so, rewrite your function above into one
+% that uses vector notation. Tip: when making significant changes to a
+% code, make a backup copy before you begin, so that, if things go wrong, you can
+% always revert to the original file. 
+% 
+% <html>
+% <table border=1><tr><td>
+% <font color="#8A2BE2"> 
+% <b>Make backups or versions of your code </b><br>
+% A general advice when modifying your code: regularly make copies of your
+% Matlab scripts. Certainly if you have a script working, then save it
+% under a different name, so that you can go back to it later on if needed.
+% Or give each version of your code or function a
+% different version name, e.g. <code>myfunction_v1</code>, <code>myfunction_v2</code> etc.
+% </font>
+% </td>
+% </table>
+% </html>
+%
+% A general advice when modifying your code: regularly make copies of your
+% Matlab scripts. Certainly if you have a script working, then save it
+% under a different name, so that you can go back to it later on if needed.
+% Or give each version of your code or function a
+% different version name, e.g. |myfunction_v1|, |myfunction_v2| etc.
+% 
+% You should always try to make your functions as generally applicable as possible
+% so that you can re-use your function for different situations and parameters.
+% A few tips to make functions more applicable:
+% 
+% * The variable passed from a main function to a subfuction via the
+%   argument list doesn't have to have the same name throughout. So a variable 
+% |T| (e.g. referring to temperature in one application) could be named |var| in 
+% a sub-function, and if the same function can later on be used to calculate, say, pressure |p|,
+% then the generic name |var| is an appropriate one. For example: 
+function calc_area
+   length=5
+   area = mysquare(length)
+end
+function output = mysquare(input)
+   output = input^2;
+end
+
+%%
+% * The keyword |end| used inside an array serves as the last entry of that
+%   array. So, for example, if |x| is a 3-by-4 sized array, then |x(3,2)| 
+%   and |x(end,2)| refer to the same component of that array. Using |end|
+%   in this way allows you to build a function that works for arrays of any
+%   size.
+% * The colon symbol (|:|) used inside an array is short for |1:end|, and refers to all entries in a
+%   particular dimension of an array. So, for example, if |x| is a 3-by-4 sized array, then |x(3,:)| 
+%   refers to all 4 elements in the 3rd row of the array.
+%
+% 2.7) Now re-write your function so that it works for a temperature array
+% of any size, and that variable names are logical even if the function
+% would apply to other quantities than temperature.
+% 
+% 2.8) Copy your script into a new one and extend it to build a
+% self-contained Matlab script that sets up variables for your problem,
+% calls the diffusion function to calculate the solution after one timestep, 
+% and plots both solutions together in one plot. 
+%
+% 2.9) Ultimately, we would like to create a code that works not
+% just for 5 points and a timestep of 5 Myrs, but for any number of points 
+% and any timestep. Before moving on to the next question, it might be
+% useful to spend some time on creating a program with a more general structure
+% and set variable names. 
+%
+% 2.10) As the code becomes larger and more complex, it is
+% essential that you provide useful comments so that future users of the
+% code, including yourself, can easily understand how the code
+% works. Before moving to the next question, make sure your code has sufficient 
+% comments. 
+%
+% 2.11) Sofar, your code probably still only performs one timestep. If so, 
+%   adjust your script to call the function (and the plotting) repeatedly in a time loop. 
+%   Re-use the vectors for the old and the new timestep solution by
+%   copying the newly calculated solution into the 'old'
+%   solution at the end of the loop.
+%   To plot a new curve in an already existing plot without erasing the old
+%   plot, use the |hold on| command at the start, and, once finished with all
+%   plotting, use |hold off|. You may need to give
+%   the |drawnow| command at the end of the plotting routine to ensure Matlab 
+%   re-draws the figure after each timestep.
+% 
+% 2.12) Now try your code on a larger problem with more grid points in the
+%   vector: use $\Delta x=10$ km and $\Delta t=0.15$ Myrs.  
+% 
+% 2.13) The analytical solution for this cooling lithosphere is given by 
+% $T=T_m erf{\frac{z}{2\sqrt{\kappa t}}}$ 
+% with $erf$ the error function (for more information on the error function, 
+% type |help erf| on the Matlab command line). 
+% Add a function to your Matlab script, which calculates this analytical solution 
+% every timestep for all grid points, and add the results to the plot. Test
+% the numerical and analytical results against each other.
+
+##### SOURCE END #####
+--></body></html>

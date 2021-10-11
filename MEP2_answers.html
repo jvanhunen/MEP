@@ -1,0 +1,899 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Model answers for: Modelling Earth Processes, week 2 - Diffusion</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="https://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-10-11"><meta name="DC.source" content="MEP2_answers.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Model answers for: Modelling Earth Processes, week 2 - Diffusion</h1><!--introduction--><p><i><b>Model answers are in bold-italic font.</b></i></p><p>Prof Jeroen van Hunen</p><p>Department of Earth Sciences</p><p>Durham University</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">This session's learning objectives</a></li><li><a href="#2">Practical 2, One-dimensional diffusion</a></li></ul></div><h2 id="1">This session's learning objectives</h2><p>At the end of this session, you will understand:</p><div><ul><li>(Heat) Diffusion and its governing equation</li><li>Numerical modelling of spatial variations</li><li>Numerical modelling of 1-D, time-dependent heat diffusion</li></ul></div><h2 id="2">Practical 2, One-dimensional diffusion</h2><p>We will look at a scenario in which a variable (in this case temperature <span class="MathJax_Preview"><img src="MEP2_answers_eq14047577632175690031.png" alt="$T$"></span><script type="math/tex">T</script>) changes its value not only through time (as we looked at last week), but also with location. As elaborated in the lecture notes, the 1-D heat diffusion equation (for constant material parameters, combined into a single parameter <span class="MathJax_Preview"><img src="MEP2_answers_eq16107531617707909724.png" alt="$\kappa$"></span><script type="math/tex">\kappa</script>, the <i>heat diffusivity</i>) is given by</p><p><span class="MathJax_Preview"><img src="MEP2_answers_eq14513160303497238886.png" alt="$\frac{\partial T}{\partial t}=\kappa \frac{\partial^2T}{\partial z^2}$"></span><script type="math/tex">\frac{\partial T}{\partial t}=\kappa \frac{\partial^2T}{\partial z^2}</script></p><p>
+<table border=1><tr><td>
+<font color="#8A2BE2">
+<b>Note on Partial differential equations.</b><br>
+In the equation above, the partial derivative symbol &#8706
+indicates that in the equation <it>T</it> has derivatives to more than one variable (in this
+case to time <it>t</it> and depth <it>z</it>). A differential equation such as this one is therefore
+called a <it>partial differential equation</it> (PDE), and, in contrast, the differential equations that we saw
+last week (with derivatives to only one variable, such as time <it>t</it>) are usually referred to as <it>ordinary
+differential equations</it>, ODEs.
+</font>
+</td>
+</table>
+</p><p>In this exercise, we will solve the one-dimensional heat diffusion equation for a situation of a cooling oceanic lithosphere: a 1-D vertical, hot column of mantle material (with temperature <span class="MathJax_Preview"><img src="MEP2_answers_eq03278126176292972058.png" alt="$T=T_m=1350^oC$"></span><script type="math/tex">T=T_m=1350^oC</script>) is emplaced at a mid-ocean ridge, where it suddenly, at time <span class="MathJax_Preview"><img src="MEP2_answers_eq16912281546434447644.png" alt="$t=0$"></span><script type="math/tex">t=0</script>, will be brought in contact with cold sea water of constant temperature <span class="MathJax_Preview"><img src="MEP2_answers_eq12679475780752375713.png" alt="$T=T_0=0^oC$"></span><script type="math/tex">T=T_0=0^oC</script>. This column will start cooling from above, and in this exercise we would like to calculate how the column cools over time.</p><p>2.1a) Sketch (on paper) this temperature distribution <span class="MathJax_Preview"><img src="MEP2_answers_eq14047577632175690031.png" alt="$T$"></span><script type="math/tex">T</script> as a function of depth <span class="MathJax_Preview"><img src="MEP2_answers_eq17119888974628994297.png" alt="$z$"></span><script type="math/tex">z</script> for time <span class="MathJax_Preview"><img src="MEP2_answers_eq16912281546434447644.png" alt="$t=0$"></span><script type="math/tex">t=0</script> over a depth range between 0 and 300 km. This temperature distribution will be a good initial condition for our modelling exercise.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> A sketch of the initial temperature distribution could look    like this:</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1220998_1" alt=""> </p><p>2.1b) Next, draw how you would expect this temperature distribution in the lithosphere to change through time. Consider the following aspects when making your sketch:</p><div><ul><li>Would the temperature at each of the boundaries change? <i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> The temperature at the top boundary is that of the sea water, which we can assume to remain constant through time. At the base of the model, it will take a long time before the cold temperatures from the top reach this point. So for at least some (geologically significant) amount of time, fixing the bottom temperature to a constant <span class="MathJax_Preview"><img src="MEP2_answers_eq15776920144972825198.png" alt="$1350^oC$"></span><script type="math/tex">1350^oC</script> is reasonable too.</b></i></li><li>Are there areas where you would expect temperature to change quicker than elsewhere? <i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> As we saw in the first video lecture, heat flow is proportional to temperature gradients (Fourier's law). In the initial condition, the temperature gradient is zero everywhere, except near the surface, where the jump in temperature gives rise to a very large gradient. So temperatures are more likely to change near the top, and very little in the deeper parts.</b></i></li><li>On what timescale do you think the temperature typically varies? <i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> This is not immediately obvious from looking at the heat diffusion equation. But we know oceanic lithosphere grows from a very small thickness near the mid-ocean ridge to a typical thickness of 100 km after around 100 Myrs of cooling. So, we want our future numerical model to run for 10s to 100s of Myrs.</b></i></li></ul></div><p>2.2) In the remainder of this practical, we will build a numerical model for this situation. We already have a governing equation (the heat diffusion equation described above) and an initial condition (defined in question 2.1a). To obtain a unique solution, we need to provide boundary conditions at the boundaries (i.e. end points) of the vertical one-dimensional domain, e.g. a fixed temperature, that applies at every time step at the ends of our domain. What would be good boundary conditions for the temperature <span class="MathJax_Preview"><img src="MEP2_answers_eq14047577632175690031.png" alt="$T$"></span><script type="math/tex">T</script> at <span class="MathJax_Preview"><img src="MEP2_answers_eq08525924456163593167.png" alt="$z=0$"></span><script type="math/tex">z=0</script> and <span class="MathJax_Preview"><img src="MEP2_answers_eq10670896496507903836.png" alt="$z=300$"></span><script type="math/tex">z=300</script> km?</p><p><i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> Appropriate boundary conditions would be: T(z=0) = <span class="MathJax_Preview"><img src="MEP2_answers_eq02061032112990828204.png" alt="$0^oC$"></span><script type="math/tex">0^oC</script>, and T(z=300 km)= <span class="MathJax_Preview"><img src="MEP2_answers_eq15776920144972825198.png" alt="$1350^oC$"></span><script type="math/tex">1350^oC</script></b></i></p><p>2.3) In the second video of this week, lecture 2.2 (slide 11, bottom equation), we derived the finite difference form for the 1-D heat diffusion equation. Rewrite this equation such that the solution for the new timestep <span class="MathJax_Preview"><img src="MEP2_answers_eq12814944585407198159.png" alt="$j+1$"></span><script type="math/tex">j+1</script> for point <span class="MathJax_Preview"><img src="MEP2_answers_eq05671228016298599287.png" alt="$i$"></span><script type="math/tex">i</script>, <span class="MathJax_Preview"><img src="MEP2_answers_eq11953969551661818064.png" alt="$T_i^{j+1}$"></span><script type="math/tex">T_i^{j+1}</script>, is written as a function of the old solution <span class="MathJax_Preview"><img src="MEP2_answers_eq15180198072183483029.png" alt="$T^j$"></span><script type="math/tex">T^j</script>.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> Rewriting the equation from the lecture notes gives:</b></i></p><p><span class="MathJax_Preview"><img src="MEP2_answers_eq12822569917554381816.png" alt="$\displaystyle T_i^{j+1} = T_i^j + \kappa\Delta t \left[ \frac{T_{i+1}^j - 2T_i^j + T_{i-1}^j}{\Delta z^2} \right]$"></span><script type="math/tex">\displaystyle T_i^{j+1} = T_i^j + \kappa\Delta t \left[ \frac{T_{i+1}^j - 2T_i^j + T_{i-1}^j}{\Delta z^2} \right]</script></p><p>Note that, in the equation above, and, indeed, throughout most of this module, we will use the following convention: <span class="MathJax_Preview"><img src="MEP2_answers_eq04895878098072927983.png" alt="$T_i^j$"></span><script type="math/tex">T_i^j</script> refers to the temperature at timestep <span class="MathJax_Preview"><img src="MEP2_answers_eq07225361342133155126.png" alt="$j$"></span><script type="math/tex">j</script> and grid point <span class="MathJax_Preview"><img src="MEP2_answers_eq05671228016298599287.png" alt="$i$"></span><script type="math/tex">i</script>. Later on, when we will use more than one spatial dimension, you may come across the notation <span class="MathJax_Preview"><img src="MEP2_answers_eq11081011722710681786.png" alt="$T_{i,j}^k$"></span><script type="math/tex">T_{i,j}^k</script>, which uses the same convention, and refers to the temperature at timestep <span class="MathJax_Preview"><img src="MEP2_answers_eq15636846968047188835.png" alt="$k$"></span><script type="math/tex">k</script> and gridpoints <span class="MathJax_Preview"><img src="MEP2_answers_eq05671228016298599287.png" alt="$i$"></span><script type="math/tex">i</script> and <span class="MathJax_Preview"><img src="MEP2_answers_eq07225361342133155126.png" alt="$j$"></span><script type="math/tex">j</script> in two dimensions.</p><p>2.4) Let us now design a finite difference system, in which the mantle column is described by just 5 grid points (i.e. <span class="MathJax_Preview"><img src="MEP2_answers_eq12684994882133834298.png" alt="$i =[1,2,3,4,5]$"></span><script type="math/tex">i =[1,2,3,4,5]</script>), equally spaced between 0 and 300 km depth, i.e. 75 km apart. We will call the initial condition</p><p><span class="MathJax_Preview"><img src="MEP2_answers_eq01261335188830609993.png" alt="$T^1= \displaystyle \left(  \matrix{T_1^1 \cr          T_2^1\cr          T_3^1\cr          T_4^1 \cr          T_5^1}  \right)$"></span><script type="math/tex">T^1= \displaystyle \left(  \matrix{T_1^1 \cr          T_2^1\cr          T_3^1\cr          T_4^1 \cr          T_5^1}  \right)</script></p><p>At the boundaries (points <span class="MathJax_Preview"><img src="MEP2_answers_eq02044933183722625800.png" alt="$i=1$"></span><script type="math/tex">i=1</script> and <span class="MathJax_Preview"><img src="MEP2_answers_eq03634903904193689639.png" alt="$i=5$"></span><script type="math/tex">i=5</script>) boundary conditions <span class="MathJax_Preview"><img src="MEP2_answers_eq17606807927003692725.png" alt="$T_1^1$"></span><script type="math/tex">T_1^1</script> ans <span class="MathJax_Preview"><img src="MEP2_answers_eq01631607221528425962.png" alt="$T_5^1$"></span><script type="math/tex">T_5^1</script> as deined in Question 2.2 apply, respectively, and at the remaining, interior points, the finite difference equation from Question 2.3 applies. Calculate (on paper, not in Matlab) the solution for the new time step <span class="MathJax_Preview"><img src="MEP2_answers_eq05730784047013419187.png" alt="$T_i^2$"></span><script type="math/tex">T_i^2</script>, for all points <span class="MathJax_Preview"><img src="MEP2_answers_eq02044933183722625800.png" alt="$i=1$"></span><script type="math/tex">i=1</script> to <span class="MathJax_Preview"><img src="MEP2_answers_eq17414748974537904790.png" alt="$5$"></span><script type="math/tex">5</script>. Use the following parameter values: <span class="MathJax_Preview"><img src="MEP2_answers_eq17955568450996505783.png" alt="$\kappa =10^{-6} m^2$"></span><script type="math/tex">\kappa =10^{-6} m^2</script>/s, <span class="MathJax_Preview"><img src="MEP2_answers_eq10613080303757337543.png" alt="$\Delta t=5$"></span><script type="math/tex">\Delta t=5</script> Myr, <span class="MathJax_Preview"><img src="MEP2_answers_eq00791872774966708780.png" alt="$\Delta z =75$"></span><script type="math/tex">\Delta z =75</script> km. Note that different units of time and space are used here, so first convert everything to seconds and metres.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> Solutions for <span class="MathJax_Preview"><img src="MEP2_answers_eq07625470148922578738.png" alt="$T^1$"></span><script type="math/tex">T^1</script> and <span class="MathJax_Preview"><img src="MEP2_answers_eq02888240927248469585.png" alt="$T^2$"></span><script type="math/tex">T^2</script> are: <span class="MathJax_Preview"><img src="MEP2_answers_eq09471021237487451343.png" alt="$T^1= \displaystyle \left(  \matrix{T_1^1 \cr          T_2^1\cr          T_3^1\cr          T_4^1 \cr          T_5^1}  \right) = \left(  \matrix{0 \cr          1350\cr          1350\cr          1350 \cr          1350}  \right)$"></span><script type="math/tex">T^1= \displaystyle \left(  \matrix{T_1^1 \cr          T_2^1\cr          T_3^1\cr          T_4^1 \cr          T_5^1}  \right) = \left(  \matrix{0 \cr          1350\cr          1350\cr          1350 \cr          1350}  \right)</script> and <span class="MathJax_Preview"><img src="MEP2_answers_eq18406238244874211445.png" alt="$T^2= \displaystyle \left(  \matrix{T_1^2 \cr          T_2^2\cr          T_3^2\cr          T_4^2 \cr          T_5^2}  \right) = \left(  \matrix{0 \cr          1312\cr          1350\cr          1350 \cr          1350}  \right)$"></span><script type="math/tex">T^2= \displaystyle \left(  \matrix{T_1^2 \cr          T_2^2\cr          T_3^2\cr          T_4^2 \cr          T_5^2}  \right) = \left(  \matrix{0 \cr          1312\cr          1350\cr          1350 \cr          1350}  \right)</script></b></i></p><p><i><b>Another timestep would result in <span class="MathJax_Preview"><img src="MEP2_answers_eq13902581322112083523.png" alt="$T^3= \displaystyle \left(  \matrix{T_1^3 \cr          T_2^3\cr          T_3^3\cr          T_4^3 \cr          T_5^3}  \right) = \left(  \matrix{0 \cr          1276\cr          1348\cr          1350 \cr          1350}  \right)$"></span><script type="math/tex">T^3= \displaystyle \left(  \matrix{T_1^3 \cr          T_2^3\cr          T_3^3\cr          T_4^3 \cr          T_5^3}  \right) = \left(  \matrix{0 \cr          1276\cr          1348\cr          1350 \cr          1350}  \right)</script>.</b></i></p><p><i><b>The following plot shows the initial condition (top/right line), and also solutions after  1 and 2 timesteps:</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1220999_1" alt=""> </p><p>2.5) Implement this procedure in a Matlab code, taking into account all of the following aspects:</p><div><ul><li>Build a Matlab function that calculates a new temperature distribution   for just one diffusion timestep.</li><li>The input into this function will be a vector containing   the old temperature distribution, plus whatever information is needed to do the   calculation (timestep, spatial discretization, number of points in   array, etc).</li><li>Inside the function, new temperatures will need to be   calculated for all internal points, and a loop over those points is the   easiest solution. Note that the basic operation performed here is   calculating a double derivative in space, and in the process, the   result is an output vector that is two points shorter than the input   vectore (convince yourself that that is the case). The output vector applies to all internal points   but not the end points (the boundary points). These boundary points   have a fixed value.</li><li>The function will return a vector with the same length as the old temperature   which contains the new temperature for all points, i.e. both the boundary points and internal points.   So you will need to concatenate the top boundary point, the internal   points, and the bottom boundary point into one single output vector.</li><li>To test your new function, define (in the Matlab Command Window) the same   5-point array <tt>Told</tt> and additional information as used in the manual calculation in Question 2.4.   Then call your new function (also from the Command Window) and check that   the output fits your answer from Question 2.4.</li></ul></div><p><i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> A possible basic solution could look something like this (to be entered in a Matlab script with the file name <tt>oneD_Tdiff.m</tt>):</b></i></p><pre class="codeinput"><span class="keyword">function</span> Tnew = oneD_Tdiff (Told,dz,kappa,dt)
+   <span class="comment">% Create a help array to calculate the timestep change in temperature:</span>
+   d2Tdz2 = zeros(1,5);
+   <span class="comment">% Fill its interior points with the diffusion equation;</span>
+   <span class="comment">% the boundary points are not evaluated here, so will stay zero.</span>
+   <span class="keyword">for</span> i=2:4
+       d2Tdz2(i) = (Told(i+1) - 2*Told(i) + Told(i-1)) / dz^2;
+   <span class="keyword">end</span>
+   dTdt = kappa.*d2Tdz2;
+   <span class="comment">% add this temperature change to the old solution:</span>
+   Tnew = Told + dTdt*dt;
+<span class="keyword">end</span>
+</pre><p><i><b>This function can then be called from the Matlab Command Window by typing the following lines:</b></i></p><pre>&gt;&gt; Told = [0 1350 1350 1350 1350]
+&gt;&gt; dz = 75000
+&gt;&gt; kappa = 1e-6
+&gt;&gt; dt = 5e6*365*24*60*60
+&gt;&gt; Tnew = oneD_Tdiff (Told,dz,kappa,dt)</pre><p>
+<table border=1><tr><td>
+<font color="#8A2BE2">
+<b>Note on vector calculations in Matlab</b><br>
+Matlab is set up and optimised to do vector calculations, which, once
+you are used to the notation, provides neater codes that execute (a lot!)
+faster. As an example, in the following Matlab code lines, the arrays <it>y</it>
+and <it>z</it> contain the same contents.
+</font>
+</td>
+</table>
+</p><pre>x=[1 2 3 4 5]
+for i=1:4
+   y(i) = x(i) + x(i+1)
+end
+z=x(1:4)+x(2:5)</pre><p>2.6) If you haven't already done so, rewrite your function above into one that uses vector notation. Tip: when making significant changes to a code, make a backup copy before you begin, so that, if things go wrong, you can always revert to the original file.</p><p>
+<table border=1><tr><td>
+<font color="#8A2BE2">
+<b>Make backups or versions of your code </b><br>
+A general advice when modifying your code: regularly make copies of your
+Matlab scripts. Certainly if you have a script working, then save it
+under a different name, so that you can go back to it later on if needed.
+Or give each version of your code or function a
+different version name, e.g. <code>myfunction_v1</code>, <code>myfunction_v2</code> etc.
+</font>
+</td>
+</table>
+</p><pre class="codeinput"><span class="comment">% A general advice when modifying your code: regularly make copies of your</span>
+<span class="comment">% Matlab scripts. Certainly if you have a script working, then save it</span>
+<span class="comment">% under a different name, so that you can go back to it later on if needed.</span>
+<span class="comment">% Or give each version of your code or function a</span>
+<span class="comment">% different version name, e.g. |myfunction_v1|, |myfunction_v2| etc.</span>
+</pre><p><i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> A possible solution could be:</b></i></p><pre class="codeinput"><span class="keyword">function</span> Tnew = oneD_Tdiff (Told,dz,kappa,dt)
+   <span class="comment">% Calculate diffusion on an array of interior points:</span>
+   d2Tdz2 = zeros(1,5);
+   d2Tdz2(2:4) = (Told(3:5) - 2*Told(2:4) + Told(1:3)) / dz^2;
+   dTdt = kappa.*d2Tdz2;
+   <span class="comment">% add this temperature change to the old solution:</span>
+   Tnew = Told+dTdt*dt;
+<span class="keyword">end</span>
+</pre><p><i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> or:</b></i></p><pre class="codeinput"><span class="keyword">function</span> Tnew = oneD_Tdiff (Told,dz,kappa,dt)
+   <span class="comment">% Calculate diffusion on an array of interior points:</span>
+   d2Tdz2 = (Told(3:5) - 2*Told(2:4) + Told(1:3)) / dz^2;
+   dTdt = kappa.*d2Tdz2;
+   <span class="comment">% Paste boundary points to this array of interior points:</span>
+   dTdt = [0 dTdt 0];
+   <span class="comment">% add this temperature change to the old solution:</span>
+   Tnew = Told+dTdt*dt;
+<span class="keyword">end</span>
+</pre><p><i><b> The array <tt>d2Tdz2</tt> has a length that is 2 points shorter than the    original <tt>Told</tt> array, and only applies to the internal points and not    the boundary points. On the boundary points, the solution is not changing    through time, so <span class="MathJax_Preview"><img src="MEP2_answers_eq17495797009854865124.png" alt="$\frac{dT}{dt}=0$"></span><script type="math/tex">\frac{dT}{dt}=0</script> at these points. The line    <tt>dTdt = [0 dTdt 0]</tt>    in the last example adds those zero-change boundary points to the internal points, which    makes the <tt>dTdt</tt> array of the same length as the original <tt>Told</tt>    array, and makes addition of <tt>Told</tt> and <tt>dTdt*dt</tt> a mathematically    correct operation in the last line.</b></i></p><p>You should always try to make your functions as generally applicable as possible so that you can re-use your function for different situations and parameters. A few tips to make functions more applicable:</p><div><ul><li>The variable passed from a main function to a subfuction via the   argument list doesn't have to have the same name throughout. So a variable <tt>T</tt> (e.g. referring to temperature in one application) could be named <tt>var</tt> in a sub-function, and if the same function can later on be used to calculate, say, pressure <tt>p</tt>, then the generic name <tt>var</tt> is an appropriate one. For example:</li></ul></div><pre class="codeinput"><span class="keyword">function</span> calc_area
+   length=5
+   area = mysquare(length)
+<span class="keyword">end</span>
+<span class="keyword">function</span> output = mysquare(input)
+   output = input^2;
+<span class="keyword">end</span>
+</pre><div><ul><li>The keyword <tt>end</tt> used inside an array serves as the last entry of that   array. So, for example, if <tt>x</tt> is a 3-by-4 sized array, then <tt>x(3,2)</tt>   and <tt>x(end,2)</tt> refer to the same component of that array. Using <tt>end</tt>   in this way allows you to build a function that works for arrays of any   size.</li><li>The colon symbol (<tt>:</tt>) used inside an array is short for <tt>1:end</tt>, and refers to all entries in a   particular dimension of an array. So, for example, if <tt>x</tt> is a 3-by-4 sized array, then <tt>x(3,:)</tt>   refers to all 4 elements in the 3rd row of the array.</li></ul></div><p>2.7) Now re-write your function so that it works for a temperature array of any size, and that variable names are logical even if the function would apply to other quantities than temperature.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> A possible solution could be:</b></i></p><pre class="codeinput"><span class="keyword">function</span> fout = oneDdiff (fin,dz,kappa,dt)
+   d2fdz2 = (fin(3:end) - 2*fin(2:end-1) + fin(1:end-2)) / dz^2;
+   dfdt = kappa.*d2fdz2;
+   dfdt = [0 dfdt 0];
+   fout = fin+dfdt*dt;
+<span class="keyword">end</span>
+</pre><p>2.8) Copy your script into a new one and extend it to build a self-contained Matlab script that sets up variables for your problem, calls the diffusion function to calculate the solution after one timestep, and plots both solutions together in one plot.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script>    In the following script, the main program <tt>heat_1d</tt> defines the    1-D finite difference mesh <tt>z</tt> and a temperature initial condition <tt>Told</tt>,    then calls the function    <tt>oneDdiff</tt> to calculate the diffusion step, and then plots the solution:</b></i></p><pre class="codeinput"><span class="keyword">function</span> heat_1d
+   z    = [0 75000 150000 225000 300000]
+   Told = [0 1350 1350 1350 1350]
+   Tnew = oneDdiff(Told, 75000, 1e-6, 5*1e6*365*24*60*60)
+
+   figure(1), clf
+    plot (Told,-z, Tnew,-z)
+    xlabel(<span class="string">'T [^oC]'</span>)
+    ylabel(<span class="string">'z [m]'</span>)
+    drawnow
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> fout = oneDdiff (fin,dz,kappa,dt)
+   d2fdz2 = (fin(3:end) - 2*fin(2:end-1) + fin(1:end-2)) / dz^2;
+   dfdt = kappa.*d2fdz2;
+   dfdt = [0 dfdt 0];
+   fout = fin+dfdt*dt;
+<span class="keyword">end</span>
+</pre><p>2.9) Ultimately, we would like to create a code that works not just for 5 points and a timestep of 5 Myrs, but for any number of points and any timestep. Before moving on to the next question, it might be useful to spend some time on creating a program with a more general structure and set variable names.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> The following code creates the same output as the previous one, but can be used for any mesh size and timestep, using the <tt>linspace</tt> command to create an initial temperature array of any size:</b></i></p><pre class="codeinput"><span class="keyword">function</span> heat_1d
+    dt = 5;
+    secinmyr = 1e6*365*24*3600;
+    dt = dt*secinmyr;
+
+    h = 3e5;
+    nz = 5;
+    z = linspace(0,h,nz)
+    dz = z(2)-z(1);
+
+    Tm = 1350;
+    Ttop = 0;
+    Told = Tm*ones(1,nz);
+    Told(1) = Ttop
+    kappa = 1e-6;
+
+    Tnew = oneDdiff(Told, dz, kappa, dt)
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> fout = oneDdiff (fin,dz,kappa,dt)
+    d2fdz2 = (fin(3:end) - 2*fin(2:end-1) + fin(1:end-2)) / dz^2;
+    dfdt = kappa.*d2fdz2;
+    dfdt = [0 dfdt 0];
+    fout = fin+dfdt*dt;
+<span class="keyword">end</span>
+</pre><p>2.10) As the code becomes larger and more complex, it is essential that you provide useful comments so that future users of the code, including yourself, can easily understand how the code works. Before moving to the next question, make sure your code has sufficient comments.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> A example of a well-annotated version of the above Matlab script is given here:</b></i></p><pre class="codeinput"><span class="keyword">function</span> heat_1d
+    <span class="comment">% purpose: solves 1d heat equation</span>
+    <span class="comment">% method: finite differences, forward Euler time integration</span>
+
+    <span class="comment">% discretization:</span>
+    dt = 5;                      <span class="comment">% timestep in Myrs</span>
+    secinmyr = 1e6*365*24*3600;  <span class="comment">% amount of seconds in 1 Myr</span>
+    dt = dt*secinmyr;            <span class="comment">% unit conversion to SI: time in sec</span>
+    h = 3e5;                     <span class="comment">% height of box: 3x10^5 m = 300 km</span>
+    nz = 5;                      <span class="comment">% nr of grid points in grid</span>
+    z = linspace(0,h,nz)         <span class="comment">% array for the finite difference mesh</span>
+    dz = z(2)-z(1);              <span class="comment">% grid spacing (assumed fixed)</span>
+
+    <span class="comment">% Temperature vector and initial &amp; boundary conditions:</span>
+    Tm = 1350;                   <span class="comment">% mantle temperature in degC</span>
+    Ttop = 0;                    <span class="comment">% surface T</span>
+    Told = Tm*ones(1,nz);        <span class="comment">% numerical initial T=Tm everywhere ...</span>
+    Told(1) = Ttop               <span class="comment">% ... except at surface, where T=0</span>
+    kappa = 1e-6;                <span class="comment">% thermal diffusivity</span>
+
+    <span class="comment">% numerical solution with constant dz:</span>
+    Tnew = oneDdiff(Told, dz, kappa, dt)
+<span class="keyword">end</span>
+
+<span class="comment">%**************************************************************************</span>
+
+<span class="keyword">function</span> fout = oneDdiff (fin,dz,kappa,dt)
+    <span class="comment">% Performs 1 diffusion timestep on array fin with discr dz,</span>
+    <span class="comment">% using timestep dt and diffusion coeff kappa</span>
+    <span class="comment">% fixed essential b.c. used.</span>
+
+    d2fdz2 = (fin(3:end) - 2*fin(2:end-1) + fin(1:end-2)) / dz^2;
+    dfdt = kappa.*d2fdz2;
+    <span class="comment">% dfdt applies to internal points only. Extend with constant fin boundaries</span>
+    <span class="comment">% (constant f implies that dfdt = 0)</span>
+    dfdt = [0 dfdt 0];
+    fout = fin+dfdt*dt;
+<span class="keyword">end</span>
+</pre><p>2.11) Sofar, your code probably still only performs one timestep. If so,   adjust your script to call the function (and the plotting) repeatedly in a time loop.   Re-use the vectors for the old and the new timestep solution by   copying the newly calculated solution into the 'old'   solution at the end of the loop.   To plot a new curve in an already existing plot without erasing the old   plot, use the <tt>hold on</tt> command at the start, and, once finished with all   plotting, use <tt>hold off</tt>. You may need to give   the <tt>drawnow</tt> command at the end of the plotting routine to ensure Matlab   re-draws the figure after each timestep.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> A possible solution is given below, in which information    is added on the number of timesteps to the code, and the function    call to <tt>oneDdiff</tt> and plotting code are both put inside a <tt>for</tt> loop:</b></i></p><pre class="codeinput"><span class="keyword">function</span> heat_1d
+    <span class="comment">% purpose: solves 1d heat equation</span>
+    <span class="comment">% method: finite differences, forward Euler time integration</span>
+
+    <span class="comment">% time discretization:</span>
+    dt = 5;                      <span class="comment">% timestep in Myrs</span>
+    nt = 20;                     <span class="comment">% nr of timesteps</span>
+    tmax = (nt-1)*dt;            <span class="comment">% max time</span>
+    secinmyr = 1e6*365*24*3600;  <span class="comment">% amount of seconds in 1 Myr</span>
+    dt = dt*secinmyr;            <span class="comment">% unit conversion to SI: time in sec</span>
+    tmax = tmax*secinmyr;
+    time = linspace(0,tmax,nt)   <span class="comment">% create time array</span>
+
+    <span class="comment">% spatial discretization:</span>
+    h = 3e5;                     <span class="comment">% height of box: 3x10^5 m = 300 km</span>
+    nz = 5;                      <span class="comment">% nr of grid points in grid</span>
+    z = linspace(0,h,nz)         <span class="comment">% array for the finite difference mesh</span>
+    dz = z(2)-z(1);              <span class="comment">% grid spacing (assumed fixed)</span>
+
+    <span class="comment">% Temperature vector and initial &amp; boundary conditions:</span>
+    Tm = 1350;                   <span class="comment">% mantle temperature in degC</span>
+    Ttop = 0;                    <span class="comment">% surface T</span>
+    Told = Tm*ones(1,nz);        <span class="comment">% numerical initial T=Tm everywhere ...</span>
+    Told(1) = Ttop;              <span class="comment">% ... except at surface, where T=0</span>
+    kappa = 1e-6;                <span class="comment">% thermal diffusivity</span>
+
+    figure(1), clf               <span class="comment">% start with clean figure</span>
+    <span class="comment">% timestepping</span>
+    <span class="keyword">for</span> it=2:nt
+        <span class="comment">% numerical solution with constant dz:</span>
+        Tnew = oneDdiff(Told, dz, kappa, dt);
+
+        <span class="comment">% plot solution (plot -z so that surface is at top of plot):</span>
+        figure(1)
+        hold <span class="string">on</span>
+        tmyrs = floor(time(it)/secinmyr);   <span class="comment">% and in Myrs</span>
+        plot (Tnew,-z)
+        xlabel(<span class="string">'T [^oC]'</span>)
+        ylabel(<span class="string">'z [m]'</span>)
+        title([<span class="string">' T after '</span>,num2str(tmyrs),<span class="string">' Myrs'</span>])
+        drawnow
+
+        <span class="comment">% prepare for next time step:</span>
+        Told = Tnew;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="comment">%**************************************************************************</span>
+
+<span class="keyword">function</span> fout = oneDdiff (fin,dz,kappa,dt)
+    <span class="comment">% Performs 1 diffusion timestep on array fin with discr dz,</span>
+    <span class="comment">% using timestep dt and diffusion coeff kappa</span>
+    <span class="comment">% fixed essential b.c. used.</span>
+
+    d2fdz2 = (fin(3:end) - 2*fin(2:end-1) + fin(1:end-2)) / dz^2;
+    dfdt = kappa.*d2fdz2;
+    <span class="comment">% dfdt applies to internal points only. Extend with constant fin boundaries</span>
+    <span class="comment">% (constant f implies that dfdt = 0)</span>
+    dfdt = [0 dfdt 0];
+    fout = fin+dfdt*dt;
+<span class="keyword">end</span>
+</pre><p>2.12) Now try your code on a larger problem with more grid points in the   vector: use <span class="MathJax_Preview"><img src="MEP2_answers_eq02922358532700113794.png" alt="$\Delta x=10$"></span><script type="math/tex">\Delta x=10</script> km and <span class="MathJax_Preview"><img src="MEP2_answers_eq11228671850724787456.png" alt="$\Delta t=0.15$"></span><script type="math/tex">\Delta t=0.15</script> Myrs.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> Running the code for these values of <span class="MathJax_Preview"><img src="MEP2_answers_eq16319215787732310329.png" alt="$\Delta x$"></span><script type="math/tex">\Delta x</script> and <span class="MathJax_Preview"><img src="MEP2_answers_eq07651498126111630170.png" alt="$\Delta t$"></span><script type="math/tex">\Delta t</script>    produces the following plot:</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1221405_1" alt=""> </p><p>2.13) The analytical solution for this cooling lithosphere is given by <span class="MathJax_Preview"><img src="MEP2_answers_eq15735224314040643223.png" alt="$T=T_m erf{\frac{z}{2\sqrt{\kappa t}}}$"></span><script type="math/tex">T=T_m erf{\frac{z}{2\sqrt{\kappa t}}}</script> with <span class="MathJax_Preview"><img src="MEP2_answers_eq04690510883228114220.png" alt="$erf$"></span><script type="math/tex">erf</script> the error function (for more information on the error function, type <tt>help erf</tt> on the Matlab command line). Add a function to your Matlab script, which calculates this analytical solution every timestep for all grid points, and add the results to the plot. Test the numerical and analytical results against each other.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> The following function can be added to the code to calculate this analytical solution:</b></i></p><pre class="codeinput"><span class="keyword">function</span> fout = halfspacecooling (Tm, z, kappa, t)
+   <span class="comment">% Calculates Halfspace cooling solution:</span>
+   fout = Tm*erf(z./(2*sqrt(kappa*t)));
+<span class="keyword">end</span>
+</pre><p><i><b> and this function can be called from within the time loop with:</b></i></p><pre>Tana = halfspacecooling (Tm, z, kappa, time(it));</pre><p><i><b> The resulting final Matlab code for this practical can be found    <a href="https://blackboard.durham.ac.uk/bbcswebdav/xid-1221406_1">here</a>.</b></i></p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Model answers for: Modelling Earth Processes, week 2 - Diffusion
+% _*Model answers are in bold-italic font.*_
+% 
+% Prof Jeroen van Hunen
+%
+% Department of Earth Sciences
+%
+% Durham University
+%
+%% This session's learning objectives
+%
+% At the end of this session, you will understand:
+% 
+% * (Heat) Diffusion and its governing equation
+% * Numerical modelling of spatial variations
+% * Numerical modelling of 1-D, time-dependent heat diffusion
+
+%% Practical 2, One-dimensional diffusion
+%
+% We will look at a scenario in which a variable (in this case
+% temperature $T$) changes its value not only through time (as we looked at last week), 
+% but also with location. As elaborated in the lecture notes, 
+% the 1-D heat diffusion equation (for constant material 
+% parameters, combined into a single parameter $\kappa$, the _heat diffusivity_) is given by  
+% 
+% $\frac{\partial T}{\partial t}=\kappa \frac{\partial^2T}{\partial z^2}$
+% 
+% <html>
+% <table border=1><tr><td>
+% <font color="#8A2BE2"> 
+% <b>Note on Partial differential equations.</b><br>
+% In the equation above, the partial derivative symbol &#8706
+% indicates that in the equation <it>T</it> has derivatives to more than one variable (in this
+% case to time <it>t</it> and depth <it>z</it>). A differential equation such as this one is therefore
+% called a <it>partial differential equation</it> (PDE), and, in contrast, the differential equations that we saw
+% last week (with derivatives to only one variable, such as time <it>t</it>) are usually referred to as <it>ordinary
+% differential equations</it>, ODEs.
+% </font>
+% </td>
+% </table>
+% </html>
+%
+% In this exercise, we will solve the one-dimensional heat diffusion equation for a situation of a cooling
+% oceanic lithosphere: a 1-D vertical, hot column of mantle material (with temperature $T=T_m=1350^oC$)
+% is emplaced at a mid-ocean ridge, where it suddenly, at time $t=0$, will be brought in contact
+% with cold sea water of constant temperature $T=T_0=0^oC$. This column will start cooling from above,
+% and in this exercise we would like to calculate how the column cools over time.
+%
+% 2.1a) Sketch (on paper) this temperature distribution $T$ as a function of depth $z$ for
+% time $t=0$ over a depth range between 0 and 300 km. This temperature distribution will be a good initial condition for our
+% modelling exercise.
+%
+% _* $\Rightarrow$ A sketch of the initial temperature distribution could look
+%    like this:*_
+%
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1220998_1>>
+% 
+% 2.1b) Next, draw how you would expect this temperature distribution
+% in the lithosphere to change through time. Consider the following aspects
+% when making your sketch: 
+% 
+% * Would the temperature at each of the boundaries change? 
+% _* $\Rightarrow$ The temperature at the top boundary is that of the sea
+% water, which we can assume to remain constant through time. At the base
+% of the model, it will take a long time before the cold temperatures from
+% the top reach this point. So for at least some (geologically significant)
+% amount of time, fixing the bottom temperature to a constant $1350^oC$ is
+% reasonable too.*_
+% * Are there areas where you would expect temperature to change quicker
+% than elsewhere? _* $\Rightarrow$ As we saw in the first video lecture,
+% heat flow is proportional to temperature gradients (Fourier's law). In
+% the initial condition, the temperature gradient is zero everywhere,
+% except near the surface, where the jump in temperature gives rise to a
+% very large gradient. So temperatures are more likely to change near the
+% top, and very little in the deeper parts.*_ 
+% * On what timescale do you think the temperature typically varies? 
+% _* $\Rightarrow$ This is not immediately obvious from looking at the heat
+% diffusion equation. But we know oceanic lithosphere grows from a very
+% small thickness near the mid-ocean ridge to a typical thickness of 100 km
+% after around 100 Myrs of cooling. So, we want our future numerical model
+% to run for 10s to 100s of Myrs.*_
+%
+% 2.2) In the remainder of this practical, we will build a numerical model for this situation.
+% We already have a governing equation (the heat diffusion equation described
+% above) and an initial condition (defined in question 2.1a). To obtain a unique solution, we need to provide
+% boundary conditions at the boundaries (i.e. end points) of the vertical one-dimensional domain,
+% e.g. a fixed temperature, that applies at every time step at the ends of our domain. What
+% would be good boundary conditions for the temperature $T$ at $z=0$ and $z=300$ km?
+% 
+% _* $\Rightarrow$ Appropriate boundary conditions would be: T(z=0) = $0^oC$, and T(z=300 km)= $1350^oC$*_
+%
+% 2.3) In the second video of this week, lecture 2.2 (slide 11, bottom equation), we derived the finite difference form for the 1-D heat diffusion equation. Rewrite this 
+% equation such that the solution for the new timestep $j+1$ for point $i$, $T_i^{j+1}$, is written as a 
+% function of the old solution $T^j$.
+% 
+% _* $\Rightarrow$ Rewriting the equation from the lecture notes gives:*_
+% 
+% $\displaystyle T_i^{j+1} = T_i^j + \kappa\Delta t
+% \left[ \frac{T_{i+1}^j - 2T_i^j + T_{i-1}^j}{\Delta z^2}
+% \right]$
+%
+% Note that, in the equation above, and, indeed, throughout most of this module, we
+% will use the following convention: $T_i^j$ refers to the temperature at timestep $j$ and grid point $i$. 
+% Later on, when we will use more than one spatial dimension, you may come
+% across the notation $T_{i,j}^k$, which uses the same convention, and
+% refers to the temperature at timestep $k$ and gridpoints $i$ and $j$ in
+% two dimensions.
+%
+% 2.4) Let us now design a finite difference system, in which the mantle column 
+% is described by just 5 grid points (i.e. $i =[1,2,3,4,5]$), equally spaced 
+% between 0 and 300 km depth, i.e. 75 km apart. 
+% We will call the initial condition 
+%
+% $T^1=
+% \displaystyle \left( 
+%  \matrix{T_1^1 \cr
+%          T_2^1\cr
+%          T_3^1\cr
+%          T_4^1 \cr
+%          T_5^1} 
+%  \right)$ 
+% 
+% At the boundaries (points $i=1$ and $i=5$) boundary conditions
+% $T_1^1$ ans $T_5^1$ as deined in Question 2.2 apply, respectively, 
+% and at the remaining, interior points, the finite difference
+% equation from Question 2.3 applies. 
+% Calculate (on paper, not in Matlab) the solution for the new time step 
+% $T_i^2$, for all points $i=1$ to $5$. 
+% Use the following parameter values: $\kappa =10^{-6} m^2$/s, $\Delta
+% t=5$ Myr, $\Delta z =75$ km. 
+% Note that different units of time and space are used here, so first convert 
+% everything to seconds and metres.
+% 
+% _* $\Rightarrow$ Solutions for $T^1$ and $T^2$ are:
+% $T^1=
+% \displaystyle \left( 
+%  \matrix{T_1^1 \cr
+%          T_2^1\cr
+%          T_3^1\cr
+%          T_4^1 \cr
+%          T_5^1} 
+%  \right)
+% = 
+% \left( 
+%  \matrix{0 \cr
+%          1350\cr
+%          1350\cr
+%          1350 \cr
+%          1350} 
+%  \right)$
+% and
+% $T^2=
+% \displaystyle \left( 
+%  \matrix{T_1^2 \cr
+%          T_2^2\cr
+%          T_3^2\cr
+%          T_4^2 \cr
+%          T_5^2} 
+%  \right)
+% = 
+% \left( 
+%  \matrix{0 \cr
+%          1312\cr
+%          1350\cr
+%          1350 \cr
+%          1350} 
+%  \right)$*_
+% 
+% _*Another timestep would result in $T^3=
+% \displaystyle \left( 
+%  \matrix{T_1^3 \cr
+%          T_2^3\cr
+%          T_3^3\cr
+%          T_4^3 \cr
+%          T_5^3} 
+%  \right)
+% = 
+% \left( 
+%  \matrix{0 \cr
+%          1276\cr
+%          1348\cr
+%          1350 \cr
+%          1350} 
+%  \right)$.*_
+% 
+% _*The following plot shows the initial condition (top/right line), and also solutions after 
+%  1 and 2 timesteps:*_
+% 
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1220999_1>>
+% 
+% 2.5) Implement this procedure in a Matlab code, taking into account all of the following aspects:
+% 
+% * Build a Matlab function that calculates a new temperature distribution
+%   for just one diffusion timestep. 
+% * The input into this function will be a vector containing 
+%   the old temperature distribution, plus whatever information is needed to do the
+%   calculation (timestep, spatial discretization, number of points in
+%   array, etc). 
+% * Inside the function, new temperatures will need to be
+%   calculated for all internal points, and a loop over those points is the
+%   easiest solution. Note that the basic operation performed here is
+%   calculating a double derivative in space, and in the process, the
+%   result is an output vector that is two points shorter than the input
+%   vectore (convince yourself that that is the case). The output vector applies to all internal points
+%   but not the end points (the boundary points). These boundary points
+%   have a fixed value.
+% * The function will return a vector with the same length as the old temperature 
+%   which contains the new temperature for all points, i.e. both the boundary points and internal points. 
+%   So you will need to concatenate the top boundary point, the internal
+%   points, and the bottom boundary point into one single output vector.
+% * To test your new function, define (in the Matlab Command Window) the same 
+%   5-point array |Told| and additional information as used in the manual calculation in Question 2.4.
+%   Then call your new function (also from the Command Window) and check that 
+%   the output fits your answer from Question 2.4. 
+
+%%
+% _* $\Rightarrow$ A possible basic solution 
+% could look something like this (to be entered in a Matlab script with the file name
+% |oneD_Tdiff.m|):*_
+
+function Tnew = oneD_Tdiff (Told,dz,kappa,dt)
+   % Create a help array to calculate the timestep change in temperature:
+   d2Tdz2 = zeros(1,5);
+   % Fill its interior points with the diffusion equation;
+   % the boundary points are not evaluated here, so will stay zero. 
+   for i=2:4
+       d2Tdz2(i) = (Told(i+1) - 2*Told(i) + Told(i-1)) / dz^2;
+   end
+   dTdt = kappa.*d2Tdz2;
+   % add this temperature change to the old solution: 
+   Tnew = Told + dTdt*dt;
+end
+
+%% 
+% _*This function can then be called from the Matlab Command Window by typing
+% the following lines:*_
+%
+%  >> Told = [0 1350 1350 1350 1350]
+%  >> dz = 75000
+%  >> kappa = 1e-6
+%  >> dt = 5e6*365*24*60*60
+%  >> Tnew = oneD_Tdiff (Told,dz,kappa,dt)
+%
+% <html>
+% <table border=1><tr><td>
+% <font color="#8A2BE2"> 
+% <b>Note on vector calculations in Matlab</b><br>
+% Matlab is set up and optimised to do vector calculations, which, once 
+% you are used to the notation, provides neater codes that execute (a lot!)
+% faster. As an example, in the following Matlab code lines, the arrays <it>y</it> 
+% and <it>z</it> contain the same contents.
+% </font>
+% </td>
+% </table>
+% </html>
+%
+%  x=[1 2 3 4 5]
+%  for i=1:4
+%     y(i) = x(i) + x(i+1)
+%  end
+%  z=x(1:4)+x(2:5)
+%%
+% 2.6) If you haven't already done so, rewrite your function above into one
+% that uses vector notation. Tip: when making significant changes to a
+% code, make a backup copy before you begin, so that, if things go wrong, you can
+% always revert to the original file. 
+% 
+% <html>
+% <table border=1><tr><td>
+% <font color="#8A2BE2"> 
+% <b>Make backups or versions of your code </b><br>
+% A general advice when modifying your code: regularly make copies of your
+% Matlab scripts. Certainly if you have a script working, then save it
+% under a different name, so that you can go back to it later on if needed.
+% Or give each version of your code or function a
+% different version name, e.g. <code>myfunction_v1</code>, <code>myfunction_v2</code> etc.
+% </font>
+% </td>
+% </table>
+% </html>
+
+% A general advice when modifying your code: regularly make copies of your
+% Matlab scripts. Certainly if you have a script working, then save it
+% under a different name, so that you can go back to it later on if needed.
+% Or give each version of your code or function a
+% different version name, e.g. |myfunction_v1|, |myfunction_v2| etc.
+
+%%
+% _* $\Rightarrow$ A possible solution could be:*_
+
+function Tnew = oneD_Tdiff (Told,dz,kappa,dt)
+   % Calculate diffusion on an array of interior points:
+   d2Tdz2 = zeros(1,5);
+   d2Tdz2(2:4) = (Told(3:5) - 2*Told(2:4) + Told(1:3)) / dz^2;
+   dTdt = kappa.*d2Tdz2;
+   % add this temperature change to the old solution: 
+   Tnew = Told+dTdt*dt;
+end
+
+%%
+% _* $\Rightarrow$ or:*_
+
+function Tnew = oneD_Tdiff (Told,dz,kappa,dt)
+   % Calculate diffusion on an array of interior points:
+   d2Tdz2 = (Told(3:5) - 2*Told(2:4) + Told(1:3)) / dz^2;
+   dTdt = kappa.*d2Tdz2;
+   % Paste boundary points to this array of interior points:
+   dTdt = [0 dTdt 0];
+   % add this temperature change to the old solution: 
+   Tnew = Told+dTdt*dt;
+end
+
+%%
+% _* The array |d2Tdz2| has a length that is 2 points shorter than the 
+%    original |Told| array, and only applies to the internal points and not
+%    the boundary points. On the boundary points, the solution is not changing
+%    through time, so $\frac{dT}{dt}=0$ at these points. The line
+%    |dTdt = [0 dTdt 0]| 
+%    in the last example adds those zero-change boundary points to the internal points, which
+%    makes the |dTdt| array of the same length as the original |Told|
+%    array, and makes addition of |Told| and |dTdt*dt| a mathematically 
+%    correct operation in the last line.*_
+%   
+%%
+% You should always try to make your functions as generally applicable as possible
+% so that you can re-use your function for different situations and parameters.
+% A few tips to make functions more applicable:
+% 
+% * The variable passed from a main function to a subfuction via the
+%   argument list doesn't have to have the same name throughout. So a variable 
+% |T| (e.g. referring to temperature in one application) could be named |var| in 
+% a sub-function, and if the same function can later on be used to calculate, say, pressure |p|,
+% then the generic name |var| is an appropriate one. For example: 
+function calc_area
+   length=5
+   area = mysquare(length)
+end
+function output = mysquare(input)
+   output = input^2;
+end
+
+%%
+% * The keyword |end| used inside an array serves as the last entry of that
+%   array. So, for example, if |x| is a 3-by-4 sized array, then |x(3,2)| 
+%   and |x(end,2)| refer to the same component of that array. Using |end|
+%   in this way allows you to build a function that works for arrays of any
+%   size.
+% * The colon symbol (|:|) used inside an array is short for |1:end|, and refers to all entries in a
+%   particular dimension of an array. So, for example, if |x| is a 3-by-4 sized array, then |x(3,:)| 
+%   refers to all 4 elements in the 3rd row of the array.
+%
+% 2.7) Now re-write your function so that it works for a temperature array
+% of any size, and that variable names are logical even if the function
+% would apply to other quantities than temperature.
+% 
+% _* $\Rightarrow$ A possible solution could be:*_
+function fout = oneDdiff (fin,dz,kappa,dt)
+   d2fdz2 = (fin(3:end) - 2*fin(2:end-1) + fin(1:end-2)) / dz^2;
+   dfdt = kappa.*d2fdz2;
+   dfdt = [0 dfdt 0];
+   fout = fin+dfdt*dt;
+end
+
+%% 
+% 2.8) Copy your script into a new one and extend it to build a
+% self-contained Matlab script that sets up variables for your problem,
+% calls the diffusion function to calculate the solution after one timestep, 
+% and plots both solutions together in one plot. 
+
+%%
+% _* $\Rightarrow$ 
+%    In the following script, the main program |heat_1d| defines the 
+%    1-D finite difference mesh |z| and a temperature initial condition |Told|,
+%    then calls the function 
+%    |oneDdiff| to calculate the diffusion step, and then plots the solution:*_
+%
+
+function heat_1d
+   z    = [0 75000 150000 225000 300000]
+   Told = [0 1350 1350 1350 1350]
+   Tnew = oneDdiff(Told, 75000, 1e-6, 5*1e6*365*24*60*60)
+   
+   figure(1), clf
+    plot (Told,-z, Tnew,-z)
+    xlabel('T [^oC]')
+    ylabel('z [m]')
+    drawnow
+end
+
+function fout = oneDdiff (fin,dz,kappa,dt)
+   d2fdz2 = (fin(3:end) - 2*fin(2:end-1) + fin(1:end-2)) / dz^2;
+   dfdt = kappa.*d2fdz2;
+   dfdt = [0 dfdt 0];
+   fout = fin+dfdt*dt;
+end
+
+%%
+% 2.9) Ultimately, we would like to create a code that works not
+% just for 5 points and a timestep of 5 Myrs, but for any number of points 
+% and any timestep. Before moving on to the next question, it might be
+% useful to spend some time on creating a program with a more general structure
+% and set variable names. 
+%
+% _* $\Rightarrow$ The following code creates the same output as the
+% previous one, but can be used for any mesh size and timestep,
+% using the |linspace| command to create an initial temperature array of any size:*_
+%
+function heat_1d
+    dt = 5;                      
+    secinmyr = 1e6*365*24*3600;  
+    dt = dt*secinmyr;
+    
+    h = 3e5;                     
+    nz = 5;                      
+    z = linspace(0,h,nz)         
+    dz = z(2)-z(1);              
+    
+    Tm = 1350;                   
+    Ttop = 0;                    
+    Told = Tm*ones(1,nz);        
+    Told(1) = Ttop                         
+    kappa = 1e-6;                
+    
+    Tnew = oneDdiff(Told, dz, kappa, dt)
+end
+
+function fout = oneDdiff (fin,dz,kappa,dt)
+    d2fdz2 = (fin(3:end) - 2*fin(2:end-1) + fin(1:end-2)) / dz^2;
+    dfdt = kappa.*d2fdz2;
+    dfdt = [0 dfdt 0];
+    fout = fin+dfdt*dt;
+end
+
+%%
+% 2.10) As the code becomes larger and more complex, it is
+% essential that you provide useful comments so that future users of the
+% code, including yourself, can easily understand how the code
+% works. Before moving to the next question, make sure your code has sufficient 
+% comments. 
+%
+% _* $\Rightarrow$ A example of a well-annotated version of the above Matlab script is given here:*_
+function heat_1d
+    % purpose: solves 1d heat equation
+    % method: finite differences, forward Euler time integration
+
+    % discretization:
+    dt = 5;                      % timestep in Myrs
+    secinmyr = 1e6*365*24*3600;  % amount of seconds in 1 Myr
+    dt = dt*secinmyr;            % unit conversion to SI: time in sec
+    h = 3e5;                     % height of box: 3x10^5 m = 300 km
+    nz = 5;                      % nr of grid points in grid
+    z = linspace(0,h,nz)         % array for the finite difference mesh
+    dz = z(2)-z(1);              % grid spacing (assumed fixed)
+
+    % Temperature vector and initial & boundary conditions:
+    Tm = 1350;                   % mantle temperature in degC
+    Ttop = 0;                    % surface T
+    Told = Tm*ones(1,nz);        % numerical initial T=Tm everywhere ...
+    Told(1) = Ttop               % ... except at surface, where T=0           
+    kappa = 1e-6;                % thermal diffusivity
+
+    % numerical solution with constant dz: 
+    Tnew = oneDdiff(Told, dz, kappa, dt)
+end
+
+%**************************************************************************
+
+function fout = oneDdiff (fin,dz,kappa,dt)
+    % Performs 1 diffusion timestep on array fin with discr dz,
+    % using timestep dt and diffusion coeff kappa
+    % fixed essential b.c. used.
+
+    d2fdz2 = (fin(3:end) - 2*fin(2:end-1) + fin(1:end-2)) / dz^2;
+    dfdt = kappa.*d2fdz2;
+    % dfdt applies to internal points only. Extend with constant fin boundaries
+    % (constant f implies that dfdt = 0)
+    dfdt = [0 dfdt 0];
+    fout = fin+dfdt*dt;
+end
+%%
+% 2.11) Sofar, your code probably still only performs one timestep. If so, 
+%   adjust your script to call the function (and the plotting) repeatedly in a time loop. 
+%   Re-use the vectors for the old and the new timestep solution by
+%   copying the newly calculated solution into the 'old'
+%   solution at the end of the loop.
+%   To plot a new curve in an already existing plot without erasing the old
+%   plot, use the |hold on| command at the start, and, once finished with all
+%   plotting, use |hold off|. You may need to give
+%   the |drawnow| command at the end of the plotting routine to ensure Matlab 
+%   re-draws the figure after each timestep.
+% 
+% _* $\Rightarrow$ A possible solution is given below, in which information 
+%    is added on the number of timesteps to the code, and the function 
+%    call to |oneDdiff| and plotting code are both put inside a |for| loop:*_
+
+function heat_1d
+    % purpose: solves 1d heat equation
+    % method: finite differences, forward Euler time integration
+
+    % time discretization:
+    dt = 5;                      % timestep in Myrs
+    nt = 20;                     % nr of timesteps
+    tmax = (nt-1)*dt;            % max time
+    secinmyr = 1e6*365*24*3600;  % amount of seconds in 1 Myr
+    dt = dt*secinmyr;            % unit conversion to SI: time in sec
+    tmax = tmax*secinmyr;
+    time = linspace(0,tmax,nt)   % create time array
+
+    % spatial discretization:
+    h = 3e5;                     % height of box: 3x10^5 m = 300 km
+    nz = 5;                      % nr of grid points in grid
+    z = linspace(0,h,nz)         % array for the finite difference mesh
+    dz = z(2)-z(1);              % grid spacing (assumed fixed)
+
+    % Temperature vector and initial & boundary conditions:
+    Tm = 1350;                   % mantle temperature in degC
+    Ttop = 0;                    % surface T
+    Told = Tm*ones(1,nz);        % numerical initial T=Tm everywhere ...
+    Told(1) = Ttop;              % ... except at surface, where T=0           
+    kappa = 1e-6;                % thermal diffusivity
+
+    figure(1), clf               % start with clean figure
+    % timestepping
+    for it=2:nt
+        % numerical solution with constant dz: 
+        Tnew = oneDdiff(Told, dz, kappa, dt);
+
+        % plot solution (plot -z so that surface is at top of plot):
+        figure(1)
+        hold on
+        tmyrs = floor(time(it)/secinmyr);   % and in Myrs
+        plot (Tnew,-z)
+        xlabel('T [^oC]')
+        ylabel('z [m]')
+        title([' T after ',num2str(tmyrs),' Myrs'])
+        drawnow
+
+        % prepare for next time step:
+        Told = Tnew;
+    end
+end
+%**************************************************************************
+
+function fout = oneDdiff (fin,dz,kappa,dt)
+    % Performs 1 diffusion timestep on array fin with discr dz,
+    % using timestep dt and diffusion coeff kappa
+    % fixed essential b.c. used.
+
+    d2fdz2 = (fin(3:end) - 2*fin(2:end-1) + fin(1:end-2)) / dz^2;
+    dfdt = kappa.*d2fdz2;
+    % dfdt applies to internal points only. Extend with constant fin boundaries
+    % (constant f implies that dfdt = 0)
+    dfdt = [0 dfdt 0];
+    fout = fin+dfdt*dt;
+end
+%%
+% 2.12) Now try your code on a larger problem with more grid points in the
+%   vector: use $\Delta x=10$ km and $\Delta t=0.15$ Myrs.  
+%
+% _* $\Rightarrow$ Running the code for these values of $\Delta x$ and $\Delta t$
+%    produces the following plot:*_
+%
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1221405_1>>
+% 
+% 2.13) The analytical solution for this cooling lithosphere is given by 
+% $T=T_m erf{\frac{z}{2\sqrt{\kappa t}}}$ 
+% with $erf$ the error function (for more information on the error function, 
+% type |help erf| on the Matlab command line). 
+% Add a function to your Matlab script, which calculates this analytical solution 
+% every timestep for all grid points, and add the results to the plot. Test
+% the numerical and analytical results against each other.
+% 
+% _* $\Rightarrow$ The following function can be added to the code to calculate this
+% analytical solution:*_
+
+function fout = halfspacecooling (Tm, z, kappa, t)
+   % Calculates Halfspace cooling solution:
+   fout = Tm*erf(z./(2*sqrt(kappa*t)));
+end
+
+%%
+% _* and this function can be called from within the time
+% loop with:*_
+%
+%  Tana = halfspacecooling (Tm, z, kappa, time(it));
+%
+% _* The resulting final Matlab code for this practical can be found 
+%    <https://blackboard.durham.ac.uk/bbcswebdav/xid-1221406_1 here>.*_
+
+
+##### SOURCE END #####
+--></body></html>
