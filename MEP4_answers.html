@@ -1,0 +1,201 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Model answers for: Modelling Earth Processes, week 4 - Numerical stability</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="https://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-10-21"><meta name="DC.source" content="MEP4_answers.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Model answers for: Modelling Earth Processes, week 4 - Numerical stability</h1><!--introduction--><p><i><b>Model answers are in bold-italic font.</b></i></p><p>Prof Jeroen van Hunen</p><p>Department of Earth Sciences</p><p>Durham University</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">This session's learning objectives</a></li><li><a href="#2">Numerical stability for exponential decay problems (please watch lecture video 4.1 first)</a></li><li><a href="#3">Numerical stability for diffusion problems (please watch lecture video 4.2 first)</a></li></ul></div><h2 id="1">This session's learning objectives</h2><p>At the end of this session, you will understand:</p><div><ul><li>How to calculate and apply conditions for numerical stability</li><li>How to test for spatial and temporal resolution</li></ul></div><h2 id="2">Numerical stability for exponential decay problems (please watch lecture video 4.1 first)</h2><p>4.1) Open your radioactive decay code from week 1, check that it is (still) working correctly, and save it under a different filename.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP4_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> A solution code for this problem can be found <a href="https://blackboard.durham.ac.uk/bbcswebdav/xid-1114800_1">here</a>. <tt>dt</tt> can be changed in line 4, and the maximum model time in line 5.</b></i></p><p>4.2) Increase the maximum model time from 4.5 to 20 Gyrs.</p><p>4.3) Calculate the critical time step <span class="MathJax_Preview"><img src="MEP4_answers_eq07066577557890586228.png" alt="$\Delta t_{crit}$"></span><script type="math/tex">\Delta t_{crit}</script> for your model setup.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP4_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> The relevant differential equation is: <span class="MathJax_Preview"><img src="MEP4_answers_eq07065566277782980539.png" alt="$\frac{dN}{dt} = -\lambda N$"></span><script type="math/tex">\frac{dN}{dt} = -\lambda N</script>. For this problem, the decay parameter <span class="MathJax_Preview"><img src="MEP4_answers_eq15874853364019600905.png" alt="$\lambda = \frac{\ln(2)}{\tau}$"></span><script type="math/tex">\lambda = \frac{\ln(2)}{\tau}</script>. With <span class="MathJax_Preview"><img src="MEP4_answers_eq02024369029553371699.png" alt="$\tau=0.704$"></span><script type="math/tex">\tau=0.704</script> Gyr, <span class="MathJax_Preview"><img src="MEP4_answers_eq10968285186039021079.png" alt="$\lambda=0.9846 \textrm{ Gyr}^{-1}$"></span><script type="math/tex">\lambda=0.9846 \textrm{ Gyr}^{-1}</script>. So the critical timestep <span class="MathJax_Preview"><img src="MEP4_answers_eq03375260330064331502.png" alt="$\Delta t_{crit}=\frac{2}{\lambda} =$"></span><script type="math/tex">\Delta t_{crit}=\frac{2}{\lambda} =</script> 2.0313 Gyr.</b></i></p><p>4.4) Run your code for different time step values <span class="MathJax_Preview"><img src="MEP4_answers_eq07651498126111630170.png" alt="$\Delta t$"></span><script type="math/tex">\Delta t</script>, and observe       how the code is behaving in terms of numerical stability.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP4_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> Running the model for a time step <span class="MathJax_Preview"><img src="MEP4_answers_eq13379605699332771972.png" alt="$\Delta t=0.5$"></span><script type="math/tex">\Delta t=0.5</script> Gyr, which is much smaller than <span class="MathJax_Preview"><img src="MEP4_answers_eq07066577557890586228.png" alt="$\Delta t_{crit}$"></span><script type="math/tex">\Delta t_{crit}</script>, gives the following, familiar solution:</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1355997_1" alt=""> </p><p><i><b> <span class="MathJax_Preview"><img src="MEP4_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> Running the model for a time step <span class="MathJax_Preview"><img src="MEP4_answers_eq13894288488460201056.png" alt="$\Delta t=2.0$"></span><script type="math/tex">\Delta t=2.0</script> Gyr, which is marginally smaller than <span class="MathJax_Preview"><img src="MEP4_answers_eq07066577557890586228.png" alt="$\Delta t_{crit}$"></span><script type="math/tex">\Delta t_{crit}</script>, gives a solution that is not unstable, but very inaccurate for the forward Euler method, while backward Euler and Crank-Nicholson methods are still stable:</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1355996_1" alt=""> </p><p><i><b> <span class="MathJax_Preview"><img src="MEP4_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> Running the model for a time step <span class="MathJax_Preview"><img src="MEP4_answers_eq01320375703448356023.png" alt="$\Delta t=2.5$"></span><script type="math/tex">\Delta t=2.5</script> Gyr, which is much smaller than <span class="MathJax_Preview"><img src="MEP4_answers_eq07066577557890586228.png" alt="$\Delta t_{crit}$"></span><script type="math/tex">\Delta t_{crit}</script>, shows how the forward Euler method becomes unstable as well as inaccurate:</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1355998_1" alt=""> </p><h2 id="3">Numerical stability for diffusion problems (please watch lecture video 4.2 first)</h2><p>4.5) Open your heat diffusion code from weeks 2 + 3, check that it is (still) working correctly, and save it under a different filename.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP4_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> A solution code for this problem can be found <a href="https://blackboard.durham.ac.uk/bbcswebdav/xid-1355983_1">here</a>.</b></i></p><p>4.6) Calculate the critical time step <span class="MathJax_Preview"><img src="MEP4_answers_eq07066577557890586228.png" alt="$\Delta t_{crit}$"></span><script type="math/tex">\Delta t_{crit}</script> for your model setup.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP4_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> Use the derivation of the critical time step for diffusion problems in the lecture notes, <span class="MathJax_Preview"><img src="MEP4_answers_eq00618372845786147368.png" alt="$\Delta t_{crit} = \frac{\Delta x^2}{2 \kappa}$"></span><script type="math/tex">\Delta t_{crit} = \frac{\Delta x^2}{2 \kappa}</script>. Fill in <span class="MathJax_Preview"><img src="MEP4_answers_eq16319215787732310329.png" alt="$\Delta x$"></span><script type="math/tex">\Delta x</script> and <span class="MathJax_Preview"><img src="MEP4_answers_eq16107531617707909724.png" alt="$\kappa$"></span><script type="math/tex">\kappa</script> to calculate this critical time step. For <span class="MathJax_Preview"><img src="MEP4_answers_eq02922358532700113794.png" alt="$\Delta x=10$"></span><script type="math/tex">\Delta x=10</script> km <span class="MathJax_Preview"><img src="MEP4_answers_eq02598425912585122273.png" alt="$=10^4$"></span><script type="math/tex">=10^4</script> m, and <span class="MathJax_Preview"><img src="MEP4_answers_eq16035673717990411317.png" alt="$\kappa=10^{-6} \mathrm{ m^2/s}$"></span><script type="math/tex">\kappa=10^{-6} \mathrm{ m^2/s}</script> gives <span class="MathJax_Preview"><img src="MEP4_answers_eq17823768498473967946.png" alt="$\Delta t_{crit}=5 \times 10^{13}$"></span><script type="math/tex">\Delta t_{crit}=5 \times 10^{13}</script> s <span class="MathJax_Preview"><img src="MEP4_answers_eq11702061406564636811.png" alt="$\approx 1.58$"></span><script type="math/tex">\approx 1.58</script> Myrs.</b></i></p><p>4.7) Run your code for different time step values <span class="MathJax_Preview"><img src="MEP4_answers_eq07651498126111630170.png" alt="$\Delta t$"></span><script type="math/tex">\Delta t</script>, and observe       how the code is behaving in terms of numerical stability.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP4_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> Solutions after approximately 15 Myrs of model time for the following time steps:</b></i></p><p><i><b> <span class="MathJax_Preview"><img src="MEP4_answers_eq11228671850724787456.png" alt="$\Delta t=0.15$"></span><script type="math/tex">\Delta t=0.15</script> Myrs, i.e. much smaller than <span class="MathJax_Preview"><img src="MEP4_answers_eq07066577557890586228.png" alt="$\Delta t_{crit}$"></span><script type="math/tex">\Delta t_{crit}</script>:</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1358412_1" alt=""> </p><p><i><b> <span class="MathJax_Preview"><img src="MEP4_answers_eq14967104561998077907.png" alt="$\Delta t=1.5$"></span><script type="math/tex">\Delta t=1.5</script> Myrs, i.e. a little smaller than <span class="MathJax_Preview"><img src="MEP4_answers_eq07066577557890586228.png" alt="$\Delta t_{crit}$"></span><script type="math/tex">\Delta t_{crit}</script>:</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1355999_1" alt=""> </p><p><i><b> <span class="MathJax_Preview"><img src="MEP4_answers_eq15520523388094694865.png" alt="$\Delta t=1.7$"></span><script type="math/tex">\Delta t=1.7</script> Myrs, i.e. a little larger than <span class="MathJax_Preview"><img src="MEP4_answers_eq07066577557890586228.png" alt="$\Delta t_{crit}$"></span><script type="math/tex">\Delta t_{crit}</script>:</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1356000_1" alt=""> </p><p><i><b> <span class="MathJax_Preview"><img src="MEP4_answers_eq06998593031401529056.png" alt="$\Delta t=3.0$"></span><script type="math/tex">\Delta t=3.0</script> Myrs, i.e. much larger than <span class="MathJax_Preview"><img src="MEP4_answers_eq07066577557890586228.png" alt="$\Delta t_{crit}$"></span><script type="math/tex">\Delta t_{crit}</script>:</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1358401_1" alt=""> </p><p>4.8) Repeat questions 4.6 and 4.7 for a different spatial discretization step <span class="MathJax_Preview"><img src="MEP4_answers_eq15189824333866520024.png" alt="$\Delta z$"></span><script type="math/tex">\Delta z</script>.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP4_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> Doubling <span class="MathJax_Preview"><img src="MEP4_answers_eq16319215787732310329.png" alt="$\Delta x$"></span><script type="math/tex">\Delta x</script> to 20 km, increases <span class="MathJax_Preview"><img src="MEP4_answers_eq07066577557890586228.png" alt="$\Delta t_{crit}$"></span><script type="math/tex">\Delta t_{crit}</script> to 6.34 Myrs. Now, a solution after ~15 Myrs for <span class="MathJax_Preview"><img src="MEP4_answers_eq06998593031401529056.png" alt="$\Delta t=3.0$"></span><script type="math/tex">\Delta t=3.0</script> Myrs is stable:</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1358402_1" alt=""> </p><p>4.9) Extend your code such that, instead of setting a fixed time step explicitly, calculate the critical timestep <span class="MathJax_Preview"><img src="MEP4_answers_eq07066577557890586228.png" alt="$\Delta t_{crit}$"></span><script type="math/tex">\Delta t_{crit}</script> in your Matlab script, and run your calculation with a timestep <span class="MathJax_Preview"><img src="MEP4_answers_eq07651498126111630170.png" alt="$\Delta t$"></span><script type="math/tex">\Delta t</script> that is smaller than <span class="MathJax_Preview"><img src="MEP4_answers_eq07066577557890586228.png" alt="$\Delta t_{crit}$"></span><script type="math/tex">\Delta t_{crit}</script> (e.g. <span class="MathJax_Preview"><img src="MEP4_answers_eq12123452815450773938.png" alt="$0.5\Delta t_{crit}$"></span><script type="math/tex">0.5\Delta t_{crit}</script>).</p><p><i><b> <span class="MathJax_Preview"><img src="MEP4_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> This requires a bit of reshuffling in the script:</b></i></p><div><ul><li><i><b> Since <span class="MathJax_Preview"><img src="MEP4_answers_eq07651498126111630170.png" alt="$\Delta t$"></span><script type="math/tex">\Delta t</script> depends on <span class="MathJax_Preview"><img src="MEP4_answers_eq16319215787732310329.png" alt="$\Delta x$"></span><script type="math/tex">\Delta x</script>, the spatial discretization needs to be set up first.</b></i></li></ul></div><div><ul><li><i><b> Since the critical timestep requires informtion on the (thermal) diffusivity, <span class="MathJax_Preview"><img src="MEP4_answers_eq16107531617707909724.png" alt="$\kappa$"></span><script type="math/tex">\kappa</script> needs to be brought forward as well.</b></i></li></ul></div><div><ul><li><i><b> Now, <tt>dt</tt> is immediately calculated in seconds, so there is no need anymore to convert the timestep from Myrs to seconds.</b></i></li></ul></div><p><i><b> A solution code can be found <a href="https://blackboard.durham.ac.uk/bbcswebdav/xid-1356064_1">here</a>.</b></i></p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Model answers for: Modelling Earth Processes, week 4 - Numerical stability
+% _*Model answers are in bold-italic font.*_
+% 
+% Prof Jeroen van Hunen
+%
+% Department of Earth Sciences
+%
+% Durham University
+%
+%% This session's learning objectives
+%
+% At the end of this session, you will understand:
+% 
+% * How to calculate and apply conditions for numerical stability
+% * How to test for spatial and temporal resolution
+
+%% Numerical stability for exponential decay problems (please watch lecture video 4.1 first)
+% 4.1) Open your radioactive decay code from week 1, check that it is (still) 
+% working correctly, and save it under a different filename.
+%
+% _* $\Rightarrow$ A solution code for this problem can be found 
+% <https://blackboard.durham.ac.uk/bbcswebdav/xid-1114800_1
+% here>. |dt| can be changed in line 4, and the maximum model time in line
+% 5.*_
+% 
+% 4.2) Increase the maximum model time from 4.5 to 20 Gyrs.
+% 
+% 4.3) Calculate the critical time step $\Delta t_{crit}$ for your model
+% setup.
+% 
+% _* $\Rightarrow$ The relevant differential equation is: $\frac{dN}{dt} = -\lambda N$. 
+% For this problem, the decay parameter $\lambda =
+% \frac{\ln(2)}{\tau}$. With $\tau=0.704$ Gyr, $\lambda=0.9846 \textrm{ Gyr}^{-1}$.
+% So the critical timestep $\Delta t_{crit}=\frac{2}{\lambda} =$ 2.0313 Gyr.*_
+% 
+% 4.4) Run your code for different time step values $\Delta t$, and observe 
+%       how the code is behaving in terms of numerical stability.
+% 
+% _* $\Rightarrow$ Running the model for a time step $\Delta t=0.5$ Gyr, 
+% which is much smaller than $\Delta t_{crit}$, gives the following,
+% familiar solution:*_
+% 
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1355997_1>>
+% 
+% _* $\Rightarrow$ Running the model for a time step $\Delta t=2.0$ Gyr, 
+% which is marginally smaller than $\Delta t_{crit}$, gives a solution
+% that is not unstable, but very inaccurate for the forward Euler method,
+% while backward Euler and Crank-Nicholson methods are still stable:*_
+% 
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1355996_1>>
+%
+% _* $\Rightarrow$ Running the model for a time step $\Delta t=2.5$ Gyr, 
+% which is much smaller than $\Delta t_{crit}$, shows how the forward Euler 
+% method becomes unstable as well as inaccurate:*_
+% 
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1355998_1>>
+% 
+%% Numerical stability for diffusion problems (please watch lecture video 4.2 first)
+% 4.5) Open your heat diffusion code from weeks 2 + 3, check that it is (still) 
+% working correctly, and save it under a different filename.
+%
+% _* $\Rightarrow$ A solution code for this problem can be found 
+% <https://blackboard.durham.ac.uk/bbcswebdav/xid-1355983_1
+% here>.*_ 
+% 
+% 4.6) Calculate the critical time step $\Delta t_{crit}$ for your model
+% setup.
+%
+% _* $\Rightarrow$ Use the derivation of the critical time step for 
+% diffusion problems in the lecture notes, $\Delta t_{crit} = \frac{\Delta x^2}{2
+% \kappa}$. Fill in $\Delta x$ and $\kappa$ to calculate this critical time step. 
+% For $\Delta x=10$ km $=10^4$ m, and $\kappa=10^{-6} \mathrm{ m^2/s}$ gives 
+% $\Delta t_{crit}=5 \times 10^{13}$ s $\approx 1.58$ Myrs.*_
+% 
+% 4.7) Run your code for different time step values $\Delta t$, and observe 
+%       how the code is behaving in terms of numerical stability.
+%
+% _* $\Rightarrow$ Solutions after approximately 15 Myrs of model time for
+% the following time steps:*_
+% 
+% _* $\Delta t=0.15$ Myrs, i.e. much smaller than $\Delta t_{crit}$:*_ 
+% 
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1358412_1>>
+% 
+% _* $\Delta t=1.5$ Myrs, i.e. a little smaller than $\Delta t_{crit}$:*_
+% 
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1355999_1>>
+% 
+% _* $\Delta t=1.7$ Myrs, i.e. a little larger than $\Delta t_{crit}$:*_ 
+% 
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1356000_1>>
+% 
+% _* $\Delta t=3.0$ Myrs, i.e. much larger than $\Delta t_{crit}$:*_ 
+% 
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1358401_1>>
+% 
+% 4.8) Repeat questions 4.6 and 4.7 for a different spatial
+% discretization step $\Delta z$. 
+% 
+% _* $\Rightarrow$ Doubling $\Delta x$ to 20 km, increases $\Delta t_{crit}$
+% to 6.34 Myrs. Now, a solution after ~15 Myrs for $\Delta t=3.0$ Myrs is
+% stable:*_
+%
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1358402_1>>
+% 
+% 4.9) Extend your code such that, instead of setting a fixed time step
+% explicitly, calculate the critical timestep $\Delta t_{crit}$ 
+% in your Matlab script, and run your calculation with a timestep $\Delta t$
+% that is smaller than $\Delta t_{crit}$ (e.g. $0.5\Delta
+% t_{crit}$).
+% 
+% _* $\Rightarrow$ This requires a bit of reshuffling in the script:*_ 
+% 
+% * _* Since $\Delta t$ depends on $\Delta x$, the spatial discretization
+% needs to be set up first.*_
+% 
+% * _* Since the critical timestep requires informtion on the (thermal)
+% diffusivity, $\kappa$ needs to be brought forward as well.*_
+% 
+% * _* Now, |dt| is immediately calculated in seconds, so there is no need
+% anymore to convert the timestep from Myrs to seconds.*_ 
+% 
+% _* A solution code can be found 
+% <https://blackboard.durham.ac.uk/bbcswebdav/xid-1356064_1
+% here>.*_
+%
+
+
+##### SOURCE END #####
+--></body></html>
