@@ -1,0 +1,384 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Model answers for: Modelling Earth Processes, week 5 - Implicit timestepping in 1-D</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="https://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-10-28"><meta name="DC.source" content="MEP5_answers.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Model answers for: Modelling Earth Processes, week 5 - Implicit timestepping in 1-D</h1><!--introduction--><p><i><b>Model answers are in bold-italic font.</b></i></p><p>Prof Jeroen van Hunen</p><p>Department of Earth Sciences</p><p>Durham University</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">This session's learning objectives</a></li><li><a href="#2">Practical</a></li></ul></div><h2 id="1">This session's learning objectives</h2><div><ul><li>Backward Euler (i.e. implicit time stepping) in 1-D, applied to   <span class="MathJax_Preview"><img src="MEP5_answers_eq11270975426354260169.png" alt="$\displaystyle \frac{\partial T}{\partial t} = \kappa \frac{\partial^2 T}{\partial   z^2}$"></span><script type="math/tex">\displaystyle \frac{\partial T}{\partial t} = \kappa \frac{\partial^2 T}{\partial   z^2}</script></li><li>CN in 1-D</li><li>Matrix-Vector notation</li></ul></div><h2 id="2">Practical</h2><p>In the past weeks we have solved the heat equation with the forward Euler method. The very convenient aspect of this method is that all mesh points can be integrated through time individually. None of the new data points <span class="MathJax_Preview"><img src="MEP5_answers_eq11953969551661818064.png" alt="$T_i^{j+1}$"></span><script type="math/tex">T_i^{j+1}</script> is dependent on any of the other data points for time step <i>n+1</i>, because to solve <span class="MathJax_Preview"><img src="MEP5_answers_eq11953969551661818064.png" alt="$T_i^{j+1}$"></span><script type="math/tex">T_i^{j+1}</script>, we simply use information from the data points at time step <i>n</i>. The major disadvantage is that the time step is limited to meet a stability criterion <span class="MathJax_Preview"><img src="MEP5_answers_eq07192475411290263222.png" alt="$\displaystyle \Delta t < \frac{\Delta z^2}{2 \kappa}$"></span><script type="math/tex">\displaystyle \Delta t < \frac{\Delta z^2}{2 \kappa}</script>, which, under some circumstances, can be a very limiting factor. As discussed for 0-D problems, Euler backward and Crank-Nicholson timestepping methods don't suffer from this problem. As discussed today in the lectures, <span class="MathJax_Preview"><img src="MEP5_answers_eq11953969551661818064.png" alt="$T_i^{j+1}$"></span><script type="math/tex">T_i^{j+1}</script>  then <i>does</i> become dependent on other data points for time step <i>n+1</i>, and so a commonly used solution method is to solve all <span class="MathJax_Preview"><img src="MEP5_answers_eq11953969551661818064.png" alt="$T_i^{j+1}$"></span><script type="math/tex">T_i^{j+1}</script>  (i.e. for all points <i>i</i> from 1 to <i>m</i>) simultaneously. To do that, we write the equations for all grid points <i>i</i> as a set of <i>m</i> equations with <i>m</i> unknown points <span class="MathJax_Preview"><img src="MEP5_answers_eq11953969551661818064.png" alt="$T_i^{j+1}$"></span><script type="math/tex">T_i^{j+1}</script>.</p><p>5.1. 	Take the following system of 2 equations with 2 unknowns for <span class="MathJax_Preview"><img src="MEP5_answers_eq12428413953531653171.png" alt="$x$"></span><script type="math/tex">x</script> and <span class="MathJax_Preview"><img src="MEP5_answers_eq08830444604280721118.png" alt="$y$"></span><script type="math/tex">y</script>:</p><p><span class="MathJax_Preview"><img src="MEP5_answers_eq03307706289145912635.png" alt="$$\displaystyle \left.&#xA; \matrix{2x+3y=13 \cr&#xA;         4x-4y=-4}&#xA;\right.$$"></span><script type="math/tex">\displaystyle \left.
+ \matrix{2x+3y=13 \cr
+         4x-4y=-4}
+\right.</script></p><p>Convince yourself that <span class="MathJax_Preview"><img src="MEP5_answers_eq06735456421992790325.png" alt="$x=2$"></span><script type="math/tex">x=2</script> and <span class="MathJax_Preview"><img src="MEP5_answers_eq10045924757123157352.png" alt="$y=3$"></span><script type="math/tex">y=3</script> is the solution for this system of equations.</p><p>5.2. 	Rewrite this system of equations in matrix-vector notation.</p><p><i><b>Rewriting the 2 equations in matrix form gives:</b></i></p><p><span class="MathJax_Preview"><img src="MEP5_answers_eq17461328436640004504.png" alt="$$\displaystyle \left(&#xA; \matrix{2 &amp; 3 \cr&#xA;         4 &amp; -4}&#xA; \right)&#xA; \left(&#xA; \matrix{x \cr&#xA;         y}&#xA; \right) =&#xA; \left(&#xA; \matrix{13 \cr&#xA;         -4}&#xA; \right)$$"></span><script type="math/tex">\displaystyle \left(
+ \matrix{2 & 3 \cr
+         4 & -4}
+ \right)
+ \left(
+ \matrix{x \cr
+         y}
+ \right) =
+ \left(
+ \matrix{13 \cr
+         -4}
+ \right)</script></p><p>5.3. 	Input the matrix and right-hand-side vector from 5.2 on the command line in Matlab and solve it, using the backslash (<tt>\</tt>) operator (the Matlab command <tt>x=A\b</tt> solves <span class="MathJax_Preview"><img src="MEP5_answers_eq12428413953531653171.png" alt="$x$"></span><script type="math/tex">x</script> in the system <span class="MathJax_Preview"><img src="MEP5_answers_eq01613951996797174685.png" alt="$A \vec{x} = \vec{b}$"></span><script type="math/tex">A \vec{x} = \vec{b}</script> ). Check results.</p><p><b><tt>&gt;&gt; A=[2 3; 4 -4]</tt></b></p><p><b><tt>&gt;&gt; b=[13; -4]</tt></b></p><p><b><tt>&gt;&gt; x=A\b</tt></b></p><p><b><tt>x=</tt></b></p><p><b><tt>2</tt></b></p><p><b><tt>3</tt></b></p><p>5.4. 	Now repeat 5.2 and 5.3 to solve the following system:</p><p><span class="MathJax_Preview"><img src="MEP5_answers_eq02895950587743709189.png" alt="$$\displaystyle \left.&#xA; \matrix{T_1&amp;=&amp;0 \cr&#xA;         -0.028T_1 + 1.056T_2 - 0.028T_3 &amp;=&amp; 1350 \cr&#xA;         -0.028T_2 + 1.056T_3 - 0.028T_4 &amp;=&amp; 1350 \cr&#xA;         -0.028T_3 + 1.056T_4 - 0.028T_5 &amp;=&amp; 1350 \cr&#xA;         T_5&amp;=&amp;1350}&#xA;\right.$$"></span><script type="math/tex">\displaystyle \left.
+ \matrix{T_1&=&0 \cr
+         -0.028T_1 + 1.056T_2 - 0.028T_3 &=& 1350 \cr
+         -0.028T_2 + 1.056T_3 - 0.028T_4 &=& 1350 \cr
+         -0.028T_3 + 1.056T_4 - 0.028T_5 &=& 1350 \cr
+         T_5&=&1350}
+\right.</script></p><p><i><b>Rewriting these equations in matrix form gives:</b></i></p><p><span class="MathJax_Preview"><img src="MEP5_answers_eq13468880902485266521.png" alt="$$\displaystyle \left(&#xA; \matrix{1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \cr&#xA;         -0.028 &amp; 1.056 &amp; -0.028 &amp; 0 &amp; 0 \cr&#xA;         0 &amp; -0.028 &amp; 1.056 &amp; -0.028 &amp; 0 \cr&#xA;         0 &amp; 0 &amp; -0.028 &amp; 1.056 &amp; -0.028 \cr&#xA;         0 &amp; 0 &amp; 0 &amp; 0 &amp; 1}&#xA; \right)&#xA; \left(&#xA; \matrix{T_1 \cr&#xA;         T_2 \cr&#xA;         T_3 \cr&#xA;         T_4 \cr&#xA;         T_5}&#xA; \right) =&#xA; \left(&#xA; \matrix{0 \cr&#xA;         1350 \cr&#xA;         1350 \cr&#xA;         1350 \cr&#xA;         1350}&#xA; \right)$$"></span><script type="math/tex">\displaystyle \left(
+ \matrix{1 & 0 & 0 & 0 & 0 \cr
+         -0.028 & 1.056 & -0.028 & 0 & 0 \cr
+         0 & -0.028 & 1.056 & -0.028 & 0 \cr
+         0 & 0 & -0.028 & 1.056 & -0.028 \cr
+         0 & 0 & 0 & 0 & 1}
+ \right)
+ \left(
+ \matrix{T_1 \cr
+         T_2 \cr
+         T_3 \cr
+         T_4 \cr
+         T_5}
+ \right) =
+ \left(
+ \matrix{0 \cr
+         1350 \cr
+         1350 \cr
+         1350 \cr
+         1350}
+ \right)</script></p><p><i><b>Entering this in Matlab gives:</b></i></p><p><b><tt>&gt;&gt; A=[1 0 0 0 0; -0.028 1.056 -0.028 0 0; 0 -0.028 1.056 -0.028 0; 0 0 -0.028 1.056 -0.028; 0 0 0 0 1]</tt></b></p><p><b><tt>&gt;&gt; b=[0; 1350; 1350; 1350; 1350]</tt></b></p><p><b><tt>&gt;&gt; T1=A\b</tt></b></p><p><b><tt>T1 =</tt></b></p><p><b><tt>1.0e+003 *</tt></b></p><p><b><tt>0</tt></b></p><p><b><tt>1.3142</tt></b></p><p><b><tt>1.3490</tt></b></p><p><b><tt>1.3500</tt></b></p><p><b><tt>1.3500</tt></b></p><p>Check for yourself that this is in fact the numerical backward Euler method description of a 5-point diffusion problem of instantaneous cooling of oceanic lithosphere with mantle temperature <span class="MathJax_Preview"><img src="MEP5_answers_eq12689052524115994216.png" alt="$T_m=1350^o$"></span><script type="math/tex">T_m=1350^o</script> C, surface temperature <span class="MathJax_Preview"><img src="MEP5_answers_eq11875829302549842317.png" alt="$T_s=0^o$"></span><script type="math/tex">T_s=0^o</script> C, and <span class="MathJax_Preview"><img src="MEP5_answers_eq09750975493693153507.png" alt="$r=0.028$"></span><script type="math/tex">r=0.028</script> (with <span class="MathJax_Preview"><img src="MEP5_answers_eq04958265083611378313.png" alt="$r$"></span><script type="math/tex">r</script> defined in today's lecture 5.1, slide 6).</p><p><b>Note that in this matrix-vector problem, the right-hand side vector is the old temperature field, and that the vector <span class="MathJax_Preview"><img src="MEP5_answers_eq15096841118538602394.png" alt="$\displaystyle T = \left(  \matrix{T_1 \cr          T_2 \cr          T_3 \cr          T_4 \cr          T_5}  \right)$"></span><script type="math/tex">\displaystyle T = \left(  \matrix{T_1 \cr          T_2 \cr          T_3 \cr          T_4 \cr          T_5}  \right)</script> is the new temperature after taking a timestep.</b></p><p>5.5. 	Perform another backward Euler time integration step by replacing the right-hand side of the system in 5.4 with the newly found solution.</p><p><b><tt>&gt;&gt; T2=A\T1</tt></b></p><p><b><tt>T2 =</tt></b></p><p><b><tt>1.0e+003 *</tt></b></p><p><b><tt>0</tt></b></p><p><b><tt>1.2802</tt></b></p><p><b><tt>1.3472</tt></b></p><p><b><tt>1.3499</tt></b></p><p><b><tt>1.3500</tt></b></p><p>5.6. 	In week 2, question 2.4, you worked out a solution for the first few time steps for  <span class="MathJax_Preview"><img src="MEP5_answers_eq02514528553645175467.png" alt="$\kappa=10^{-6}$"></span><script type="math/tex">\kappa=10^{-6}</script> <span class="MathJax_Preview"><img src="MEP5_answers_eq06045785768489746880.png" alt="$\mathrm{m^2 s}$"></span><script type="math/tex">\mathrm{m^2 s}</script>, <span class="MathJax_Preview"><img src="MEP5_answers_eq15559679782928617338.png" alt="$\Delta t =5$"></span><script type="math/tex">\Delta t =5</script> Ma, and <span class="MathJax_Preview"><img src="MEP5_answers_eq14471326926232529332.png" alt="$\Delta z=75$"></span><script type="math/tex">\Delta z=75</script> km. Check that <span class="MathJax_Preview"><img src="MEP5_answers_eq04958265083611378313.png" alt="$r$"></span><script type="math/tex">r</script> is approximately the same for this case and questions 5.4, and compare results with those obtained in question 2.5. How the set of equations from 5.4 looks like for an arbitrary <span class="MathJax_Preview"><img src="MEP5_answers_eq04958265083611378313.png" alt="$r$"></span><script type="math/tex">r</script>, <span class="MathJax_Preview"><img src="MEP5_answers_eq16003806544088477123.png" alt="$T_m$"></span><script type="math/tex">T_m</script>, and number of grid points <span class="MathJax_Preview"><img src="MEP5_answers_eq11319871188381094158.png" alt="$m$"></span><script type="math/tex">m</script> can be seen in today's lecture video 5.3, slide 3.</p><p>5.7. 	Modify the code from week 2 and 3 to include the backward Euler solution method, and plot the solution alongside the forward Euler one.</p><p><i><b> A model solution for question 5.7 <tt>heat_1d_solution_FE_BE.m</tt> is available <a href="https://blackboard.durham.ac.uk/bbcswebdav/xid-1488490_1">here</a>. Note that a legend is added to the figure, which makes the calculations a lot slower.</b></i></p><p>5.8. 	Run the combine forward/backward Euler codes for various values of <span class="MathJax_Preview"><img src="MEP5_answers_eq04958265083611378313.png" alt="$r$"></span><script type="math/tex">r</script>, and examine the stability and accuracy of each method.</p><p><i><b> The following figure show a zoom-in of the forward Euler and backward Euler solution. The forward Euler solution underestimates the amount of diffusive cooling, while the backward Euler method overestimates the diffusion, relative to the analytical solution.</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1488488_1" alt=""> </p><p><i><b> Using a timestep <span class="MathJax_Preview"><img src="MEP5_answers_eq12965300993711238130.png" alt="$\Delta t = 1.7$"></span><script type="math/tex">\Delta t = 1.7</script> Myr, which is slightly larger than the critical one <span class="MathJax_Preview"><img src="MEP5_answers_eq09132810678683411408.png" alt="$\Delta t_{crit}=1.58$"></span><script type="math/tex">\Delta t_{crit}=1.58</script> Myr results in an unstable solution for the forward Euler model (see figure below), while remains unconditionally stable, regardless of the chosen timestep. If timesteps are very large, the solution becomes quite inaccurate, especially during the first few steps, when a lot of changes occur on the temperature field. But the solution remains numerically stable, at least.</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1488487_1" alt=""> </p><p>5.9. As you expand your code, and it slowly becomes longer and more complex over time, it is important to keep it structured, legible, and organised. A well-structured and legible code is expected for the upcoming class tests, but it will also help you significantly with your progress during this module: a code with a clear and structured layout is easier to debug (i.e. remove errors from), and even helps you to avoid making errors in the first place. Before moving on to the next question, please take some time to organize your code:</p><div><ul><li>Choose logical variable names: where possible, use the physical names that are commonly used (e.g. <span class="MathJax_Preview"><img src="MEP5_answers_eq14047577632175690031.png" alt="$T$"></span><script type="math/tex">T</script> for temperature, <span class="MathJax_Preview"><img src="MEP5_answers_eq12795926589847895066.png" alt="$Q$"></span><script type="math/tex">Q</script> for heat flow, <span class="MathJax_Preview"><img src="MEP5_answers_eq12656067504604335951.png" alt="$t$"></span><script type="math/tex">t</script> for time); for historical reasons, integer numbers such as loop counters are usually started with the letters <span class="MathJax_Preview"><img src="MEP5_answers_eq05671228016298599287.png" alt="$i$"></span><script type="math/tex">i</script> to <span class="MathJax_Preview"><img src="MEP5_answers_eq02377909996656922750.png" alt="$o$"></span><script type="math/tex">o</script> from the alphabet, whereas the other letters are normally reserved for non-integer parameters, e.g. physical quantities like temperature.</li><li>Use functions to structure your code. Particularly operations that are done repeatedly and/or are used for different purposes are well suited to be put in a function. Functions are also a good way to 'hide' low-level details that might distract the coder from the higher-level bigger structure of the code. E.g. in the codes of this and the previous weeks, a function that calculates the amount of diffusion during a timestep, or that calculates an analytical solution might be good to put in a function: the main thing a programmer might want to know is <i>that</i> diffusion is calculated. If they want to know the details of <i>how</i> diffusion is calculated, they can always examine that diffusion function. There is an analogy with appendices or footnotes in written reports and books, or 'supplementary material' in online scientific articles: these are also meant to save the reader from getting distracted into the details and maintain the 'flow' of the text. The same appendice can also be referred to multiple times from different parts of the text, and functions can be re-used multiple times in the same way.</li><li>Use indentation, i.e. having blank characters at the start of some lines: it makes your code so much more legible. Matlab automatically does use indentation, but by adapting/modifying your code, indentation is easily destroyed.</li><li>Add comments to your code: add a few comment lines at the top of your code explaining what the code does, who wrote it, and when, pretty much like a summary or abstract in a report or scientific paper; add a comment line at the beginning of a section of your code to describe the general approach/procedure of that section (e.g. initialisation of the main variables, the timstepping part, the postprocessing part; explain variables in words, the first time you use them.</li></ul></div><p>Have a look at some of the model answer codes that are provided for all exercises at the end of each practical. While there is no one way in which to structure codes, and personal preference will lead to differently structured codes, using the tips above will make your code easier to understand.</p><p>5.10. Work out <span class="MathJax_Preview"><img src="MEP5_answers_eq05147331747641807187.png" alt="$A$"></span><script type="math/tex">A</script> and <span class="MathJax_Preview"><img src="MEP5_answers_eq00595004227128844146.png" alt="$\vec{b}$"></span><script type="math/tex">\vec{b}</script> for the Crank-Nicholson time-stepping method, and add it to your code. How does the Crank-Nicholson method compare to forward or backward Euler for this heat diffusion problem?</p><p><i><b> A model solution for question 5.10 <tt>heat_1d_solution_FE_BE_CN.m</tt> is available <a href="https://blackboard.durham.ac.uk/bbcswebdav/xid-1488489_1">here</a>. A zoom-in of the solution at a stable timestep shows that the Crank-Nicholson method is more accurate than either the forward or backward Euler method. We already found that earlier for the modelling of radioactive decay.</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1488486_1" alt=""> </p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Model answers for: Modelling Earth Processes, week 5 - Implicit timestepping in 1-D
+% _*Model answers are in bold-italic font.*_
+% 
+% Prof Jeroen van Hunen
+%
+% Department of Earth Sciences
+%
+% Durham University
+%
+%% This session's learning objectives
+% 
+% * Backward Euler (i.e. implicit time stepping) in 1-D, applied to 
+%   $\displaystyle \frac{\partial T}{\partial t} = \kappa \frac{\partial^2 T}{\partial
+%   z^2}$
+% * CN in 1-D
+% * Matrix-Vector notation
+%
+%% Practical
+%
+% In the past weeks we have solved the heat equation with the forward Euler
+% method. The very convenient aspect of this method is that all mesh points
+% can be integrated through time individually. None of the new data points
+% $T_i^{j+1}$ is dependent on any of the other data points for time step _n+1_, because
+% to solve $T_i^{j+1}$, we simply use information from the data points at time step
+% _n_. The major disadvantage is that the time step is limited to meet a
+% stability criterion $\displaystyle \Delta t < \frac{\Delta z^2}{2 \kappa}$, which, under some circumstances, can be a very
+% limiting factor. As discussed for 0-D problems, Euler backward and
+% Crank-Nicholson timestepping methods don't suffer from this problem. As
+% discussed today in the lectures, $T_i^{j+1}$  then _does_ become dependent on other
+% data points for time step _n+1_, and so a commonly used solution method is
+% to solve all $T_i^{j+1}$  (i.e. for all points _i_ from 1 to _m_) simultaneously. To do
+% that, we write the equations for all grid points _i_ as a set of _m_
+% equations with _m_ unknown points $T_i^{j+1}$. 
+% 
+% 5.1. 	Take the following system of 2
+% equations with 2 unknowns for $x$ and $y$:
+% 
+% $$\displaystyle \left. 
+%  \matrix{2x+3y=13 \cr
+%          4x-4y=-4}
+% \right.$$
+%
+% Convince yourself that $x=2$ and $y=3$ is the solution for this system of equations. 
+% 
+% 5.2. 	Rewrite this system of equations in matrix-vector notation. 
+%
+% _*Rewriting the 2 equations in matrix form gives:*_
+% 
+% $$\displaystyle \left( 
+%  \matrix{2 & 3 \cr
+%          4 & -4} 
+%  \right)
+%  \left( 
+%  \matrix{x \cr
+%          y} 
+%  \right) = 
+%  \left( 
+%  \matrix{13 \cr
+%          -4} 
+%  \right)$$ 
+% 
+% 5.3. 	Input the matrix and
+% right-hand-side vector from 5.2 on the command line in Matlab and solve it, using the 
+% backslash (|\|) operator (the Matlab command |x=A\b| solves 
+% $x$ in the system $A \vec{x} = \vec{b}$ ). Check results. 
+% 
+% *|>> A=[2 3; 4 -4]|*
+% 
+% *|>> b=[13; -4]|*
+% 
+% *|>> x=A\b|*
+% 
+% *|x=|*
+% 
+% *|2|*
+% 
+% *|3|*
+% 
+% 5.4. 	Now repeat 5.2 and 5.3 to solve the
+% following system: 
+% 
+% $$\displaystyle \left.
+%  \matrix{T_1&=&0 \cr
+%          -0.028T_1 + 1.056T_2 - 0.028T_3 &=& 1350 \cr
+%          -0.028T_2 + 1.056T_3 - 0.028T_4 &=& 1350 \cr
+%          -0.028T_3 + 1.056T_4 - 0.028T_5 &=& 1350 \cr
+%          T_5&=&1350}
+% \right.$$
+% 
+% _*Rewriting these equations in matrix form gives:*_
+% 
+% $$\displaystyle \left( 
+%  \matrix{1 & 0 & 0 & 0 & 0 \cr
+%          -0.028 & 1.056 & -0.028 & 0 & 0 \cr
+%          0 & -0.028 & 1.056 & -0.028 & 0 \cr
+%          0 & 0 & -0.028 & 1.056 & -0.028 \cr
+%          0 & 0 & 0 & 0 & 1} 
+%  \right)
+%  \left( 
+%  \matrix{T_1 \cr
+%          T_2 \cr
+%          T_3 \cr
+%          T_4 \cr
+%          T_5} 
+%  \right) = 
+%  \left( 
+%  \matrix{0 \cr
+%          1350 \cr
+%          1350 \cr
+%          1350 \cr
+%          1350} 
+%  \right)$$ 
+% 
+% _*Entering this in Matlab gives:*_
+% 
+% *|>> A=[1 0 0 0 0; -0.028 1.056 -0.028 0 0; 0 -0.028 1.056 -0.028 0; 0 0
+% -0.028 1.056 -0.028; 0 0 0 0 1]|*
+% 
+% *|>> b=[0; 1350; 1350; 1350; 1350]|*
+% 
+% *|>> T1=A\b|*
+% 
+% *|T1 =|*
+%
+% *|1.0e+003 *|*
+%
+% *|0|*
+%
+% *|1.3142|*
+%
+% *|1.3490|*
+%
+% *|1.3500|*
+%
+% *|1.3500|*
+% 
+% Check for yourself that this is in fact the numerical
+% backward Euler method description of a 5-point diffusion problem of
+% instantaneous cooling of oceanic lithosphere with mantle temperature
+% $T_m=1350^o$ C, surface temperature $T_s=0^o$ C, and $r=0.028$ (with $r$ defined in
+% today's lecture 5.1, slide 6). 
+% 
+% *Note that in this matrix-vector problem, the right-hand side vector is
+% the old temperature field, and that the vector 
+% $\displaystyle T = \left( 
+%  \matrix{T_1 \cr
+%          T_2 \cr
+%          T_3 \cr
+%          T_4 \cr
+%          T_5} 
+%  \right)$ is the new temperature after taking a timestep.* 
+% 
+% 5.5. 	Perform another backward Euler time
+% integration step by replacing the right-hand side of the system in 5.4
+% with the newly found solution. 
+%
+% *|>> T2=A\T1|*
+% 
+% *|T2 =|*
+%
+% *|1.0e+003 *|*
+%
+% *|0|*
+%
+% *|1.2802|*
+%
+% *|1.3472|*
+%
+% *|1.3499|*
+%
+% *|1.3500|*
+% 
+% 
+% 5.6. 	In week 2, question 2.4, you worked
+% out a solution for the first few time steps for  $\kappa=10^{-6}$ $\mathrm{m^2 s}$, 
+% $\Delta t =5$ Ma, and $\Delta z=75$ km. 
+% Check that $r$ is approximately the same for this case and
+% questions 5.4, and compare results with those obtained in question 2.5.
+% How the set of equations from 5.4 looks like for an arbitrary $r$,
+% $T_m$, and number of grid points $m$ can be seen in today's lecture video 5.3, slide 3. 
+% 
+% 5.7. 	Modify the code from week 2 and 3 to include the backward Euler 
+% solution method, and plot the solution alongside the forward Euler one.
+%
+% _* A model solution for question 5.7 |heat_1d_solution_FE_BE.m| 
+% is available 
+% <https://blackboard.durham.ac.uk/bbcswebdav/xid-1488490_1 here>. 
+% Note that a legend is added to the figure, which makes the calculations a lot slower.*_
+% 
+% 5.8. 	Run the combine forward/backward
+% Euler codes for various values of $r$, and examine the stability and
+% accuracy of each method. 
+% 
+% _* The following figure show a zoom-in of the forward Euler and backward
+% Euler solution. The forward Euler solution underestimates the amount of
+% diffusive cooling, while the backward Euler method overestimates the
+% diffusion, relative to the analytical solution.*_
+% 
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1488488_1>>
+% 
+% _* Using a timestep $\Delta t = 1.7$ Myr, which is slightly larger than the 
+% critical one $\Delta t_{crit}=1.58$ Myr results in an unstable solution
+% for the forward Euler model (see figure below), while remains unconditionally stable, 
+% regardless of the chosen
+% timestep. If timesteps are very large, the solution becomes quite
+% inaccurate, especially during the first few steps, when a lot of changes
+% occur on the temperature field. But the solution remains numerically stable, at least.*_
+%
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1488487_1>>
+%
+% 5.9. As you expand your code, and it slowly becomes longer and more
+% complex over time, it is important to keep it structured, legible, and
+% organised. A well-structured and legible code is expected for the
+% upcoming class tests, but it will also help you significantly with your
+% progress during this module: a code with a clear and structured layout is
+% easier to debug (i.e. remove errors from), and even helps you to avoid 
+% making errors in the first place. Before moving on to the next
+% question, please take some time to organize your code:
+% 
+% * Choose logical variable names: where possible, use the physical names
+% that are commonly used (e.g. $T$ for temperature, $Q$ for heat flow, $t$ for
+% time); for historical reasons, integer numbers such as loop counters are usually started with
+% the letters $i$ to $o$ from the alphabet, whereas the other letters are normally reserved for 
+% non-integer parameters, e.g. physical quantities like temperature.
+% * Use functions to structure your code. Particularly operations that are
+% done repeatedly and/or are used for different purposes are well suited to
+% be put in a function. Functions are also a good way to 'hide' low-level
+% details that might distract the coder from the higher-level bigger
+% structure of the code. E.g. in the codes of this and the previous weeks, 
+% a function that calculates the amount of diffusion during a timestep, or
+% that calculates an analytical solution might be good to put in a
+% function: the main thing a programmer might want to know is _that_
+% diffusion is calculated. If they want to know the details of _how_ diffusion 
+% is calculated, they can always examine that diffusion function. There is
+% an analogy with appendices or footnotes in written reports and books, or
+% 'supplementary material' in online scientific articles: these are also
+% meant to save the reader from getting distracted into the details and
+% maintain the 'flow' of the text. The same appendice can also be referred to
+% multiple times from different parts of the text, and functions can be re-used 
+% multiple times in the same way. 
+% * Use indentation, i.e. having blank characters at the start of some lines: 
+% it makes your code so much more legible. Matlab
+% automatically does use indentation, but by adapting/modifying your code,
+% indentation is easily destroyed.
+% * Add comments to your code: add a few comment lines at the top of your code explaining 
+% what the code does, who wrote it, and when, pretty much like a summary or abstract in a report or scientific paper; 
+% add a comment line at the beginning of a section of your code
+% to describe the general approach/procedure of that section (e.g. initialisation of 
+% the main variables, the timstepping part, the postprocessing part; 
+% explain variables in words, the first time you use them.
+% 
+% Have a look at some of the model answer codes that are provided for all
+% exercises at the end of each practical. While there is no one way in
+% which to structure codes, and personal preference will lead to
+% differently structured codes, using the tips above will make your code easier
+% to understand. 
+% 
+% 5.10. Work out $A$ and $\vec{b}$ for
+% the Crank-Nicholson time-stepping method, and add it to your code.
+% How does the Crank-Nicholson
+% method compare to forward or backward Euler for this heat diffusion
+% problem?
+%
+% _* A model solution for question 5.10 |heat_1d_solution_FE_BE_CN.m| 
+% is available 
+% <https://blackboard.durham.ac.uk/bbcswebdav/xid-1488489_1 here>. 
+% A zoom-in of the solution at a stable timestep shows that the Crank-Nicholson 
+% method is more accurate than either the forward or backward Euler method. 
+% We already found that earlier for the modelling of radioactive decay.*_
+%
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1488486_1>>
+##### SOURCE END #####
+--></body></html>
