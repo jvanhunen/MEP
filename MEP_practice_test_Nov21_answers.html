@@ -1,0 +1,230 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Modelling Earth Processes - practice class test Nov 2021 model answers</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="https://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-11-01"><meta name="DC.source" content="MEP_practice_test_Nov21_answers.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Modelling Earth Processes - practice class test Nov 2021 model answers</h1><!--introduction--><p><i><b>Model answers will be shown in bold</b></i></p><p>Prof Jeroen van Hunen</p><p>Department of Earth Sciences</p><p>Durham University</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">1. Lake volume through time</a></li><li><a href="#2">2. Soil temperature due to daily air temperature fluctuation</a></li></ul></div><h2 id="1">1. Lake volume through time</h2><p>A lake is fed with water from river <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq05147331747641807187.png" alt="$A$"></span><script type="math/tex">A</script>, and discharges water into river <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq10170753361147586657.png" alt="$B$"></span><script type="math/tex">B</script>. After a period of drought, the volume of water in the lake has dropped to <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq01209908851423258942.png" alt="$V_0=50,000$"></span><script type="math/tex">V_0=50,000</script> <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq15710606425515689046.png" alt="$\mathrm{m^3}$"></span><script type="math/tex">\mathrm{m^3}</script>, which will be taken as the initial condition in this exercise. Furthermore, influx from river <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq05147331747641807187.png" alt="$A$"></span><script type="math/tex">A</script> is back to 'pre-drought' levels from <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq16912281546434447644.png" alt="$t=0$"></span><script type="math/tex">t=0</script>, at a constant rate 0.1 <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq18167825649188509507.png" alt="$\mathrm{m^3/sec}$"></span><script type="math/tex">\mathrm{m^3/sec}</script>, while outflux into river <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq10170753361147586657.png" alt="$B$"></span><script type="math/tex">B</script> is one millionth of the lake volume per second. Mathematically, the lake volume can be described by the following differential equation: \[ \displaystyle \frac{dV}{dt} = a - bV \] in which <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq02739270504201626537.png" alt="$V$"></span><script type="math/tex">V</script> is the lake volume, <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq12656067504604335951.png" alt="$t$"></span><script type="math/tex">t</script> the time in seconds, <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq05508344529756732484.png" alt="$a$"></span><script type="math/tex">a</script> the inflow from river <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq05147331747641807187.png" alt="$A$"></span><script type="math/tex">A</script>, and <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq02044268985122151499.png" alt="$b$"></span><script type="math/tex">b</script> the relative discharge from the lake into river <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq10170753361147586657.png" alt="$B$"></span><script type="math/tex">B</script>. It is assumed that <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq12329249444574709280.png" alt="$a=0.1$"></span><script type="math/tex">a=0.1</script> <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq06394757300379488533.png" alt="$\mathrm{m^3 sec^{-1}}$"></span><script type="math/tex">\mathrm{m^3 sec^{-1}}</script> and <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq00139535040853326169.png" alt="$b=10^{-6}$"></span><script type="math/tex">b=10^{-6}</script> <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq14390284780732353164.png" alt="$\mathrm{sec^{-1}}$"></span><script type="math/tex">\mathrm{sec^{-1}}</script>. Your task is to build a numerical model for this problem, using the forward Euler timestepping method to calculate the lake volume over a period of 100 days with timesteps of 2 days.</p><p>1a. Write out (on paper or in word processor) the forward Euler finite difference form of the    differential equation.</p><p><i><b>Model answer:</b></i> <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq06462755518538500725.png" alt="$V^{i+1} = V^i + \Delta t(a-bV^i)$"></span><script type="math/tex">V^{i+1} = V^i + \Delta t(a-bV^i)</script></p><p>1b. Produce a Matlab script that plots the solution for the problem above. In case you cannot produce a working code, write down your planned implementation of the problem.</p><p><i><b>Model answer:</b></i> A solution script can be found <a href="https://blackboard.durham.ac.uk/bbcswebdav/xid-1524657_1">here</a>.</p><p>1c. What would be the maximum stable timestep that could be used? Explain your answer.</p><p><i><b>Model answer:</b></i></p><p>Solution with error: <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq08070380762547788789.png" alt="$\displaystyle V^{i+1}+\epsilon^{i+1} = V^i+\epsilon^i + \Delta t(a-b(V^i+\epsilon^i))$"></span><script type="math/tex">\displaystyle V^{i+1}+\epsilon^{i+1} = V^i+\epsilon^i + \Delta t(a-b(V^i+\epsilon^i))</script></p><p>Solution without error: <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq08571197641209243922.png" alt="$\displaystyle V^{i+1} = V^i + \Delta t(a-bV^i)$"></span><script type="math/tex">\displaystyle V^{i+1} = V^i + \Delta t(a-bV^i)</script></p><p>Subtracting one from the other gives: <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq14298716020769333843.png" alt="$\epsilon{i+1} = (1-b \Delta t) \epsilon^i$"></span><script type="math/tex">\epsilon{i+1} = (1-b \Delta t) \epsilon^i</script></p><p>Or: <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq13549036914664478030.png" alt="$\displaystyle \frac{\epsilon^{i+1}}{\epsilon^i} = (1-b \Delta t)$"></span><script type="math/tex">\displaystyle \frac{\epsilon^{i+1}}{\epsilon^i} = (1-b \Delta t)</script></p><p>If the new error <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq09957608568239141186.png" alt="$\epsilon^{i+1}$"></span><script type="math/tex">\epsilon^{i+1}</script> needs to be smaller than the old one <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq02764901214476041641.png" alt="$\epsilon^{i}$"></span><script type="math/tex">\epsilon^{i}</script>, then:</p><p><span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq16753545627847156758.png" alt="$\displaystyle -1<\frac{\epsilon^{i+1}}{\epsilon^i}<1$"></span><script type="math/tex">\displaystyle -1<\frac{\epsilon^{i+1}}{\epsilon^i}<1</script>, or <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq00290321826409923613.png" alt="$-1<1+b \Delta t<1$"></span><script type="math/tex">-1<1+b \Delta t<1</script>, so that the left inequality becomes: <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq14902996672949763234.png" alt="$\displaystyle \Delta t<\frac{2}{b}$"></span><script type="math/tex">\displaystyle \Delta t<\frac{2}{b}</script></p><h2 id="2">2. Soil temperature due to daily air temperature fluctuation</h2><p>Daily fluctuations of air temperature affect the temperature of the top layer of the subsurface down to about 1 metre below the surface. In this exercise, your task is to build a vertical 1-D numerical heat diffusion model that calculates the temperature of a subsurface with the following model characteristics:</p><div><ul><li>The relevant differential equation for heat diffusion is:   <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq13333821811580888614.png" alt="$\displaystyle \frac{\partial T}{\partial t} = \kappa \frac{\partial^2   T}{\partial z^2}$"></span><script type="math/tex">\displaystyle \frac{\partial T}{\partial t} = \kappa \frac{\partial^2   T}{\partial z^2}</script></li><li>The solution involves a backward Euler time integration scheme</li><li>The total (vertical) computational domain extends from the ground surface to   1 m depth.</li><li>Use the following time-dependent surface boundary condition:   <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq03810838547772305623.png" alt="$\displaystyle T(z=0, t) = T_{av} + \Delta T \sin \left(\frac{2\pi t}{\tau} \right)$"></span><script type="math/tex">\displaystyle T(z=0, t) = T_{av} + \Delta T \sin \left(\frac{2\pi t}{\tau} \right)</script>   with: <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq02007900427905435445.png" alt="$T_{av} = 10$"></span><script type="math/tex">T_{av} = 10</script> <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq00975380222828613199.png" alt="$\mathrm{{}^oC}$"></span><script type="math/tex">\mathrm{{}^oC}</script> the time-averaged surface temperature,         <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq11890523584051034646.png" alt="$\Delta T = 5$"></span><script type="math/tex">\Delta T = 5</script> <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq00975380222828613199.png" alt="$\mathrm{{}^oC}$"></span><script type="math/tex">\mathrm{{}^oC}</script> the daily temperature         fluctuations, and <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq09549149883027753243.png" alt="$\tau = 86400$"></span><script type="math/tex">\tau = 86400</script> sec (i.e. one day).</li><li>The bottom boundary is fixed at 10 <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq00975380222828613199.png" alt="$\mathrm{{}^oC}$"></span><script type="math/tex">\mathrm{{}^oC}</script></li><li>The initial temperature is 10 <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq00975380222828613199.png" alt="$\mathrm{{}^oC}$"></span><script type="math/tex">\mathrm{{}^oC}</script> everywhere in the computational domain.</li><li>The total model run time is 5 days.</li><li>Use a heat diffusivity of <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq00348027191971993639.png" alt="$\kappa = 10^{-6}$"></span><script type="math/tex">\kappa = 10^{-6}</script> m <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq02702860382536398872.png" alt="$\mathrm{sec^{-2}}$"></span><script type="math/tex">\mathrm{sec^{-2}}</script></li><li>Plot the depth distribution of temperature over time   (tip: with the Matlab <tt>xlim</tt> function you can fix the x-limits of your plot).</li></ul></div><p>2a) The thermal solution for every timestep is calculated by solving a matrix-vector system. Write out (on paper) how this matrix-vector system would look like for a mesh with 4 grid points. Explain your answer.</p><p><i><b>Model answer:</b></i></p><p><span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq09069303555105506104.png" alt="$\displaystyle \frac{T_i^{j+1} - T_i^{j+1}}{\Delta t} =           \kappa \frac{T_{i+1}^{j+1} - 2T_i^{j+1} + T_{i-1}^{j+1}}{\Delta           z^2}$"></span><script type="math/tex">\displaystyle \frac{T_i^{j+1} - T_i^{j+1}}{\Delta t} =           \kappa \frac{T_{i+1}^{j+1} - 2T_i^{j+1} + T_{i-1}^{j+1}}{\Delta           z^2}</script>.</p><p>With <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq01952883219808697554.png" alt="$r=\frac{\kappa \Delta t}{\Delta z^2}$"></span><script type="math/tex">r=\frac{\kappa \Delta t}{\Delta z^2}</script>. amd putting all <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq15400468853998904401.png" alt="$T^{j+1}$"></span><script type="math/tex">T^{j+1}</script> terms on the left, and <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq16129929935488927695.png" alt="$T^{j}$"></span><script type="math/tex">T^{j}</script> terms on the right gives:</p><p><span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq03328464064757395391.png" alt="$\displaystyle -rT_{i-1}^{j+1} + (1+2r)T_i^{j+1} -rT_{i-1}^{j+1} = T_i^{j}$"></span><script type="math/tex">\displaystyle -rT_{i-1}^{j+1} + (1+2r)T_i^{j+1} -rT_{i-1}^{j+1} = T_i^{j}</script></p><p><i><b>Boundary conditions:</b></i></p><p><i><b>Top boundary:</b></i> <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq06487550727492016754.png" alt="$\displaystyle T_1^{j+1} = T_{av} + \Delta T \sin \left(\frac{2\pi t}{\tau} \right)$"></span><script type="math/tex">\displaystyle T_1^{j+1} = T_{av} + \Delta T \sin \left(\frac{2\pi t}{\tau} \right)</script></p><p><i><b>Bottom boundary:</b></i> <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq17013509894140554896.png" alt="$\displaystyle T_4^{j+1} = 10^o$"></span><script type="math/tex">\displaystyle T_4^{j+1} = 10^o</script> C.</p><p><i><b>Internal points:</b></i></p><p><span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq06621383061117072514.png" alt="$\displaystyle -rT_{1}^{j+1} + (1+2r)T_2^{j+1} -rT_3^{j+1} = T_2^{j}$"></span><script type="math/tex">\displaystyle -rT_{1}^{j+1} + (1+2r)T_2^{j+1} -rT_3^{j+1} = T_2^{j}</script></p><p><span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq08297090028644210706.png" alt="$\displaystyle -rT_{2}^{j+1} + (1+2r)T_3^{j+1} -rT_4^{j+1} = T_3^{j}$"></span><script type="math/tex">\displaystyle -rT_{2}^{j+1} + (1+2r)T_3^{j+1} -rT_4^{j+1} = T_3^{j}</script></p><p><i><b>Writing in matrix-vector notation:</b></i></p><p><span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq09330869436161187930.png" alt="$$\displaystyle \left(&#xA; \matrix{1 &amp; 0 &amp; 0 &amp; 0 \cr&#xA;         -r &amp; 1+2r &amp; -r &amp; 0 \cr&#xA;         0 &amp; -r &amp; 1+2r &amp; -r \cr&#xA;         0 &amp; 0 &amp; 0 &amp; 0 &amp; 1}&#xA; \right)&#xA; \left(&#xA; \matrix{T_1^{j+1} \cr&#xA;         T_2^{j+1} \cr&#xA;         T_3^{j+1} \cr&#xA;         T_4^{j+1}}&#xA; \right) =&#xA; \left(&#xA; \matrix{ T_{av} + \Delta T \sin \left(\frac{2\pi t}{\tau} \right)\cr&#xA;         T_2^{j} \cr&#xA;         T_3^{j} \cr&#xA;         10^oC}&#xA; \right)$$"></span><script type="math/tex">\displaystyle \left(
+ \matrix{1 & 0 & 0 & 0 \cr
+         -r & 1+2r & -r & 0 \cr
+         0 & -r & 1+2r & -r \cr
+         0 & 0 & 0 & 0 & 1}
+ \right)
+ \left(
+ \matrix{T_1^{j+1} \cr
+         T_2^{j+1} \cr
+         T_3^{j+1} \cr
+         T_4^{j+1}}
+ \right) =
+ \left(
+ \matrix{ T_{av} + \Delta T \sin \left(\frac{2\pi t}{\tau} \right)\cr
+         T_2^{j} \cr
+         T_3^{j} \cr
+         10^oC}
+ \right)</script></p><p>2b) Write (in Matlab) a code that calculates the subsurface temperature using the model characteristics described above. Make sure the code works for an arbitrary number of grid points, <span class="MathJax_Preview"><img src="MEP_practice_test_Nov21_answers_eq00194318555633356830.png" alt="$nz$"></span><script type="math/tex">nz</script>. In case you cannot produce a working code, write down your planned implementation of the problem.</p><p><i><b>Model answer:</b></i> A solution script can be found <a href="https://blackboard.durham.ac.uk/bbcswebdav/xid-1524656_1">here</a>.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Modelling Earth Processes - practice class test Nov 2021 model answers
+%
+% _*Model answers will be shown in bold*_
+% 
+% Prof Jeroen van Hunen
+%
+% Department of Earth Sciences
+%
+% Durham University
+% 
+%% 1. Lake volume through time
+%
+% A lake is fed with water from river $A$, and discharges water into river $B$.
+% After a period of drought, the volume of water in the lake has dropped to
+% $V_0=50,000$ $\mathrm{m^3}$, which will be taken as the initial condition in this exercise.
+% Furthermore, influx from river $A$ is back to 'pre-drought' levels from $t=0$, 
+% at a constant rate 0.1
+% $\mathrm{m^3/sec}$, while outflux into river $B$ is one millionth of the lake volume per second. 
+% Mathematically, the lake volume can
+% be described by the following differential equation:
+% \[ \displaystyle \frac{dV}{dt} = a - bV \]
+% in which $V$ is the lake volume, $t$ the time in seconds, $a$ the inflow
+% from river $A$, and $b$ the relative discharge from the lake into river
+% $B$. It is assumed that $a=0.1$ $\mathrm{m^3 sec^{-1}}$ and $b=10^{-6}$ $\mathrm{sec^{-1}}$.
+% Your task is to
+% build a numerical model for this problem, using the forward Euler
+% timestepping method to calculate the lake volume over a period of 100
+% days with timesteps of 2 days. 
+% 
+% 1a. Write out (on paper or in word processor) the forward Euler finite difference form of the
+%    differential equation.
+% 
+% _*Model answer:*_ $V^{i+1} = V^i + \Delta t(a-bV^i)$
+% 
+% 1b. Produce a Matlab script that plots the solution for the problem
+% above. In case you cannot produce a
+% working code, write down your planned implementation of the problem.
+% 
+% _*Model answer:*_ A solution script can be found
+% <https://blackboard.durham.ac.uk/bbcswebdav/xid-1524657_1 here>.
+% 
+% 1c. What would be the maximum stable timestep that could be used? Explain your answer.
+% 
+% _*Model answer:*_ 
+% 
+% Solution with error: $\displaystyle V^{i+1}+\epsilon^{i+1} = V^i+\epsilon^i + \Delta t(a-b(V^i+\epsilon^i))$
+% 
+% Solution without error: $\displaystyle V^{i+1} = V^i + \Delta t(a-bV^i)$
+% 
+% Subtracting one from the other gives: $\epsilon{i+1} = (1-b \Delta t) \epsilon^i$
+% 
+% Or: $\displaystyle \frac{\epsilon^{i+1}}{\epsilon^i} = (1-b \Delta t)$
+% 
+% If the new error $\epsilon^{i+1}$ needs to be smaller than the old one $\epsilon^{i}$, then: 
+% 
+% $\displaystyle -1<\frac{\epsilon^{i+1}}{\epsilon^i}<1$, or $-1<1+b \Delta t<1$, so
+% that the left inequality becomes: $\displaystyle \Delta t<\frac{2}{b}$
+% 
+%
+%% 2. Soil temperature due to daily air temperature fluctuation
+% 
+% Daily fluctuations of air temperature affect the temperature of the top 
+% layer of the subsurface down to about 1 metre below the surface. 
+% In this exercise, your task is to build a vertical 1-D numerical heat diffusion model that calculates the temperature of a 
+% subsurface with the following model characteristics: 
+% 
+% * The relevant differential equation for heat diffusion is:
+%   $\displaystyle \frac{\partial T}{\partial t} = \kappa \frac{\partial^2
+%   T}{\partial z^2}$
+% * The solution involves a backward Euler time integration scheme
+% * The total (vertical) computational domain extends from the ground surface to
+%   1 m depth.
+% * Use the following time-dependent surface boundary condition: 
+%   $\displaystyle T(z=0, t) = T_{av} + \Delta T \sin \left(\frac{2\pi t}{\tau} \right)$
+%   with: $T_{av} = 10$ $\mathrm{{}^oC}$ the time-averaged surface temperature, 
+%         $\Delta T = 5$ $\mathrm{{}^oC}$ the daily temperature
+%         fluctuations, and $\tau = 86400$ sec (i.e. one day).
+% * The bottom boundary is fixed at 10 $\mathrm{{}^oC}$
+% * The initial temperature is 10 $\mathrm{{}^oC}$ everywhere in the computational domain. 
+% * The total model run time is 5 days. 
+% * Use a heat diffusivity of $\kappa = 10^{-6}$ m $\mathrm{sec^{-2}}$
+% * Plot the depth distribution of temperature over time 
+%   (tip: with the Matlab |xlim| function you can fix the x-limits of your plot).
+% 
+% 2a) The thermal solution for every timestep is calculated by solving a
+% matrix-vector system. Write out (on paper) how this matrix-vector system would look 
+% like for a mesh with 4 grid points. Explain your answer.
+% 
+% _*Model answer:*_
+% 
+% $\displaystyle \frac{T_i^{j+1} - T_i^{j+1}}{\Delta t} = 
+%           \kappa \frac{T_{i+1}^{j+1} - 2T_i^{j+1} + T_{i-1}^{j+1}}{\Delta
+%           z^2}$.
+% 
+% With $r=\frac{\kappa \Delta t}{\Delta z^2}$. amd putting all $T^{j+1}$
+% terms on the left, and $T^{j}$ terms on the right gives: 
+% 
+% $\displaystyle -rT_{i-1}^{j+1} + (1+2r)T_i^{j+1} -rT_{i-1}^{j+1} = T_i^{j}$
+% 
+% _*Boundary conditions:*_
+% 
+% _*Top boundary:*_ $\displaystyle T_1^{j+1} = T_{av} + \Delta T \sin \left(\frac{2\pi t}{\tau} \right)$
+% 
+% _*Bottom boundary:*_ $\displaystyle T_4^{j+1} = 10^o$ C.
+% 
+% _*Internal points:*_ 
+% 
+% $\displaystyle -rT_{1}^{j+1} + (1+2r)T_2^{j+1} -rT_3^{j+1} = T_2^{j}$
+% 
+% $\displaystyle -rT_{2}^{j+1} + (1+2r)T_3^{j+1} -rT_4^{j+1} = T_3^{j}$
+% 
+% _*Writing in matrix-vector notation:*_
+% 
+% $$\displaystyle \left( 
+%  \matrix{1 & 0 & 0 & 0 \cr
+%          -r & 1+2r & -r & 0 \cr
+%          0 & -r & 1+2r & -r \cr
+%          0 & 0 & 0 & 0 & 1} 
+%  \right)
+%  \left( 
+%  \matrix{T_1^{j+1} \cr
+%          T_2^{j+1} \cr
+%          T_3^{j+1} \cr
+%          T_4^{j+1}} 
+%  \right) = 
+%  \left( 
+%  \matrix{ T_{av} + \Delta T \sin \left(\frac{2\pi t}{\tau} \right)\cr
+%          T_2^{j} \cr
+%          T_3^{j} \cr
+%          10^oC} 
+%  \right)$$ 
+% 
+% 2b) Write (in Matlab) a code that calculates the subsurface temperature
+% using the model characteristics described above. Make sure the code works
+% for an arbitrary number of grid points, $nz$. In case you cannot produce a
+% working code, write down your planned implementation of the problem.
+% 
+% _*Model answer:*_ A solution script can be found
+% <https://blackboard.durham.ac.uk/bbcswebdav/xid-1524656_1 here>.
+% 
+##### SOURCE END #####
+--></body></html>
