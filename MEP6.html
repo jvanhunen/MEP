@@ -1,0 +1,157 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Modelling Earth Processes, week 6 - Boundary conditions</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="https://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-11-07"><meta name="DC.source" content="MEP6.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Modelling Earth Processes, week 6 - Boundary conditions</h1><!--introduction--><p>Prof Jeroen van Hunen</p><p>Department of Earth Sciences</p><p>Durham University</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">This session's learning objectives</a></li><li><a href="#2">Practical</a></li></ul></div><h2 id="1">This session's learning objectives</h2><div><ul><li>Understand the different types of boundary conditions</li><li>Know how to implement natural boundary conditions in 1-D implicit and   explicit systems</li></ul></div><h2 id="2">Practical</h2><p>A limitation of the models we built sofar is that we always need to know the values at the domain boundaries to apply as boundary conditions. Sometimes, we don't know those values. For example, the temperature at the bottom of the lithosphere is not well known, but the temperature gradient (which relates to the heat flux through the base of the lithosphere using Fourier's law, see week 2) is better constrained, and would be a more appropriate boundary condition. In this session, we will replace the bottom temperature boundary condition <span class="MathJax_Preview"><img src="MEP6_eq04203267234596287910.png" alt="$T=T_m$"></span><script type="math/tex">T=T_m</script> by a bottom natural boundary condition <span class="MathJax_Preview"><img src="MEP6_eq11619574354242465417.png" alt="$\frac{dT}{dz} = c$"></span><script type="math/tex">\frac{dT}{dz} = c</script>. We will apply this boundary condition to both the forward Euler and backward Euler codes written in previous weeks.</p><p>6.1. First, we will derive this natural boundary condition using the forward Euler method. The lecture slides describe how to derive an implementation of the natural boundary condition <span class="MathJax_Preview"><img src="MEP6_eq11619574354242465417.png" alt="$\frac{dT}{dz} = c$"></span><script type="math/tex">\frac{dT}{dz} = c</script> for the <i>first</i> node of the mesh <span class="MathJax_Preview"><img src="MEP6_eq02044933183722625800.png" alt="$i=1$"></span><script type="math/tex">i=1</script> for the forward Euler method. Write out this implementation for the other boundary, i.e. applying <span class="MathJax_Preview"><img src="MEP6_eq11619574354242465417.png" alt="$\frac{dT}{dz} = c$"></span><script type="math/tex">\frac{dT}{dz} = c</script> at the <i>last</i> node of the mesh <span class="MathJax_Preview"><img src="MEP6_eq05068790437066654704.png" alt="$i=nz$"></span><script type="math/tex">i=nz</script>.</p><p>6.2. Next, using Fourier's law, we can replace <span class="MathJax_Preview"><img src="MEP6_eq08422257486649890878.png" alt="$c$"></span><script type="math/tex">c</script> in this boundary condition with <span class="MathJax_Preview"><img src="MEP6_eq17991587867965635887.png" alt="$c=\frac{-q_m}{k}$"></span><script type="math/tex">c=\frac{-q_m}{k}</script>, where <span class="MathJax_Preview"><img src="MEP6_eq17526321531033163264.png" alt="$q_m$"></span><script type="math/tex">q_m</script> is the heat flow through the bottom boundary. Check this for yourself, and rewrite your answer from the previous question in terms of heat flux <span class="MathJax_Preview"><img src="MEP6_eq17526321531033163264.png" alt="$q_m$"></span><script type="math/tex">q_m</script> instead of the temperature gradient <span class="MathJax_Preview"><img src="MEP6_eq08422257486649890878.png" alt="$c$"></span><script type="math/tex">c</script>.</p><p>In this session, we will apply our heat diffusion code to a <i>continental</i> lithosphere of <span class="MathJax_Preview"><img src="MEP6_eq04094123361634135798.png" alt="$h=150$"></span><script type="math/tex">h=150</script> km thick. Let's assume that this lithosphere has an initially linear geotherm from <span class="MathJax_Preview"><img src="MEP6_eq14216546875062507810.png" alt="$T=0^o$"></span><script type="math/tex">T=0^o</script> C at the surface (i.e. <span class="MathJax_Preview"><img src="MEP6_eq08525924456163593167.png" alt="$z=0$"></span><script type="math/tex">z=0</script>) to <span class="MathJax_Preview"><img src="MEP6_eq01871983780760581059.png" alt="$T=T_m=1350^o$"></span><script type="math/tex">T=T_m=1350^o</script> C at <span class="MathJax_Preview"><img src="MEP6_eq16320523317451915712.png" alt="$z=h$"></span><script type="math/tex">z=h</script>, i.e. this model has the following initial condition: <span class="MathJax_Preview"><img src="MEP6_eq14782708694305215771.png" alt="$\displaystyle T=T_m \frac{z}{h}$"></span><script type="math/tex">\displaystyle T=T_m \frac{z}{h}</script>.</p><p>6.3. Take the solution from last week (preferably your own solution, but a model answer is given <a href="https://blackboard.durham.ac.uk/bbcswebdav/xid-1488490_1">here</a>), <i>copy it into a new file</i>, and make the following changes:</p><div><ul><li>reduce the model height <span class="MathJax_Preview"><img src="MEP6_eq08062630503172331818.png" alt="$h$"></span><script type="math/tex">h</script> to 150 km</li><li>remove the analytical solution (since it doesn't apply anymore to this   new model setup)</li><li>temporarily disable the (plotting of the) backward Euler solution</li></ul></div><p>6.4. Modify your code to replace the bottom boundary condition <span class="MathJax_Preview"><img src="MEP6_eq04203267234596287910.png" alt="$T=T_m$"></span><script type="math/tex">T=T_m</script> with <span class="MathJax_Preview"><img src="MEP6_eq17568309309566657062.png" alt="$q=0$"></span><script type="math/tex">q=0</script> <span class="MathJax_Preview"><img src="MEP6_eq00248206996803069050.png" alt="$\mathrm{W/m^2}$"></span><script type="math/tex">\mathrm{W/m^2}</script>.</p><p>6.5. Fourier's law (<span class="MathJax_Preview"><img src="MEP6_eq11129399057409285488.png" alt="$q=-k \frac{dT}{dz}$"></span><script type="math/tex">q=-k \frac{dT}{dz}</script>, see lecture in week 2) shows that a temperature gradient results in heat flow. Assuming again a heat conductivity <span class="MathJax_Preview"><img src="MEP6_eq06859973660958625754.png" alt="$k=3.3$"></span><script type="math/tex">k=3.3</script> W/m/K,  what will be the initial heat flow <span class="MathJax_Preview"><img src="MEP6_eq12752377729561496379.png" alt="$q_{ini}$"></span><script type="math/tex">q_{ini}</script> anywhere in the model? Change the bottom heat flux from <span class="MathJax_Preview"><img src="MEP6_eq17568309309566657062.png" alt="$q=0$"></span><script type="math/tex">q=0</script> <span class="MathJax_Preview"><img src="MEP6_eq00248206996803069050.png" alt="$\mathrm{W/m^2}$"></span><script type="math/tex">\mathrm{W/m^2}</script> to non-zero values. Try values smaller that, equal to, or larger than <span class="MathJax_Preview"><img src="MEP6_eq12752377729561496379.png" alt="$q_{ini}$"></span><script type="math/tex">q_{ini}</script>, and evaluate the resulting geothermal evolution. <i>Note that all heat flow values are negative. This is because the z-coordinate points downwards, and heat flows upwards, i.e. heat flows in negative z-direction. You will probably fairly easily spot a problem if you assign a bottom heat flux with the wrong sign.</i></p><p>6.6. Next, we will apply the same heat flux boundary condition to the backward Euler method. First, we need to derive what needs implementing. Fill in the missing parts of the matrix in slide 14 of today's lecture slides for the case of natural boundary conditions at the base of the model.</p><p>6.7. Copy the backward Euler solution of week 5 into a new file. Implement the heat flux boundary condition at the base of the model in this code, using again a model box height of 150 km, a linear initial geotherm, <span class="MathJax_Preview"><img src="MEP6_eq12121512559045719792.png" alt="$q_m=0$"></span><script type="math/tex">q_m=0</script> <span class="MathJax_Preview"><img src="MEP6_eq00600498136526632167.png" alt="$\mathrm{mW/m^2}$"></span><script type="math/tex">\mathrm{mW/m^2}</script> at the base <span class="MathJax_Preview"><img src="MEP6_eq16520942169758218603.png" alt="$z=150$"></span><script type="math/tex">z=150</script> km, and <span class="MathJax_Preview"><img src="MEP6_eq06859973660958625754.png" alt="$k=3.3$"></span><script type="math/tex">k=3.3</script> W/m,K.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Modelling Earth Processes, week 6 - Boundary conditions
+%
+% Prof Jeroen van Hunen
+%
+% Department of Earth Sciences
+%
+% Durham University
+%
+%% This session's learning objectives
+% 
+% * Understand the different types of boundary conditions
+% * Know how to implement natural boundary conditions in 1-D implicit and
+%   explicit systems
+%
+%% Practical
+%
+% A limitation of the models we built sofar is that we always need to know 
+% the values at the domain boundaries to apply as boundary conditions. 
+% Sometimes, we don't know those values. 
+% For example, the temperature at the bottom of the lithosphere is
+% not well known, but the temperature gradient (which relates to the heat flux 
+% through the base of the lithosphere using 
+% Fourier's law, see week 2) is better constrained, and would be a more appropriate boundary
+% condition.
+% In this session, we will replace the bottom temperature boundary condition
+% $T=T_m$ by a bottom natural boundary condition $\frac{dT}{dz} = c$. 
+% We will apply this boundary condition to both the forward Euler and backward 
+% Euler codes written in previous weeks.
+% 
+% 6.1. First, we will derive this natural boundary condition using the forward Euler method.
+% The lecture slides describe how to derive an implementation 
+% of the natural boundary condition $\frac{dT}{dz} = c$ for the _first_ node of the mesh $i=1$ 
+% for the forward Euler method. 
+% Write out this implementation for the other boundary, i.e. applying 
+% $\frac{dT}{dz} = c$ at the _last_ node of the mesh $i=nz$.
+%
+% 6.2. Next, using Fourier's law, we can replace $c$ in this boundary condition with
+% $c=\frac{-q_m}{k}$, where $q_m$ is the heat flow through the bottom
+% boundary. Check this for yourself, and rewrite your answer from the
+% previous question in terms of heat flux $q_m$ instead of the temperature
+% gradient $c$.
+%
+% In this session, we will apply our heat diffusion code to a 
+% _continental_ lithosphere of $h=150$ km thick. Let's assume that this
+% lithosphere has an initially linear geotherm from $T=0^o$ C at the surface (i.e. $z=0$) to
+% $T=T_m=1350^o$ C at $z=h$, i.e. this model has the following initial condition: 
+% $\displaystyle T=T_m \frac{z}{h}$. 
+%
+% 6.3. 
+% Take the solution from last week (preferably your own solution, but a
+% model answer is given 
+% <https://blackboard.durham.ac.uk/bbcswebdav/xid-1488490_1 here>), 
+% _copy it into a new file_, and make the following changes:
+%
+% * reduce the model height $h$ to 150 km
+% * remove the analytical solution (since it doesn't apply anymore to this
+%   new model setup)
+% * temporarily disable the (plotting of the) backward Euler solution
+% 
+% 6.4. Modify your code to replace the bottom boundary condition $T=T_m$ 
+% with $q=0$ $\mathrm{W/m^2}$. 
+%
+% 6.5. Fourier's law ($q=-k \frac{dT}{dz}$, see lecture in week 2) shows 
+% that a temperature gradient results in heat flow.
+% Assuming again a heat conductivity $k=3.3$ W/m/K,  what will be the initial 
+% heat flow $q_{ini}$ anywhere in the model? 
+% Change the bottom heat flux from $q=0$ $\mathrm{W/m^2}$ to non-zero values.
+% Try values smaller that, equal to, or larger than $q_{ini}$, and evaluate
+% the resulting geothermal evolution. 
+% _Note that all heat flow values are negative. This is because the
+% z-coordinate points downwards, and heat flows upwards, i.e. heat flows in
+% negative z-direction. You will probably fairly easily spot a problem if 
+% you assign a bottom heat flux with the wrong sign._
+%
+% 6.6. Next, we will apply the same heat flux boundary condition to the
+% backward Euler method. First, we need to derive what needs implementing.
+% Fill in the missing parts of the matrix in slide 14 of today's lecture slides 
+% for the case of natural boundary conditions at the base of the model. 
+% 
+% 6.7. Copy the backward Euler solution of week 5 into a new file. 
+% Implement the heat flux boundary condition at the base of the model in this code,
+% using again a model box height of 150 km, a linear initial geotherm,
+% $q_m=0$ $\mathrm{mW/m^2}$ at the base $z=150$ km, and $k=3.3$ W/m,K. 
+%
+##### SOURCE END #####
+--></body></html>
