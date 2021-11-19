@@ -1,0 +1,229 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Modelling Earth Processes, week 8 - Two-dimensional models</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="https://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-11-19"><meta name="DC.source" content="MEP8_answers.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Modelling Earth Processes, week 8 - Two-dimensional models</h1><!--introduction--><p><i><b>Model answers are in bold-italic font.</b></i></p><p>Prof Jeroen van Hunen</p><p>Department of Earth Sciences</p><p>Durham University</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">This session's learning objectives</a></li><li><a href="#2">Practical</a></li></ul></div><h2 id="1">This session's learning objectives</h2><div><ul><li>Discretizing the 2-D heat diffusion equation</li><li>How to convert 1-D models into 2-D models</li><li>How to set up a grid in 2-D</li><li>Time-step stability criteria in 2-D</li><li>Boundary conditions in 2-D</li><li>Plotting 2-D solutions</li></ul></div><h2 id="2">Practical</h2><p>Many geodynamical problems cannot be addressed satisfactorily in 1-D, and require (at least) a 2-D solution method. Today, we&#146;ll set up a code for that. We will apply the 2-D solution method discussed in the lecture on a 1000x1000 km vertical cross section of the top of the mantle, in which around 660 km depth (the interface between upper and lower mantle) a 600 km long (i.e. wide) piece of subducted slab is positioned. A numerical heat diffusion code can be used to examine how this cold slab will thermally equilibrate with its hot surrounding.</p><p>Once again, copy the solution from a previous week (preferably your own, but you can use the model answer given <a href="https://blackboard.durham.ac.uk/bbcswebdav/xid-1770816_1">here</a>), to a new file, and make the following changes:</p><p>8.1. Remove all the components associated with the analytical solution part, since it won't apply anymore to the model setup for this week.</p><p>8.2. We will need a 2-D 1000-by-1000 km mesh on which to calculate the 2-D temperature solution. Before implementing anything else, let's define such 2-D mesh, using the following code:</p><pre class="codeinput">x = linspace(0,w,nx);         <span class="comment">% 1-D x-array</span>
+z = linspace(0,h,nz);         <span class="comment">% 1-D z-array</span>
+[xx,zz]=meshgrid(x,z);        <span class="comment">% convert two 1-D grids into one 2-D grid</span>
+</pre><p>To understand how Matlab defines and creates such 2-D meshes, read the help pages for meshgrid by typing on the command line:</p><pre class="codeinput">&gt;&gt; help meshgrid
+</pre><p>To test whether your mesh is defined correctly, check its coordinates for a small 5-by-5 grid.</p><p>8.3. Now define a matching 2-D initial temperature distribution <tt>Told</tt> that has a uniform temperature <span class="MathJax_Preview"><img src="MEP8_answers_eq14942416445909689504.png" alt="$T_{old}=T_m=1350^o$"></span><script type="math/tex">T_{old}=T_m=1350^o</script> C, except for a rectangular region <span class="MathJax_Preview"><img src="MEP8_answers_eq05573081675437105384.png" alt="$200<x<800$"></span><script type="math/tex">200<x<800</script> km and <span class="MathJax_Preview"><img src="MEP8_answers_eq08644879755847802333.png" alt="$600<z<700$"></span><script type="math/tex">600<z<700</script> km, where <span class="MathJax_Preview"><img src="MEP8_answers_eq15471351455855121025.png" alt="$T_{old}=T_{slab}=0^o$"></span><script type="math/tex">T_{old}=T_{slab}=0^o</script> C. Pay attention to the order of the indices in <tt>T(iz,ix)</tt>, which refers to the <span class="MathJax_Preview"><img src="MEP8_answers_eq00070597973248132905.png" alt="$iz$"></span><script type="math/tex">iz</script>-th row and <span class="MathJax_Preview"><img src="MEP8_answers_eq14184309340956946682.png" alt="$ix$"></span><script type="math/tex">ix</script>-th column of 2-D array <tt>T</tt>, where <span class="MathJax_Preview"><img src="MEP8_answers_eq00070597973248132905.png" alt="$iz$"></span><script type="math/tex">iz</script> is the index for the z-direction, and <span class="MathJax_Preview"><img src="MEP8_answers_eq14184309340956946682.png" alt="$ix$"></span><script type="math/tex">ix</script> for the x-direction. Plot this initial temperature field to check if you implemented it correctly. The following lines of code for making 2-D colour plots might be useful for that:</p><pre class="codeinput">figure(1)
+    pcolor (xx,h-zz,Told)     <span class="comment">% contour plot</span>
+    colormap(<span class="string">'default'</span>);      <span class="comment">% colour scheme</span>
+    caxis ([0 Tm]);           <span class="comment">% colour range</span>
+    xlabel(<span class="string">'x [km]'</span>)
+    ylabel(<span class="string">'1000-z [km]'</span>)
+    ylabel(colorbar, <span class="string">'T [^oC]'</span>) <span class="comment">% add colour bar (makes code slow!)</span>
+    axis <span class="string">equal</span>                <span class="comment">% no vert/hor exaggeration</span>
+    drawnow                   <span class="comment">% needed when replotting in loop</span>
+</pre><p>Please don't only copy and paste the lines into your code, but try to understand what each part does, if necessary by using the Matlab <tt>help</tt> facility again.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP8_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> The initial condition will look something like this:</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1770819_1" alt=""> </p><p>8.4. Now convert the 1-D thermal diffusion function to a 2-D one, and apply the function on the <tt>Told</tt> solution to obtain the <tt>Tnew</tt> solution, similar to what you built in weeks 2 &amp; 3 for the 1-D diffusion model. Tip: Like for the 1-D case, you can program <tt>fout = fin + dt*dfdt</tt>, and it is probably easiest to create <tt>dfdt</tt> by first creating an empty array <tt>dfdt</tt> with the size of <tt>fin</tt>, and then add the diffusion parts for each direction to it.</p><p>8.5. Call the 2-D diffusion function inside the time loop and run the code. Make sure you choose a stable timestep. Plot the solution through time for visual inspection.</p><p><i><b> <span class="MathJax_Preview"><img src="MEP8_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> The solution after ~60 Myrs of heat diffusion will look somthing like this:</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1770818_1" alt=""> </p><p><i><b> <span class="MathJax_Preview"><img src="MEP8_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> A model solution is available <a href="https://blackboard.durham.ac.uk/bbcswebdav/xid-1770817_1">here</a>.</b></i></p><p>8.6. Once the code is working, you can test how slabs of different sizes, shapes, and initial temperatures are affected by the heat diffusion process:</p><div><ul><li>How long does it approximately take to heat up the whole slab to <span class="MathJax_Preview"><img src="MEP8_answers_eq11339556005579480863.png" alt="$1000^o$"></span><script type="math/tex">1000^o</script> C?   You could plot the (disappearance of the) <span class="MathJax_Preview"><img src="MEP8_answers_eq11339556005579480863.png" alt="$1000^o$"></span><script type="math/tex">1000^o</script> C contour or examine until temperatures   everywhere are above <span class="MathJax_Preview"><img src="MEP8_answers_eq11339556005579480863.png" alt="$1000^o$"></span><script type="math/tex">1000^o</script> C.</li></ul></div><p><i><b> <span class="MathJax_Preview"><img src="MEP8_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> It takes on the order of 100 Myrs for the slab to warm up significantly.   In the model solution, the <span class="MathJax_Preview"><img src="MEP8_answers_eq11339556005579480863.png" alt="$1000^o$"></span><script type="math/tex">1000^o</script> C contour is added to the solution.   Note how this is implemented: by adding a contour plot on top of the   colour plot. This requires the use of the <tt>hold</tt> function to keep   the colour plot visible. It takes approximately 250 Myrs for the <span class="MathJax_Preview"><img src="MEP8_answers_eq11339556005579480863.png" alt="$1000^o$"></span><script type="math/tex">1000^o</script> C contour   to disappear completely</b></i>.</p><div><ul><li>How does the slab thickness affect this time scale?</li></ul></div><p><i><b> <span class="MathJax_Preview"><img src="MEP8_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> Scaling analysis states that diffusion time scale <span class="MathJax_Preview"><img src="MEP8_answers_eq14593889327204786447.png" alt="$\tau$"></span><script type="math/tex">\tau</script> with diffusion distance <span class="MathJax_Preview"><img src="MEP8_answers_eq16171345478199012472.png" alt="$D$"></span><script type="math/tex">D</script> as <span class="MathJax_Preview"><img src="MEP8_answers_eq08343628861401535901.png" alt="$\displaystyle \tau=\frac{D^2}{\kappa}$"></span><script type="math/tex">\displaystyle \tau=\frac{D^2}{\kappa}</script>, with <span class="MathJax_Preview"><img src="MEP8_answers_eq16107531617707909724.png" alt="$\kappa$"></span><script type="math/tex">\kappa</script> the material diffusivity.</b></i></p><p>8.7. If there is some time left after you finished question 8.6, use it to format and annotate your code, and show it to me for feedback. As the numerical problems are getting more complex throughout this course, it becomes more and more important that your code has a good structure. In week 13, another class test is due that will involve writing relatively elaborate Matlab source code(s), and readability will be one of the assessment criteria. Pay attention to the following issues:</p><div><ul><li>Give your code structure by grouping related commands together. This   includes the usage of functions, arrays, loops, and conditional   statements whereever appropriate.</li><li>Add enough comment to your code to help understand the user what   certain parts of the code are doing</li><li>Use meaningful variable names</li><li>Remove unnecessary pairs of brackets, as this will make the code easier   to read</li><li>Use indentation to highlight the structure of your code</li></ul></div><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Modelling Earth Processes, week 8 - Two-dimensional models
+% _*Model answers are in bold-italic font.*_
+% 
+% Prof Jeroen van Hunen
+%
+% Department of Earth Sciences
+%
+% Durham University
+%
+%% This session's learning objectives
+% 
+% * Discretizing the 2-D heat diffusion equation
+% * How to convert 1-D models into 2-D models
+% * How to set up a grid in 2-D
+% * Time-step stability criteria in 2-D
+% * Boundary conditions in 2-D
+% * Plotting 2-D solutions
+%
+%% Practical
+%
+% Many geodynamical problems cannot be addressed satisfactorily in 1-D, and 
+% require (at least) a 2-D solution method. Today, well set up a code for that. 
+% We will apply the 2-D solution method discussed in the lecture 
+% on a 1000x1000 km vertical cross
+% section of the top of the mantle, in which around 660 km depth (the
+% interface between upper and lower mantle) a 600 km long (i.e. wide) piece
+% of subducted slab is positioned. A numerical heat diffusion code can be
+% used to examine how this cold slab will thermally equilibrate with its
+% hot surrounding. 
+% 
+% Once again, copy the solution from a previous week (preferably your
+% own, but you can use the model answer given 
+% <https://blackboard.durham.ac.uk/bbcswebdav/xid-1770816_1 here>), 
+% to a new file, and make the following changes:
+% 
+% 8.1. Remove all the components associated with the
+% analytical solution part, since it won't apply anymore to the model setup
+% for this week.
+% 
+% 8.2. We will need a 2-D 1000-by-1000 km mesh on which to calculate the 2-D temperature solution. 
+% Before implementing anything else, let's define such 2-D mesh, using the following code:
+
+x = linspace(0,w,nx);         % 1-D x-array 
+z = linspace(0,h,nz);         % 1-D z-array
+[xx,zz]=meshgrid(x,z);        % convert two 1-D grids into one 2-D grid
+
+%%
+% To understand how Matlab defines and creates such 2-D meshes, read the help
+% pages for meshgrid by typing on the command line: 
+
+>> help meshgrid
+
+%% 
+% To test whether your mesh is defined correctly, check its coordinates for
+% a small 5-by-5 grid.
+% 
+% 8.3. Now define a matching 2-D initial temperature distribution |Told| that has a
+% uniform temperature $T_{old}=T_m=1350^o$ C, except for a rectangular region
+% $200<x<800$ km and $600<z<700$ km, where $T_{old}=T_{slab}=0^o$ C. 
+% Pay attention to the order of the indices in |T(iz,ix)|, which refers to the $iz$-th row and $ix$-th column of
+% 2-D array |T|, where $iz$ is the index for the z-direction, and $ix$ for
+% the x-direction. 
+% Plot this initial temperature field to check if you implemented it
+% correctly. The following lines of code for making 2-D colour plots might be useful for that: 
+% 
+figure(1)
+    pcolor (xx,h-zz,Told)     % contour plot
+    colormap('default');      % colour scheme
+    caxis ([0 Tm]);           % colour range
+    xlabel('x [km]')          
+    ylabel('1000-z [km]')
+    ylabel(colorbar, 'T [^oC]') % add colour bar (makes code slow!)
+    axis equal                % no vert/hor exaggeration
+    drawnow                   % needed when replotting in loop
+%%
+% Please don't only copy and paste the lines into your code, but try to
+% understand what each part does, if necessary by using the Matlab |help|
+% facility again.
+%
+% _* $\Rightarrow$ The initial condition will look something like this:*_
+% 
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1770819_1>>
+
+%% 
+% 8.4. Now convert the 1-D thermal diffusion function to a 2-D one, and
+% apply the function on the |Told| solution to obtain the |Tnew| solution,
+% similar to what you built in weeks 2 & 3 for the 1-D diffusion model.
+% Tip: Like for the 1-D case, you can program |fout = fin + dt*dfdt|, and 
+% it is probably easiest to create |dfdt| by first creating an empty array 
+% |dfdt| with the size of |fin|, and then add the diffusion parts for each 
+% direction to it. 
+%
+% 8.5. Call the 2-D diffusion function inside the time loop and run the code.
+% Make sure you choose a stable timestep. Plot the solution through time for visual
+% inspection. 
+%
+% _* $\Rightarrow$ The solution after ~60 Myrs of heat diffusion will look somthing like this:*_
+%
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1770818_1>>
+% 
+% _* $\Rightarrow$ A model solution is available
+% <https://blackboard.durham.ac.uk/bbcswebdav/xid-1770817_1 here>.*_
+% 
+% 8.6. Once the code is working, you can test how slabs of different
+% sizes, shapes, and initial temperatures are affected by the heat diffusion process:
+% 
+% * How long does it approximately take to heat up the whole slab to $1000^o$ C?
+%   You could plot the (disappearance of the) $1000^o$ C contour or examine until temperatures
+%   everywhere are above $1000^o$ C.
+%
+% _* $\Rightarrow$ It takes on the order of 100 Myrs for the slab to warm up significantly. 
+%   In the model solution, the $1000^o$ C contour is added to the solution. 
+%   Note how this is implemented: by adding a contour plot on top of the 
+%   colour plot. This requires the use of the |hold| function to keep
+%   the colour plot visible. It takes approximately 250 Myrs for the $1000^o$ C contour 
+%   to disappear completely*_.
+% 
+% * How does the slab thickness affect this time scale?
+% 
+% _* $\Rightarrow$ Scaling analysis states that diffusion time scale $\tau$ with diffusion
+% distance $D$ as $\displaystyle \tau=\frac{D^2}{\kappa}$, with $\kappa$ the material diffusivity.*_ 
+%
+% 8.7. If there is some time left after you finished question 8.6, use it to format and
+% annotate your code, and show it to me for feedback. 
+% As the numerical problems are getting more complex throughout this course, 
+% it becomes more and more important that your code has a good structure. 
+% In week 13, another class test is due that will involve writing relatively elaborate Matlab
+% source code(s), and readability will be one of the assessment criteria. Pay
+% attention to the following issues: 
+% 
+% * Give your code structure by grouping related commands together. This
+%   includes the usage of functions, arrays, loops, and conditional
+%   statements whereever appropriate.
+% * Add enough comment to your code to help understand the user what
+%   certain parts of the code are doing
+% * Use meaningful variable names
+% * Remove unnecessary pairs of brackets, as this will make the code easier
+%   to read
+% * Use indentation to highlight the structure of your code
+
+
+
+
+##### SOURCE END #####
+--></body></html>
