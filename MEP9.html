@@ -1,0 +1,208 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Modelling Earth Processes, week 9: Porous media flow</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="https://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-11-25"><meta name="DC.source" content="MEP9.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Modelling Earth Processes, week 9: Porous media flow</h1><!--introduction--><p>Prof Jeroen van Hunen</p><p>Department of Earth Sciences</p><p>Durham University</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">This session's learning objectives:</a></li><li><a href="#2">Model setup</a></li></ul></div><h2 id="1">This session's learning objectives:</h2><div><ul><li>Apply the 2-D modelling techniques to different physical problems</li><li>Understand porous media flow modelling</li><li>Implement source/sink term to the diffusion equation</li><li>Plotting flow fields</li><li>Modelling with variable material properties</li></ul></div><h2 id="2">Model setup</h2><p>Assume a horizontal 2-D porous medium of <span class="MathJax_Preview"><img src="MEP9_eq03457793364622004078.png" alt="$w=400$"></span><script type="math/tex">w=400</script> m wide and <span class="MathJax_Preview"><img src="MEP9_eq01921409388885189222.png" alt="$l=200$"></span><script type="math/tex">l=200</script> m long. Fluid flow through the pores is based on Darcy&#146;s law, and, in the presence of local fluid sources and sinks <span class="MathJax_Preview"><img src="MEP9_eq17354617462179732091.png" alt="$H$"></span><script type="math/tex">H</script>, can be described by the following d.e.:</p><p><span class="MathJax_Preview"><img src="MEP9_eq18332495654084166089.png" alt="$\displaystyle \frac{\partial P}{\partial t} =   \frac{k}{\phi \beta \eta} \nabla^2 P + \frac{H}{\beta \phi}$"></span><script type="math/tex">\displaystyle \frac{\partial P}{\partial t} =   \frac{k}{\phi \beta \eta} \nabla^2 P + \frac{H}{\beta \phi}</script>,</p><p>which is a short notation for</p><p><span class="MathJax_Preview"><img src="MEP9_eq11200553583536412626.png" alt="$\displaystyle \frac{\partial P}{\partial t} =   \frac{k}{\phi \beta \eta}     \left(\frac{\partial^2 P}{\partial x^2} +           \frac{\partial^2 P}{\partial y^2}     \right) + \frac{H}{\beta \phi}$"></span><script type="math/tex">\displaystyle \frac{\partial P}{\partial t} =   \frac{k}{\phi \beta \eta}     \left(\frac{\partial^2 P}{\partial x^2} +           \frac{\partial^2 P}{\partial y^2}     \right) + \frac{H}{\beta \phi}</script></p><p>in 2-D, where <span class="MathJax_Preview"><img src="MEP9_eq02661806082982697695.png" alt="$P$"></span><script type="math/tex">P</script> is the (non-hydrostatic) pressure, <span class="MathJax_Preview"><img src="MEP9_eq08977680020366616796.png" alt="$k=10^{-12}$"></span><script type="math/tex">k=10^{-12}</script> <span class="MathJax_Preview"><img src="MEP9_eq05719260699303681663.png" alt="$\mathrm{m^2}$"></span><script type="math/tex">\mathrm{m^2}</script> the (constant) rock permeability, <span class="MathJax_Preview"><img src="MEP9_eq15414309942675905366.png" alt="$\phi=0.05$"></span><script type="math/tex">\phi=0.05</script> is the porosity, <span class="MathJax_Preview"><img src="MEP9_eq13803706165471745808.png" alt="$\beta=10^{-8}$"></span><script type="math/tex">\beta=10^{-8}</script> <span class="MathJax_Preview"><img src="MEP9_eq06994772077036652055.png" alt="$\mathrm{Pa^{-1}}$"></span><script type="math/tex">\mathrm{Pa^{-1}}</script> the fluid compressibility, and <span class="MathJax_Preview"><img src="MEP9_eq07033051892588266402.png" alt="$\eta=10^{-4}$"></span><script type="math/tex">\eta=10^{-4}</script> Pa s the fluid viscosity. We will use essential boundary conditions <span class="MathJax_Preview"><img src="MEP9_eq07386184503153841976.png" alt="$P=0$"></span><script type="math/tex">P=0</script> Pa on all boundaries.</p><p>There is one point source where fluid enters the domain, and one point sink, where fluid leaves the domain:</p><div><ul><li><span class="MathJax_Preview"><img src="MEP9_eq15979167833235799586.png" alt="$H^* = H^*_{src} =$"></span><script type="math/tex">H^* = H^*_{src} =</script> 0.004 <span class="MathJax_Preview"><img src="MEP9_eq13635516929237671649.png" alt="$\mathrm{m^2/s}$"></span><script type="math/tex">\mathrm{m^2/s}</script> at <span class="MathJax_Preview"><img src="MEP9_eq12951396005941313468.png" alt="$\displaystyle (x,y) = \left(\frac{w}{3},\frac{l}{2}\right)$"></span><script type="math/tex">\displaystyle (x,y) = \left(\frac{w}{3},\frac{l}{2}\right)</script></li><li><span class="MathJax_Preview"><img src="MEP9_eq02242006876648224697.png" alt="$H^* = H^*_{snk} =$"></span><script type="math/tex">H^* = H^*_{snk} =</script> -0.004 <span class="MathJax_Preview"><img src="MEP9_eq13635516929237671649.png" alt="$\mathrm{m^2/s}$"></span><script type="math/tex">\mathrm{m^2/s}</script> at <span class="MathJax_Preview"><img src="MEP9_eq15992851853854585515.png" alt="$\displaystyle (x,y) = \left(\frac{2w}{3},\frac{l}{2}\right)$"></span><script type="math/tex">\displaystyle (x,y) = \left(\frac{2w}{3},\frac{l}{2}\right)</script></li></ul></div><p>The units <span class="MathJax_Preview"><img src="MEP9_eq13635516929237671649.png" alt="$\mathrm{m^2/s}$"></span><script type="math/tex">\mathrm{m^2/s}</script> of the fluid source/sink <span class="MathJax_Preview"><img src="MEP9_eq13633007893116950329.png" alt="$H^*$"></span><script type="math/tex">H^*</script> may be puzzling, as we might expect such source/sink to have the units of a volume per unit of time, i.e. <span class="MathJax_Preview"><img src="MEP9_eq13395499432310469857.png" alt="$\mathrm{m^3/s}$"></span><script type="math/tex">\mathrm{m^3/s}</script>. This is because we are modelling a 2-D problem, which can be regarded as a 2-D cross section of a 3-D model in which nothing varies in the third dimension. As such, the easiest way to understand this concept is to assume that our 2-D model really is a 3-D model with a depth extent of exactly <span class="MathJax_Preview"><img src="MEP9_eq18395870634560867587.png" alt="$1$"></span><script type="math/tex">1</script> metre. So a volumetric source or sink of <span class="MathJax_Preview"><img src="MEP9_eq04170153492942479714.png" alt="$H^* = 0.004$"></span><script type="math/tex">H^* = 0.004</script> <span class="MathJax_Preview"><img src="MEP9_eq03204479405451379203.png" alt="$\mathrm{m^3 s^{-1}}$"></span><script type="math/tex">\mathrm{m^3 s^{-1}}</script> in a 3-D model of 1 metre deep can be modelled with a areal source or sink of <span class="MathJax_Preview"><img src="MEP9_eq04170153492942479714.png" alt="$H^* = 0.004$"></span><script type="math/tex">H^* = 0.004</script> <span class="MathJax_Preview"><img src="MEP9_eq03705006055489066257.png" alt="$\mathrm{m^2 s^{-1}}$"></span><script type="math/tex">\mathrm{m^2 s^{-1}}</script> in a 2-D model in which the vertical component is not explicitly modelled.</p><p>Furthermore, the units <span class="MathJax_Preview"><img src="MEP9_eq03705006055489066257.png" alt="$\mathrm{m^2 s^{-1}}$"></span><script type="math/tex">\mathrm{m^2 s^{-1}}</script> for <span class="MathJax_Preview"><img src="MEP9_eq13633007893116950329.png" alt="$H^*$"></span><script type="math/tex">H^*</script> don't match those for <span class="MathJax_Preview"><img src="MEP9_eq17354617462179732091.png" alt="$H$"></span><script type="math/tex">H</script> in our differential equation given above. This can be seen by examining the equation <span class="MathJax_Preview"><img src="MEP9_eq16663568418024302363.png" alt="$\displaystyle \frac{\partial \phi}{\partial t}= -\frac{\partial u}{\partial x} + H(x)$"></span><script type="math/tex">\displaystyle \frac{\partial \phi}{\partial t}= -\frac{\partial u}{\partial x} + H(x)</script> in lecture slide 6, which illustrates that <span class="MathJax_Preview"><img src="MEP9_eq17354617462179732091.png" alt="$H$"></span><script type="math/tex">H</script> should have the dimension <span class="MathJax_Preview"><img src="MEP9_eq15406026774984524101.png" alt="$\mathrm s^{-1}$"></span><script type="math/tex">\mathrm s^{-1}</script>, and not <span class="MathJax_Preview"><img src="MEP9_eq03705006055489066257.png" alt="$\mathrm{m^2 s^{-1}}$"></span><script type="math/tex">\mathrm{m^2 s^{-1}}</script> (check for yourself). This can be understood by considering that the total source (or sink) <span class="MathJax_Preview"><img src="MEP9_eq13633007893116950329.png" alt="$H^*$"></span><script type="math/tex">H^*</script> is 'injected' in (or 'extracted' from) one or more grid cells of the computational domain, as illustrated in the figure below. Each grid point is at the centre of a cell with dimension <span class="MathJax_Preview"><img src="MEP9_eq15889546908125777679.png" alt="$\Delta x \times \Delta y \times \Delta z$"></span><script type="math/tex">\Delta x \times \Delta y \times \Delta z</script>, which is the grid spacing in <span class="MathJax_Preview"><img src="MEP9_eq17651032046470860790.png" alt="$x-$"></span><script type="math/tex">x-</script>, <span class="MathJax_Preview"><img src="MEP9_eq14002237546724015062.png" alt="$y-$"></span><script type="math/tex">y-</script>, and <span class="MathJax_Preview"><img src="MEP9_eq01634481354870598781.png" alt="$z-$"></span><script type="math/tex">z-</script> direction, respectively.</p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-1876181_1" alt=""> </p><p>So, for example, the source <span class="MathJax_Preview"><img src="MEP9_eq15979167833235799586.png" alt="$H^* = H^*_{src} =$"></span><script type="math/tex">H^* = H^*_{src} =</script> 0.004 <span class="MathJax_Preview"><img src="MEP9_eq03705006055489066257.png" alt="$\mathrm{m^2 s^{-1}}$"></span><script type="math/tex">\mathrm{m^2 s^{-1}}</script> can be implemented as a source of <span class="MathJax_Preview"><img src="MEP9_eq09963992664719555013.png" alt="$H_{src} = 0.004$"></span><script type="math/tex">H_{src} = 0.004</script> <span class="MathJax_Preview"><img src="MEP9_eq15406026774984524101.png" alt="$\mathrm s^{-1}$"></span><script type="math/tex">\mathrm s^{-1}</script> applied to a grid point that has surrounding grid cell dimensions of <span class="MathJax_Preview"><img src="MEP9_eq03076255760171363628.png" alt="$\Delta x \times \Delta y =$"></span><script type="math/tex">\Delta x \times \Delta y =</script> 1-by-1 metres = 1 <span class="MathJax_Preview"><img src="MEP9_eq03145254860826244521.png" alt="$\mathrm m^2$"></span><script type="math/tex">\mathrm m^2</script>, or as a source of <span class="MathJax_Preview"><img src="MEP9_eq15062025522181458634.png" alt="$H_{src} = 0.001$"></span><script type="math/tex">H_{src} = 0.001</script> <span class="MathJax_Preview"><img src="MEP9_eq15406026774984524101.png" alt="$\mathrm s^{-1}$"></span><script type="math/tex">\mathrm s^{-1}</script> applied to an area of <span class="MathJax_Preview"><img src="MEP9_eq03076255760171363628.png" alt="$\Delta x \times \Delta y =$"></span><script type="math/tex">\Delta x \times \Delta y =</script> 2-by-2 metres = 4 <span class="MathJax_Preview"><img src="MEP9_eq03145254860826244521.png" alt="$\mathrm m^2$"></span><script type="math/tex">\mathrm m^2</script>, or perhaps as a source of <span class="MathJax_Preview"><img src="MEP9_eq11025549266157618103.png" alt="$H_{src} = 0.1$"></span><script type="math/tex">H_{src} = 0.1</script> <span class="MathJax_Preview"><img src="MEP9_eq15406026774984524101.png" alt="$\mathrm s^{-1}$"></span><script type="math/tex">\mathrm s^{-1}</script> applied to an area of <span class="MathJax_Preview"><img src="MEP9_eq03076255760171363628.png" alt="$\Delta x \times \Delta y =$"></span><script type="math/tex">\Delta x \times \Delta y =</script> 10-by-10 cm = 0.01 <span class="MathJax_Preview"><img src="MEP9_eq03145254860826244521.png" alt="$\mathrm m^2$"></span><script type="math/tex">\mathrm m^2</script>. These scenarios will all result in the same fluid source of 0.004 <span class="MathJax_Preview"><img src="MEP9_eq10351000698501584961.png" alt="$\mathrm m^2 s^{-1}$"></span><script type="math/tex">\mathrm m^2 s^{-1}</script>, and so will yield the same total injection of fluid into the computational domain. So, when implementing this source and sink later on, we'll need to know the grid spacing.</p><p>The aim of today's practical is to build a forward Euler code with the characteristics described above.</p><p>9.1. Write out (on paper) the forward Euler finite difference form of the differential equation to solve for the model described above.</p><p>9.2. What is the general critical timestep <b><tt>dt</tt></b> for this 2-D porous media flow problem?</p><p>9.3. Take the 2-D code from last week, make sure that it (still) runs correctly, and copy it over to a new m-file in order to modify it for the purpose of this task. As always, try to use your own solution code, but a model solution from last week can be found <a href="https://blackboard.durham.ac.uk/bbcswebdav/xid-1876180_1">here</a>.</p><p>9.4. Modify the code to make it suitable for porous media flow. The following changes to the code are necessary:</p><div><ul><li>a modified model domain (different dimensions, and in x-y-plane);</li><li>different physical parameters <span class="MathJax_Preview"><img src="MEP9_eq15636846968047188835.png" alt="$k$"></span><script type="math/tex">k</script>, <span class="MathJax_Preview"><img src="MEP9_eq17615028512695387165.png" alt="$\eta$"></span><script type="math/tex">\eta</script>, <span class="MathJax_Preview"><img src="MEP9_eq06401276552089372917.png" alt="$\phi$"></span><script type="math/tex">\phi</script>, and <span class="MathJax_Preview"><img src="MEP9_eq17331442575217596290.png" alt="$\beta$"></span><script type="math/tex">\beta</script>;</li><li>a zero-pressure initial condition and boundary conditions at every edge;</li><li>a different, suitable timestep <b><tt>dt</tt></b></li><li>adding the fluid source/sink terms, for which the following information might be useful:</li></ul></div><div><ol><li>add these source and sink terms to the nodes nearest to their location</li><li>As explained above, the source or sink will be distributed over a 'control volume'   <span class="MathJax_Preview"><img src="MEP9_eq08847210204536522813.png" alt="$\Delta x \times \Delta y$"></span><script type="math/tex">\Delta x \times \Delta y</script> (i.e. the 'volume' of a grid cell), and   therefore the appropriate source or sink term to add would be   <span class="MathJax_Preview"><img src="MEP9_eq12507465275784964789.png" alt="$H = \frac{H^*}{\Delta x \Delta y}$"></span><script type="math/tex">H = \frac{H^*}{\Delta x \Delta y}</script> for the appropriate mesh point.</li><li>One way to implement the source/sink term <span class="MathJax_Preview"><img src="MEP9_eq17354617462179732091.png" alt="$H$"></span><script type="math/tex">H</script> is to define an empty   2-D array with the same dimensions as <span class="MathJax_Preview"><img src="MEP9_eq16943282371561617795.png" alt="$P^{old}$"></span><script type="math/tex">P^{old}</script>, and fill one of its   cells with the source term of <span class="MathJax_Preview"><img src="MEP9_eq12843951625211101836.png" alt="$\displaystyle \frac{H^*}{\Delta x \Delta y}$"></span><script type="math/tex">\displaystyle \frac{H^*}{\Delta x \Delta y}</script>,   and one of its cells with the sink term of <span class="MathJax_Preview"><img src="MEP9_eq01485480307705405002.png" alt="$\displaystyle -\frac{H^*}{\Delta x \Delta y}$"></span><script type="math/tex">\displaystyle -\frac{H^*}{\Delta x \Delta y}</script>.</li></ol></div><p>Finally, plot the pressure distribution in the same   way that temperature distribution was plotted in the previous weeks.</p><p>9.5. Once this is working, consider improving the graphics with the following additions:</p><div><ul><li>Add isobars (contour lines of constant pressure) to the plot.</li><li>Add an vector field to illustrate the fluid flow. For this the matlab   commands <b><tt>gradient</tt></b> (to calculate the pressure gradients in Darcy's law)   and <b><tt>quiver</tt></b> (to plot arrows) might be useful.</li></ul></div><p>9.6. Test your code against those of your peers by comparing the overall   flow stucture and pressure distribution. Does the model develop a steady-state   pressure field over time? What are the maximum and minimum pressure   once steady-state is more or less reached? How does increasing the   resolution of your model affect the solution?</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Modelling Earth Processes, week 9: Porous media flow
+% 
+% Prof Jeroen van Hunen
+%
+% Department of Earth Sciences
+%
+% Durham University
+%
+%% This session's learning objectives:
+% 
+% * Apply the 2-D modelling techniques to different physical problems
+% * Understand porous media flow modelling
+% * Implement source/sink term to the diffusion equation
+% * Plotting flow fields
+% * Modelling with variable material properties
+%
+%% Model setup 
+%
+% Assume a horizontal 2-D porous medium of $w=400$ m wide and $l=200$ m long. 
+% Fluid flow through the pores is based on
+% Darcys law, and, in the presence of local fluid sources and sinks $H$,
+% can be described by the following d.e.:
+%
+% $\displaystyle \frac{\partial P}{\partial t} = 
+%   \frac{k}{\phi \beta \eta} \nabla^2 P + \frac{H}{\beta \phi}$,
+% 
+% which is a short notation for 
+% 
+% $\displaystyle \frac{\partial P}{\partial t} = 
+%   \frac{k}{\phi \beta \eta}
+%     \left(\frac{\partial^2 P}{\partial x^2} +
+%           \frac{\partial^2 P}{\partial y^2}
+%     \right) + \frac{H}{\beta \phi}$
+% 
+% in 2-D, where $P$ is the (non-hydrostatic) pressure, 
+% $k=10^{-12}$ $\mathrm{m^2}$ the (constant) rock permeability, 
+% $\phi=0.05$ is the porosity, 
+% $\beta=10^{-8}$ $\mathrm{Pa^{-1}}$ the fluid compressibility, and 
+% $\eta=10^{-4}$ Pa s the fluid viscosity.
+% We will use essential boundary conditions $P=0$ Pa on all boundaries.
+% 
+% There is one point source where fluid enters the domain, and one point 
+% sink, where fluid leaves the domain: 
+% 
+% * $H^* = H^*_{src} =$ 0.004 $\mathrm{m^2/s}$ at $\displaystyle (x,y) = \left(\frac{w}{3},\frac{l}{2}\right)$
+% * $H^* = H^*_{snk} =$ -0.004 $\mathrm{m^2/s}$ at $\displaystyle (x,y) = \left(\frac{2w}{3},\frac{l}{2}\right)$
+% 
+% The units $\mathrm{m^2/s}$ of the fluid source/sink $H^*$ may be puzzling, 
+% as we might expect such source/sink to have the units of a volume per unit of time, i.e. 
+% $\mathrm{m^3/s}$. This is because we are modelling a 2-D problem, 
+% which can be regarded as a 2-D cross section of a 3-D model in which 
+% nothing varies in the third dimension. 
+% As such, the easiest way to understand this concept is
+% to assume that our 2-D model really is a 3-D model with a depth extent of
+% exactly $1$ metre. So a volumetric source or sink of 
+% $H^* = 0.004$ $\mathrm{m^3 s^{-1}}$ in a 3-D model of 1 metre deep can be modelled with a
+% areal source or sink of $H^* = 0.004$ $\mathrm{m^2 s^{-1}}$ in a 2-D model in
+% which the vertical component is not explicitly modelled.
+%
+% Furthermore, the units $\mathrm{m^2 s^{-1}}$ for $H^*$ 
+% don't match those for $H$ in our differential equation given above. 
+% This can be seen by examining the equation 
+% $\displaystyle \frac{\partial \phi}{\partial t}= -\frac{\partial u}{\partial x} + H(x)$ 
+% in lecture slide 6, which illustrates that $H$ should have the dimension 
+% $\mathrm s^{-1}$, and not $\mathrm{m^2 s^{-1}}$ (check for yourself). 
+% This can be understood by considering that the total source (or sink) $H^*$ 
+% is 'injected' in (or 'extracted' from) one or more grid cells of the computational domain, as
+% illustrated in the figure below.
+% Each grid point is at the centre of a cell with dimension $\Delta x
+% \times \Delta y \times \Delta z$, which is the grid spacing in $x-$,
+% $y-$, and $z-$ direction, respectively.
+% 
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-1876181_1>>
+%
+% So, for example, the source $H^* = H^*_{src} =$ 0.004 $\mathrm{m^2 s^{-1}}$
+% can be implemented as a source of $H_{src} = 0.004$ $\mathrm s^{-1}$ applied to 
+% a grid point that has surrounding grid cell dimensions of 
+% $\Delta x \times \Delta y =$ 1-by-1 metres = 1 $\mathrm m^2$,
+% or as a source of $H_{src} = 0.001$ $\mathrm s^{-1}$ applied to an area of 
+% $\Delta x \times \Delta y =$ 2-by-2 metres = 4 $\mathrm m^2$, or perhaps as
+% a source of $H_{src} = 0.1$ $\mathrm s^{-1}$ applied to an area of 
+% $\Delta x \times \Delta y =$ 10-by-10 cm = 0.01 $\mathrm m^2$. 
+% These scenarios will all result in the same fluid source of 
+% 0.004 $\mathrm m^2 s^{-1}$, and so will yield the same
+% total injection of fluid into the computational domain. So, when
+% implementing this source and sink later on, we'll need to know the grid spacing.
+%
+% The aim of today's practical is to build a forward Euler code with the characteristics described above.
+% 
+% 9.1. Write out (on paper) the forward Euler finite difference form of the differential equation
+% to solve for the model described above. 
+% 
+% 9.2. What is the general critical timestep *|dt|* for this 2-D porous media flow
+% problem?
+%
+% 9.3. Take the 2-D code from last week, make sure that it (still) runs correctly, and copy it over to a
+% new m-file in order to modify it for the purpose of this task. 
+% As always, try to use your own solution code, but a model solution from 
+% last week can be found 
+% <https://blackboard.durham.ac.uk/bbcswebdav/xid-1876180_1 here>.
+% 
+% 9.4. Modify the code to make it suitable for porous media flow. The following changes 
+% to the code are necessary: 
+% 
+% * a modified model domain (different dimensions, and in x-y-plane);
+% * different physical parameters $k$, $\eta$, $\phi$, and $\beta$;
+% * a zero-pressure initial condition and boundary conditions at every edge; 
+% * a different, suitable timestep *|dt|*
+% * adding the fluid source/sink terms, for which the following information might be useful:
+% 
+% # add these source and sink terms to the nodes nearest to their location
+% # As explained above, the source or sink will be distributed over a 'control volume' 
+%   $\Delta x \times \Delta y$ (i.e. the 'volume' of a grid cell), and
+%   therefore the appropriate source or sink term to add would be
+%   $H = \frac{H^*}{\Delta x \Delta y}$ for the appropriate mesh point.
+% # One way to implement the source/sink term $H$ is to define an empty
+%   2-D array with the same dimensions as $P^{old}$, and fill one of its
+%   cells with the source term of $\displaystyle \frac{H^*}{\Delta x \Delta y}$, 
+%   and one of its cells with the sink term of $\displaystyle -\frac{H^*}{\Delta x \Delta y}$.  
+%
+% Finally, plot the pressure distribution in the same
+%   way that temperature distribution was plotted in the previous weeks. 
+% 
+% 9.5. Once this is working, consider improving the graphics with the following additions: 
+% 
+% * Add isobars (contour lines of constant pressure) to the plot. 
+% * Add an vector field to illustrate the fluid flow. For this the matlab
+%   commands *|gradient|* (to calculate the pressure gradients in Darcy's law)
+%   and *|quiver|* (to plot arrows) might be useful. 
+% 
+% 9.6. Test your code against those of your peers by comparing the overall 
+%   flow stucture and pressure distribution. Does the model develop a steady-state
+%   pressure field over time? What are the maximum and minimum pressure
+%   once steady-state is more or less reached? How does increasing the
+%   resolution of your model affect the solution?
+##### SOURCE END #####
+--></body></html>
