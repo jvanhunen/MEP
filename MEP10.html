@@ -1,0 +1,154 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Modelling Earth Processes, week 10: Porous media flow with variable permeability</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="https://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-12-02"><meta name="DC.source" content="MEP10.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Modelling Earth Processes, week 10: Porous media flow with variable permeability</h1><!--introduction--><p>Prof Jeroen van Hunen</p><p>Department of Earth Sciences</p><p>Durham University</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">This session's learning objectives:</a></li><li><a href="#2">Variable permeability</a></li></ul></div><h2 id="1">This session's learning objectives:</h2><div><ul><li>Modelling with variable material properties</li></ul></div><h2 id="2">Variable permeability</h2><p>An important limitation of the model we built last week is the assumption of constant permeability, since in reality, permeabilities hugely vary between different porous media. For example, in the hydrocarbon industry, aquifers (with high permeability) store significant amounts of oil or gas, while aquitards or seals (with very low permeability) keep those hydrocarbon resources in place.</p><p>Next, we will extend the model with spatially variable permeability. If permeability is not anymore constant in space, then it has to be kept inside the spatial derivatives, and the general governing differential equation:</p><p><span class="MathJax_Preview"><img src="MEP10_eq17386150477132455686.png" alt="$\displaystyle \frac{\partial P}{\partial t} =   \frac{1}{\phi \beta \eta}     {\left[ \frac{\partial}{\partial x} \left( k \frac{\partial P}{\partial x} \right) +       \frac{\partial}{\partial y} \left( k \frac{\partial P}{\partial y} \right) \right] } + \frac{H}{\beta \phi}$"></span><script type="math/tex">\displaystyle \frac{\partial P}{\partial t} =   \frac{1}{\phi \beta \eta}     {\left[ \frac{\partial}{\partial x} \left( k \frac{\partial P}{\partial x} \right) +       \frac{\partial}{\partial y} \left( k \frac{\partial P}{\partial y} \right) \right] } + \frac{H}{\beta \phi}</script></p><p><i><b>cannot</b></i> be simplified to:</p><p><span class="MathJax_Preview"><img src="MEP10_eq11004489576556001072.png" alt="$\displaystyle \frac{\partial P}{\partial t} =   \kappa_\phi     \left(\frac{\partial^2 P}{\partial x^2} +           \frac{\partial^2 P}{\partial y^2}     \right) + \frac{H}{\beta \phi}$"></span><script type="math/tex">\displaystyle \frac{\partial P}{\partial t} =   \kappa_\phi     \left(\frac{\partial^2 P}{\partial x^2} +           \frac{\partial^2 P}{\partial y^2}     \right) + \frac{H}{\beta \phi}</script></p><p>We will use the same physical parameters as before, except for permeability <span class="MathJax_Preview"><img src="MEP10_eq15636846968047188835.png" alt="$k$"></span><script type="math/tex">k</script>, which will now be defined as the aquifer permeability <span class="MathJax_Preview"><img src="MEP10_eq07095399678671678155.png" alt="$k=k_0=10^{-12}$"></span><script type="math/tex">k=k_0=10^{-12}</script> <span class="MathJax_Preview"><img src="MEP10_eq05719260699303681663.png" alt="$\mathrm{m^2}$"></span><script type="math/tex">\mathrm{m^2}</script> everywhere, except for a thin strip of width of two grid spacings (i.e. <span class="MathJax_Preview"><img src="MEP10_eq08408139916217709590.png" alt="$2\Delta x$"></span><script type="math/tex">2\Delta x</script>) extending over the entire <span class="MathJax_Preview"><img src="MEP10_eq08830444604280721118.png" alt="$y$"></span><script type="math/tex">y</script>-range, where we assume a low-permeability seal will be emplaced, with <span class="MathJax_Preview"><img src="MEP10_eq02050851554708207778.png" alt="$k=k_{seal}=10^{-16}$"></span><script type="math/tex">k=k_{seal}=10^{-16}</script> <span class="MathJax_Preview"><img src="MEP10_eq05719260699303681663.png" alt="$\mathrm{m^2}$"></span><script type="math/tex">\mathrm{m^2}</script>. To emphasize the effect of such seal, we slightly re-position the source and sink with respect to the positions we used last week:</p><div><ul><li>The source is now located at <span class="MathJax_Preview"><img src="MEP10_eq12781059626549085315.png" alt="$\displaystyle (x,y)_{src} = \left(\frac{w}{3},\frac{l}{3}\right)$"></span><script type="math/tex">\displaystyle (x,y)_{src} = \left(\frac{w}{3},\frac{l}{3}\right)</script></li><li>The sink is now located at <span class="MathJax_Preview"><img src="MEP10_eq16032859119238499587.png" alt="$\displaystyle (x,y)_{snk} = \left(\frac{2w}{3},\frac{2l}{3}\right)$"></span><script type="math/tex">\displaystyle (x,y)_{snk} = \left(\frac{2w}{3},\frac{2l}{3}\right)</script></li></ul></div><p>10.1. Take the 2-D code from last week, and copy it over to a new m-file in order to modify it for the purpose of this task.</p><p>10.2. First, modify your diffusion function by solving the finite differences      with the use of Matlab's intrinsic function <tt>diff</tt>, as explained      in today's lecture.</p><p>10.3. We are going to create a code that works for a variable permeability, so we will need a 2-D permeability field vector. Create such 2-D permeability vector with the same shape as the pressure vector, and fill it with a constant permeability <span class="MathJax_Preview"><img src="MEP10_eq08977680020366616796.png" alt="$k=10^{-12}$"></span><script type="math/tex">k=10^{-12}</script> <span class="MathJax_Preview"><img src="MEP10_eq05719260699303681663.png" alt="$\mathrm{m^2}$"></span><script type="math/tex">\mathrm{m^2}</script>. Then overwrite part of the permeability field with the seal permeability <span class="MathJax_Preview"><img src="MEP10_eq02050851554708207778.png" alt="$k=k_{seal}=10^{-16}$"></span><script type="math/tex">k=k_{seal}=10^{-16}</script> <span class="MathJax_Preview"><img src="MEP10_eq05719260699303681663.png" alt="$\mathrm{m^2}$"></span><script type="math/tex">\mathrm{m^2}</script>.</p><p>10.4. We will need permeability defined at the midpoins halfway between the grid points in x- and in y-direction. Calculate the 2-D arrays <b><tt>kxMP</tt></b> and <b><tt>kyMP</tt></b> as explained in today's lecture.</p><p>10.5. Now modify the diffusion function, so that it can handle the variable permeability. Rather than passing <span class="MathJax_Preview"><img src="MEP10_eq16107531617707909724.png" alt="$\kappa$"></span><script type="math/tex">\kappa</script> into the function, we'll now need the individual physical parameters, since they cannot be lumped together anymore. Then modify the interior of the function, following the lecture slides.</p><p>10.6. Visually inspect how the pressure evolution is now changed by the low-permeability seal in between the source and sink. How are the maximum and minimum pressure in the model domain affected? How are the pressure contours and flow influenced by the seal?</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Modelling Earth Processes, week 10: Porous media flow with variable permeability
+% 
+% Prof Jeroen van Hunen
+%
+% Department of Earth Sciences
+%
+% Durham University
+%
+%% This session's learning objectives:
+% 
+% * Modelling with variable material properties
+%
+%% Variable permeability 
+%
+% An important limitation of the
+% model we built last week is the assumption of constant permeability,
+% since in
+% reality, permeabilities hugely vary between different porous media. For
+% example, in the hydrocarbon industry, aquifers (with high permeability)
+% store significant amounts of oil or gas, while aquitards or seals (with
+% very low permeability) keep those hydrocarbon resources in place. 
+% 
+% Next, we will extend the model with spatially variable permeability.
+% If permeability is not anymore constant in space, then it has to be kept
+% inside the spatial derivatives, and the general governing differential
+% equation:
+%
+% $\displaystyle \frac{\partial P}{\partial t} = 
+%   \frac{1}{\phi \beta \eta}
+%     {\left[ \frac{\partial}{\partial x} \left( k \frac{\partial P}{\partial x} \right) +
+%       \frac{\partial}{\partial y} \left( k \frac{\partial P}{\partial y} \right) \right] } + \frac{H}{\beta \phi}$
+%
+% _*cannot*_ be simplified to:
+%
+% $\displaystyle \frac{\partial P}{\partial t} = 
+%   \kappa_\phi
+%     \left(\frac{\partial^2 P}{\partial x^2} +
+%           \frac{\partial^2 P}{\partial y^2}
+%     \right) + \frac{H}{\beta \phi}$
+%
+% We will use the same physical parameters as before, except
+% for permeability $k$, which will now be defined as the aquifer permeability 
+% $k=k_0=10^{-12}$ $\mathrm{m^2}$
+% everywhere, except for a thin strip of width of two grid spacings (i.e. $2\Delta x$) extending over
+% the entire $y$-range, where we assume a low-permeability seal will be emplaced, 
+% with $k=k_{seal}=10^{-16}$ $\mathrm{m^2}$. To emphasize the effect of such 
+% seal, we slightly re-position the source and sink with respect to the positions we used last week:
+% 
+% * The source is now located at $\displaystyle (x,y)_{src} = \left(\frac{w}{3},\frac{l}{3}\right)$
+% * The sink is now located at $\displaystyle (x,y)_{snk} = \left(\frac{2w}{3},\frac{2l}{3}\right)$
+% 
+% 10.1. Take the 2-D code from last week, and copy it over to a
+% new m-file in order to modify it for the purpose of this task. 
+% 
+% 10.2. First, modify your diffusion function by solving the finite differences
+%      with the use of Matlab's intrinsic function |diff|, as explained 
+%      in today's lecture. 
+% 
+% 10.3. We are going to create a code that works for a variable
+% permeability, so we will need a 2-D permeability field vector. Create such
+% 2-D permeability vector with the same shape as the pressure vector, and fill 
+% it with a constant permeability $k=10^{-12}$ $\mathrm{m^2}$. Then
+% overwrite part of the permeability field with the seal permeability
+% $k=k_{seal}=10^{-16}$ $\mathrm{m^2}$.
+% 
+% 10.4. We will need permeability defined at
+% the midpoins halfway between the grid points in x- and in y-direction. Calculate
+% the 2-D arrays *|kxMP|* and *|kyMP|* as explained in today's lecture. 
+% 
+% 10.5. Now modify the diffusion function, so that it can handle the
+% variable permeability. Rather than passing $\kappa$ into the function,
+% we'll now need the individual physical parameters, since they cannot be
+% lumped together anymore. Then modify the interior of the function,
+% following the lecture slides.
+% 
+% 10.6. Visually inspect how the pressure evolution is now changed by the
+% low-permeability seal in between the source and sink. How are the maximum
+% and minimum pressure in the model domain affected? How are the pressure
+% contours and flow influenced by the seal?
+% 
+
+##### SOURCE END #####
+--></body></html>
