@@ -1,0 +1,230 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Modelling Earth Processes - class test due Friday 20th November 2020</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="https://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-12-30"><meta name="DC.source" content="MEPtest_201120.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Modelling Earth Processes - class test due Friday 20th November 2020</h1><!--introduction--><p>Prof Jeroen van Hunen</p><p>Department of Earth Sciences</p><p>Durham University</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Test setup</a></li><li><a href="#2">Assignment</a></li><li><a href="#3">1. Earth's internal thermal evolution through time</a></li><li><a href="#4">2. The Whin sill</a></li><li><a href="#5">Submitting your work</a></li></ul></div><h2 id="1">Test setup</h2><div><ul><li>Estimated completion time: 2-3 hours.</li><li>Submission deadline is Friday 20th November, 10 pm via DUO, see further   submission details at the end of this test.</li><li>Allowed Resources: All teaching material available on DUO, your own codes and notes,   Matlab's help documentation, internet sources are allowed. No communication (electronic or otherwise, including email, social media etc.) related to the test is allowed between students. Your submission must be your own work.</li></ul></div><h2 id="2">Assignment</h2><p><b>Please read the whole test before answering any questions, and make sure you explain all your answers.</b></p><h2 id="3">1. Earth's internal thermal evolution through time</h2><p>The Earth's internal temperature is basically controlled by a balance between heat added by radiogenic elements <span class="MathJax_Preview"><img src="MEPtest_201120_eq17354617462179732091.png" alt="$H$"></span><script type="math/tex">H</script> and heat released through the surface <span class="MathJax_Preview"><img src="MEPtest_201120_eq12795926589847895066.png" alt="$Q$"></span><script type="math/tex">Q</script>. To first order, this temperature can be expressed by the scalar quantity that is referred to as the <i>potential temperature</i> <span class="MathJax_Preview"><img src="MEPtest_201120_eq14047577632175690031.png" alt="$T$"></span><script type="math/tex">T</script>. Today, that temperature is around <span class="MathJax_Preview"><img src="MEPtest_201120_eq00423991105394526083.png" alt="$T_0=1350^o$"></span><script type="math/tex">T_0=1350^o</script> C, but was probably a few hundred degrees hotter several billion years ago. This heat balance can be expressed mathematically as:</p><p><span class="MathJax_Preview"><img src="MEPtest_201120_eq18154657365667194349.png" alt="$\displaystyle C\frac{dT}{dt} = H(t) - Q(t)$"></span><script type="math/tex">\displaystyle C\frac{dT}{dt} = H(t) - Q(t)</script>,</p><p>with <span class="MathJax_Preview"><img src="MEPtest_201120_eq00719219045451192212.png" alt="$C=7\times10^{27}$"></span><script type="math/tex">C=7\times10^{27}</script> <span class="MathJax_Preview"><img src="MEPtest_201120_eq09124988031486545967.png" alt="$\mathrm{J K^{-1}}$"></span><script type="math/tex">\mathrm{J K^{-1}}</script> the Earth's total heat capacity. <span class="MathJax_Preview"><img src="MEPtest_201120_eq14047577632175690031.png" alt="$T$"></span><script type="math/tex">T</script>, <span class="MathJax_Preview"><img src="MEPtest_201120_eq17354617462179732091.png" alt="$H$"></span><script type="math/tex">H</script>, and <span class="MathJax_Preview"><img src="MEPtest_201120_eq12795926589847895066.png" alt="$Q$"></span><script type="math/tex">Q</script> generally are all functions of time <span class="MathJax_Preview"><img src="MEPtest_201120_eq12656067504604335951.png" alt="$t$"></span><script type="math/tex">t</script>. Time refers to the time since the origin of the Earth, <span class="MathJax_Preview"><img src="MEPtest_201120_eq12058231816219874976.png" alt="$4.6$"></span><script type="math/tex">4.6</script> billion years ago. The heat production is, to first order, described by a combined effect of several heat producing elements in the following form: <span class="MathJax_Preview"><img src="MEPtest_201120_eq08273502448700236334.png" alt="$H(t) = H_0 \exp(-at)$"></span><script type="math/tex">H(t) = H_0 \exp(-at)</script>, in which <span class="MathJax_Preview"><img src="MEPtest_201120_eq00585096578973274230.png" alt="$H_0 = 46$"></span><script type="math/tex">H_0 = 46</script> TW the amount of heat production when the Earth first formed, and <span class="MathJax_Preview"><img src="MEPtest_201120_eq04735599277184277038.png" alt="$a=0.325$"></span><script type="math/tex">a=0.325</script> <span class="MathJax_Preview"><img src="MEPtest_201120_eq13351504289327071691.png" alt="$\mathrm{Gyr^{-1}}$"></span><script type="math/tex">\mathrm{Gyr^{-1}}</script> is a representative radioactive decay constant of the major radiogenic elements in the Earth combined. Surface heatflow is assumed to be a function of the internal temperature in the following expression: <span class="MathJax_Preview"><img src="MEPtest_201120_eq07203751019850632582.png" alt="$\displaystyle Q(t) = \frac{Q_0}{T_0}T$"></span><script type="math/tex">\displaystyle Q(t) = \frac{Q_0}{T_0}T</script>, in which <span class="MathJax_Preview"><img src="MEPtest_201120_eq06368394707482343745.png" alt="$Q_0=36$"></span><script type="math/tex">Q_0=36</script> TW is today's global surface heat flow (i.e. Earth's heat loss).</p><p>Your task is to build a numerical model that calculates and plots the evolution of the Earth's potential temperature <span class="MathJax_Preview"><img src="MEPtest_201120_eq14047577632175690031.png" alt="$T$"></span><script type="math/tex">T</script> between time <span class="MathJax_Preview"><img src="MEPtest_201120_eq16912281546434447644.png" alt="$t=0$"></span><script type="math/tex">t=0</script> (4.5 billion years ago) and today (<span class="MathJax_Preview"><img src="MEPtest_201120_eq17824668778688819319.png" alt="$t=4.5$"></span><script type="math/tex">t=4.5</script> Gyrs) using the method and description above. Heat production through time is calculated <i>analytically</i> using <span class="MathJax_Preview"><img src="MEPtest_201120_eq08273502448700236334.png" alt="$H(t) = H_0 \exp(-at)$"></span><script type="math/tex">H(t) = H_0 \exp(-at)</script>, but the temperature evolution needs to be calculated using a forward Euler timestepping solution method.</p><p>1a) Derive (on paper or using a word processor, whichever you prefer) the forward Euler finite difference form of the    governing equation. Explain your answer.</p><p>1b) Produce a Matlab script that calculates and plots the solution for the problem     described above. Furthermore, use a potential temperature of <span class="MathJax_Preview"><img src="MEPtest_201120_eq12182327398137464380.png" alt="$1600^o$"></span><script type="math/tex">1600^o</script> C for time <span class="MathJax_Preview"><img src="MEPtest_201120_eq16912281546434447644.png" alt="$t=0$"></span><script type="math/tex">t=0</script>     and a numerical timestep of 0.1 Gyr. In case you cannot produce a     working code, write down your planned implementation of the problem.</p><p>1c) A dataset with geological observations of the Earth's potential     temperature through its geological history (Herzberg et al., 2010)     is available on DUO in the Assessments folder     in the left-hand menu of Modelling Earth Processes (20/21) and is     linked     here:     <a href="https://duo.dur.ac.uk/bbcswebdav/xid-21524908_2">Herzberg_etal10.xlsx</a>.     The file gives ages of the observations (in <i>millions</i> of years <i>from today</i>!),     and mantle potential temperatures (in degrees Celcius).     Modify your Matlab script from question 1b to add the data to     the produced thermal evolution plot, for direct comparison against your modelled results.</p><p>1d) Using the timestep stability criterion, what would be the maximum stable     timestep that could be used? Explain your answer.</p><h2 id="4">2. The Whin sill</h2><p>A sill is an intrusion of magma parallel to the stratigraphic bedding. The hot magma intrudes into the much cooler country rock, and forms a new, often horizontal layer (Figure 1). This initially hot layer will release its heat into the surrounding rock. This can be described as a heat diffusion process. A nearby example of a sill is the Whin sill, which dominates the landscape in North England (for example at Hadrian&#8217;s wall, Lindisfarne, and High Force, see Figure 1). In the Teesdale, the Whin sill has a maximum thickness of around 70 m.</p><p><img vspace="5" hspace="5" src="https://duo.dur.ac.uk/bbcswebdav/xid-21525402_2" alt=""> </p><p><img vspace="5" hspace="5" src="https://duo.dur.ac.uk/bbcswebdav/xid-21525401_2" alt=""> </p><p>Figure 1) Top: Picture of the Whin Sill (light-coloured top formation) at High Force, Teesdale. Bottom: sketch of a sill emplaced into surrounding country rock, and fed by a dike (source: www.wikipedia.org).</p><p>The Whin sill intruded shallowly, about 1.5 km below the surface, around 300 Ma, and the combined effect of sensible and latent heat of the magma in the sill can be represented by a sill temperature of <span class="MathJax_Preview"><img src="MEPtest_201120_eq09690398742463627734.png" alt="$1300^o$"></span><script type="math/tex">1300^o</script> C. We will assume that, before the sill intrusion, the country rock had a temperature profile that extended downwards from <span class="MathJax_Preview"><img src="MEPtest_201120_eq02213353459022179634.png" alt="$10^o$"></span><script type="math/tex">10^o</script> C at the surface, with a thermal gradient of <span class="MathJax_Preview"><img src="MEPtest_201120_eq03669445177689109512.png" alt="$30$"></span><script type="math/tex">30</script> K/km.</p><p>To model the heat diffusion in and around the Whin sill, the relevant differential equation for heat diffusion is:</p><p><span class="MathJax_Preview"><img src="MEPtest_201120_eq09856382539557773179.png" alt="$\displaystyle \frac{\partial T}{\partial t} = \kappa \frac{\partial^2T}{\partial z^2}$"></span><script type="math/tex">\displaystyle \frac{\partial T}{\partial t} = \kappa \frac{\partial^2T}{\partial z^2}</script></p><p>with <span class="MathJax_Preview"><img src="MEPtest_201120_eq00348027191971993639.png" alt="$\kappa = 10^{-6}$"></span><script type="math/tex">\kappa = 10^{-6}</script> m <span class="MathJax_Preview"><img src="MEPtest_201120_eq02702860382536398872.png" alt="$\mathrm{sec^{-2}}$"></span><script type="math/tex">\mathrm{sec^{-2}}</script> the heat diffusivity.</p><p>Your task is to produce a vertical, one-dimensional numerical model that calculates the temperature distribution in and around the Whin sill immediately after it intruded instantaneously. The vertical grid extends from the surface to 2 km depth. Assume an initial condition that fits with the thermal profile as described above, and the presence of the sill with a temperature of <span class="MathJax_Preview"><img src="MEPtest_201120_eq09690398742463627734.png" alt="$1300^o$"></span><script type="math/tex">1300^o</script> C between <span class="MathJax_Preview"><img src="MEPtest_201120_eq04165180374097163782.png" alt="$1500$"></span><script type="math/tex">1500</script> and <span class="MathJax_Preview"><img src="MEPtest_201120_eq00610212856695377153.png" alt="$1570$"></span><script type="math/tex">1570</script> m depth. The model will have the following boundary conditions:</p><div><ul><li>a fixed temperature at the surface that fits the initial condition</li><li>a constant heatflux into the model at the bottom of the model that fits   the initial thermal gradient.</li></ul></div><p>The model should use the backward Euler method to calculate the time evolution between 0 and 500 years immediately after the intrusion of the sill.</p><p>2a) Before implementing anything in Matlab, consider representing the physical system described above with just 5 grid points. The thermal solution for every timestep is calculated by solving a matrix-vector system. Write out (on paper or using a word processor) this matrix-vector set of equations. Explain your answer.</p><p>2b) Write (in Matlab) a code that calculates and plots the temperature distribution of this cooling Whin sill system for 500 years. Make sure the code works for an arbitrary number of grid points, <span class="MathJax_Preview"><img src="MEPtest_201120_eq00194318555633356830.png" alt="$nz$"></span><script type="math/tex">nz</script>. In case you cannot produce a working code, write down your planned implementation of the problem.</p><h2 id="5">Submitting your work</h2><p>Please make sure that each page of your written answers has your name clearly stated, and that your Matlab codes :</p><div><ul><li>have a clear structure (aided by indentation and, if appropriate, the use of functions),</li><li>use sensibly-chosen and clear variable names,</li><li>have sufficient comments to explain the variables and what is calculated,</li><li>produce clear, annotated plots.</li></ul></div><p>a) If you have hand-written text to submit, make <i>legible</i> scans of it to submit on DUO. Submit your text answers (scanned handwritten text or word processor text) in the DUO assignment 'Class test Nov 2020, text' of the Modelling Earth Processes 20/21 Assessments folder on DUO.</p><p>b) Submit the Matlab scripts for questions 1b and 1c (as one code) and 2b via the DUO turnitin assignments   'Class test Nov 2020, question 1b+c' and 'Class test Nov 2020, question 2b', respectively, in the Assignment folder    of the Modelling Earth Processes 20/21 Assessments folder on DUO.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Modelling Earth Processes - class test due Friday 20th November 2020
+% 
+% Prof Jeroen van Hunen
+%
+% Department of Earth Sciences
+%
+% Durham University
+%
+%% Test setup
+% 
+% * Estimated completion time: 2-3 hours. 
+% * Submission deadline is Friday 20th November, 10 pm via DUO, see further
+%   submission details at the end of this test. 
+% * Allowed Resources: All teaching material available on DUO, your own codes and notes, 
+%   Matlab's help documentation, internet sources are allowed. 
+% No communication (electronic or otherwise, including email, social media etc.) 
+% related to the test is allowed between students. Your submission must be your own work.
+%
+%% Assignment
+% *Please read the whole test before answering any questions, and make 
+% sure you explain all your answers.*
+% 
+%% 1. Earth's internal thermal evolution through time
+%
+% The Earth's internal temperature is basically controlled by a balance
+% between heat added by radiogenic elements $H$ and heat released through the
+% surface $Q$. To first order, this temperature can be expressed by the 
+% scalar quantity that is referred to as the _potential temperature_ $T$. 
+% Today, that temperature is around $T_0=1350^o$ C,
+% but was probably a few hundred degrees hotter several billion years ago. This
+% heat balance can be expressed mathematically
+% as: 
+% 
+% $\displaystyle C\frac{dT}{dt} = H(t) - Q(t)$, 
+% 
+% with $C=7\times10^{27}$ $\mathrm{J K^{-1}}$
+% the Earth's total heat capacity. $T$, $H$, and $Q$ generally are all 
+% functions of time $t$. Time refers to the time since the origin of the Earth, $4.6$ billion years ago.
+% The heat production is, to first order, described
+% by a combined effect of several heat producing elements in the following
+% form: $H(t) = H_0 \exp(-at)$, in which $H_0 = 46$ TW the amount of heat 
+% production when the Earth first formed, and $a=0.325$ $\mathrm{Gyr^{-1}}$ is 
+% a representative radioactive decay constant of the major radiogenic elements 
+% in the Earth combined.
+% Surface heatflow is assumed to be a function of the internal temperature
+% in the following expression: $\displaystyle Q(t) = \frac{Q_0}{T_0}T$, in
+% which $Q_0=36$ TW is today's global surface heat flow (i.e. Earth's heat loss).
+% 
+% Your task is to build a numerical model that calculates and plots the
+% evolution of the Earth's potential temperature $T$ between time $t=0$ (4.5 billion 
+% years ago) and today ($t=4.5$ Gyrs) using the method and description above.
+% Heat production through time is calculated _analytically_ using $H(t) = H_0
+% \exp(-at)$, but the temperature evolution needs to be calculated 
+% using a forward Euler timestepping solution method. 
+% 
+% 1a) Derive (on paper or using a word processor, whichever you prefer) the forward Euler finite difference form of the
+%    governing equation. Explain your answer.
+%
+% 1b) Produce a Matlab script that calculates and plots the solution for the problem
+%     described above. Furthermore, use a potential temperature of $1600^o$ C for time $t=0$ 
+%     and a numerical timestep of 0.1 Gyr. In case you cannot produce a
+%     working code, write down your planned implementation of the problem.
+% 
+% 1c) A dataset with geological observations of the Earth's potential
+%     temperature through its geological history (Herzberg et al., 2010) 
+%     is available on DUO in the Assessments folder
+%     in the left-hand menu of Modelling Earth Processes (20/21) and is
+%     linked
+%     here:
+%     <https://duo.dur.ac.uk/bbcswebdav/xid-21524908_2 Herzberg_etal10.xlsx>.
+%     The file gives ages of the observations (in _millions_ of years _from today_!),
+%     and mantle potential temperatures (in degrees Celcius). 
+%     Modify your Matlab script from question 1b to add the data to
+%     the produced thermal evolution plot, for direct comparison against your modelled results. 
+% 
+% 1d) Using the timestep stability criterion, what would be the maximum stable 
+%     timestep that could be used? Explain your answer.
+%
+%% 2. The Whin sill
+% A sill is an intrusion of magma parallel to the stratigraphic bedding. 
+% The hot magma intrudes into the much cooler country rock, and forms a new,
+% often horizontal layer (Figure 1). This initially hot layer will release 
+% its heat into the surrounding rock. This can be described as a heat 
+% diffusion process. A nearby example of a sill is the Whin sill, which 
+% dominates the landscape in North England (for example at Hadrian’s wall, 
+% Lindisfarne, and High Force, see Figure 1). In the Teesdale, the Whin 
+% sill has a maximum thickness of around 70 m. 
+%
+% <<https://duo.dur.ac.uk/bbcswebdav/xid-21525402_2>>
+% 
+% <<https://duo.dur.ac.uk/bbcswebdav/xid-21525401_2>>
+%
+% Figure 1) Top: Picture of the Whin Sill (light-coloured top formation) 
+% at High Force, Teesdale. Bottom: sketch of a sill emplaced into surrounding 
+% country rock, and fed by a dike (source: www.wikipedia.org). 
+% 
+% The Whin sill intruded shallowly, about 1.5 km below the surface, around
+% 300 Ma, and the combined effect of sensible and latent heat of the magma
+% in the sill can be represented by a sill temperature of $1300^o$ C.
+% We will assume that, before the sill intrusion, the country rock had a temperature profile that
+% extended downwards from $10^o$ C at the surface, with a thermal gradient of $30$
+% K/km.
+% 
+% To model the heat diffusion in and around the Whin sill, the relevant differential equation for heat diffusion is:
+% 
+% $\displaystyle \frac{\partial T}{\partial t} = \kappa \frac{\partial^2T}{\partial z^2}$
+% 
+% with $\kappa = 10^{-6}$ m $\mathrm{sec^{-2}}$ the heat diffusivity.
+% 
+% Your task is to produce a vertical, one-dimensional numerical model that 
+% calculates the temperature distribution in and around the Whin sill
+% immediately after it intruded instantaneously. The vertical grid extends
+% from the surface to 2 km depth. 
+% Assume an initial condition that fits with the thermal profile as described above, 
+% and the presence of the sill with a temperature of $1300^o$ C between 
+% $1500$ and $1570$ m depth. 
+% The model will have the following boundary conditions: 
+% 
+% * a fixed temperature at the surface that fits the initial condition
+% * a constant heatflux into the model at the bottom of the model that fits
+%   the initial thermal gradient.
+% 
+% The model should use the backward Euler method to calculate the time
+% evolution between 0 and 500 years immediately after the intrusion of the sill.
+% 
+% 2a) Before implementing anything in Matlab, consider 
+% representing the physical system described above with just 5 grid points.
+% The thermal solution for every timestep is calculated by solving a
+% matrix-vector system. 
+% Write out (on paper or using a word processor) this matrix-vector set of equations. 
+% Explain your answer.
+% 
+% 2b) Write (in Matlab) a code that calculates and plots the temperature 
+% distribution of this cooling Whin sill system for 500 years.
+% Make sure the code works
+% for an arbitrary number of grid points, $nz$. In case you cannot produce a
+% working code, write down your planned implementation of the problem.
+% 
+%% Submitting your work
+%
+% Please make sure that each page of your written answers has your name clearly stated, 
+% and that your Matlab codes :
+% 
+% * have a clear structure (aided by indentation and, if appropriate, the
+% use of functions),
+% * use sensibly-chosen and clear variable names,
+% * have sufficient comments to explain the variables and what is calculated, 
+% * produce clear, annotated plots.
+% 
+% a) If you have hand-written text to submit, make _legible_ scans of it to
+% submit on DUO. Submit your text answers (scanned handwritten text or word
+% processor text) in the DUO assignment 'Class test Nov 2020,
+% text' of the Modelling Earth Processes 20/21 Assessments folder on DUO. 
+% 
+% b) Submit the Matlab scripts for questions 1b and 1c (as one code) and 2b via the DUO turnitin assignments 
+%   'Class test Nov 2020, question 1b+c' and 'Class test Nov 2020, question 2b', respectively, in the Assignment folder 
+%    of the Modelling Earth Processes 20/21 Assessments folder on DUO. 
+##### SOURCE END #####
+--></body></html>

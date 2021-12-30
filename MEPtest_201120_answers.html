@@ -1,0 +1,546 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Modelling Earth Processes - class test due Friday 20th November 2020</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="https://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-12-30"><meta name="DC.source" content="MEPtest_201120_answers.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Modelling Earth Processes - class test due Friday 20th November 2020</h1><!--introduction--><p><i><b>Model answers in bold font</b></i></p><p>Prof Jeroen van Hunen</p><p>Department of Earth Sciences</p><p>Durham University</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Test setup</a></li><li><a href="#2">Assignment</a></li><li><a href="#3">1. Earth's internal thermal evolution through time</a></li><li><a href="#7">2. The Whin sill</a></li><li><a href="#11">Submitting your work</a></li></ul></div><h2 id="1">Test setup</h2><div><ul><li>Estimated completion time: 2-3 hours.</li><li>Submission deadline is Friday 20th November, 10 pm via DUO, see further   submission details at the end of this test.</li><li>Allowed Resources: All teaching material available on DUO, your own codes and notes,   Matlab's help documentation, internet sources are allowed. No communication (electronic or otherwise, including email, social media etc.) related to the test is allowed between students. Your submission must be your own work.</li></ul></div><h2 id="2">Assignment</h2><p><b>Please read the whole test before answering any questions, and make sure you explain all your answers.</b></p><h2 id="3">1. Earth's internal thermal evolution through time</h2><p>The Earth's internal temperature is basically controlled by a balance between heat added by radiogenic elements <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq17354617462179732091.png" alt="$H$"></span><script type="math/tex">H</script> and heat released through the surface <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq12795926589847895066.png" alt="$Q$"></span><script type="math/tex">Q</script>. To first order, this temperature can be expressed by the scalar quantity that is referred to as the <i>potential temperature</i> <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq14047577632175690031.png" alt="$T$"></span><script type="math/tex">T</script>. Today, that temperature is around <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq00423991105394526083.png" alt="$T_0=1350^o$"></span><script type="math/tex">T_0=1350^o</script> C, but was probably a few hundred degrees hotter several billion years ago. This heat balance can be expressed mathematically as:</p><p><span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq18154657365667194349.png" alt="$\displaystyle C\frac{dT}{dt} = H(t) - Q(t)$"></span><script type="math/tex">\displaystyle C\frac{dT}{dt} = H(t) - Q(t)</script>,</p><p>with <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq00719219045451192212.png" alt="$C=7\times10^{27}$"></span><script type="math/tex">C=7\times10^{27}</script> <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq09124988031486545967.png" alt="$\mathrm{J K^{-1}}$"></span><script type="math/tex">\mathrm{J K^{-1}}</script> the Earth's total heat capacity. <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq14047577632175690031.png" alt="$T$"></span><script type="math/tex">T</script>, <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq17354617462179732091.png" alt="$H$"></span><script type="math/tex">H</script>, and <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq12795926589847895066.png" alt="$Q$"></span><script type="math/tex">Q</script> generally are all functions of time <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq12656067504604335951.png" alt="$t$"></span><script type="math/tex">t</script>. Time refers to the time since the origin of the Earth, <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq12058231816219874976.png" alt="$4.6$"></span><script type="math/tex">4.6</script> billion years ago. The heat production is, to first order, described by a combined effect of several heat producing elements in the following form: <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq08273502448700236334.png" alt="$H(t) = H_0 \exp(-at)$"></span><script type="math/tex">H(t) = H_0 \exp(-at)</script>, in which <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq00585096578973274230.png" alt="$H_0 = 46$"></span><script type="math/tex">H_0 = 46</script> TW the amount of heat production when the Earth first formed, and <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq04735599277184277038.png" alt="$a=0.325$"></span><script type="math/tex">a=0.325</script> <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq13351504289327071691.png" alt="$\mathrm{Gyr^{-1}}$"></span><script type="math/tex">\mathrm{Gyr^{-1}}</script> is a representative radioactive decay constant of the major radiogenic elements in the Earth combined. Surface heatflow is assumed to be a function of the internal temperature in the following expression: <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq07203751019850632582.png" alt="$\displaystyle Q(t) = \frac{Q_0}{T_0}T$"></span><script type="math/tex">\displaystyle Q(t) = \frac{Q_0}{T_0}T</script>, in which <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq06368394707482343745.png" alt="$Q_0=36$"></span><script type="math/tex">Q_0=36</script> TW is today's global surface heat flow (i.e. Earth's heat loss).</p><p>Your task is to build a numerical model that calculates and plots the evolution of the Earth's potential temperature <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq14047577632175690031.png" alt="$T$"></span><script type="math/tex">T</script> between time <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq16912281546434447644.png" alt="$t=0$"></span><script type="math/tex">t=0</script> (4.5 billion years ago) and today (<span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq17824668778688819319.png" alt="$t=4.5$"></span><script type="math/tex">t=4.5</script> Gyrs) using the method and description above. Heat production through time is calculated <i>analytically</i> using <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq08273502448700236334.png" alt="$H(t) = H_0 \exp(-at)$"></span><script type="math/tex">H(t) = H_0 \exp(-at)</script>, but the temperature evolution needs to be calculated using a forward Euler timestepping solution method.</p><p>1a) Derive (on paper or using a word processor, whichever you prefer) the forward Euler finite difference form of the    governing equation. Explain your answer.</p><p><i><b> <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> The FE solution is:</b></i></p><p><span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq03562324454984607736.png" alt="$\displaystyle T^{new} = T^{old} + \frac{\Delta t}{C} \left[ H_0 \exp(-at) - \frac{Q_0}{T_0} T^{old} \right]$"></span><script type="math/tex">\displaystyle T^{new} = T^{old} + \frac{\Delta t}{C} \left[ H_0 \exp(-at) - \frac{Q_0}{T_0} T^{old} \right]</script></p><p>1b) Produce a Matlab script that calculates and plots the solution for the problem     described above. Furthermore, use a potential temperature of <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq12182327398137464380.png" alt="$1600^o$"></span><script type="math/tex">1600^o</script> C for time <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq16912281546434447644.png" alt="$t=0$"></span><script type="math/tex">t=0</script>     and a numerical timestep of 0.1 Gyr. In case you cannot produce a     working code, write down your planned implementation of the problem.</p><p><i><b> <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> Code example:</b></i></p><pre class="codeinput"><span class="keyword">function</span> thermevol2020
+</pre><pre class="codeinput">tmax   = 4.5;            <span class="comment">% total timespan = 4/5 Gyrs</span>
+dt     = 0.1;            <span class="comment">% 0.1 Gyr stime steps</span>
+secingyr = 1e9*365*24*3600;
+tmax   = tmax*secingyr;
+dt     = dt*secingyr;
+nt     = ceil(tmax/dt)+1; <span class="comment">% calc. nr. of timesteps to span Earth history</span>
+time   = linspace(0,tmax,nt);
+
+<span class="comment">% create initial arrays of size nt, all empty</span>
+T    = zeros(size(time));
+
+<span class="comment">% model parameters:</span>
+lambda = 0.325/secingyr;  <span class="comment">% radigenic heat production decay constant</span>
+Q0     = 36e12;  <span class="comment">% today's surface heat flux</span>
+H0     = 46e12;  <span class="comment">% heat production at t=0 = early Earth</span>
+H      = H0*exp(-lambda*time);
+C      = 7e27;   <span class="comment">% heat capacity of the Earth</span>
+
+
+<span class="comment">% initial condition:</span>
+T0   = 1350;
+T(1) = 1600;
+
+<span class="keyword">for</span> it = 2:nt
+    <span class="comment">% Forward Euler timestep for parent isotope:</span>
+    T(it)      = T(it-1) + dt/C * (H(it) - Q0/T0*T(it-1));
+<span class="keyword">end</span>
+
+<span class="comment">% read in data from Herzberg</span>
+data=xlsread(<span class="string">'Herzberg_etal10.xlsx'</span>);
+datayr=tmax/secingyr - data(:,1)/1000;
+dataT=data(:,2);
+
+<span class="comment">% plot results:</span>
+plot (time/secingyr,T,<span class="string">'-'</span>,datayr,dataT,<span class="string">'ro'</span> )
+xlabel(<span class="string">'t(Gyrs)'</span>)
+ylabel(<span class="string">'T(degC)'</span>)
+</pre><p><i><b> <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> Plot example:</b></i></p><p><img vspace="5" hspace="5" src="plot_1b.png" alt=""> </p><p>1c) A dataset with geological observations of the Earth's potential     temperature through its geological history (Herzberg et al., 2010)     is available on DUO in the Assessments folder     in the left-hand menu of Modelling Earth Processes (20/21) and is     linked     here:     <a href="https://duo.dur.ac.uk/bbcswebdav/xid-21524908_2">Herzberg_etal10.xlsx</a>.     The file gives ages of the observations (in <i>millions</i> of years <i>from today</i>!),     and mantle potential temperatures (in degrees Celcius).     Modify your Matlab script from question 1b to add the data to     the produced thermal evolution plot, for direct comparison against your modelled results.</p><p><i><b> <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> See above</b></i></p><p>1d) Using the timestep stability criterion, what would be the maximum stable     timestep that could be used? Explain your answer.</p><p><i><b> <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> Model answer:</b></i></p><p><span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq12274456352805836796.png" alt="$\displaystyle T^{i+1} + \epsilon_{i+1} = T^i + \epsilon^i + \frac{\Delta t}{C} \left[ H_0 \exp(-at) - \frac{Q_0}{T_0} (T^{i}+ \epsilon_i) \right]$"></span><script type="math/tex">\displaystyle T^{i+1} + \epsilon_{i+1} = T^i + \epsilon^i + \frac{\Delta t}{C} \left[ H_0 \exp(-at) - \frac{Q_0}{T_0} (T^{i}+ \epsilon_i) \right]</script></p><p><span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq05358669828523812598.png" alt="$\displaystyle T^{i+1} = T^i + \frac{\Delta t}{C} \left[ H_0 \exp(-at) - \frac{Q_0}{T_0} T^i \right]$"></span><script type="math/tex">\displaystyle T^{i+1} = T^i + \frac{\Delta t}{C} \left[ H_0 \exp(-at) - \frac{Q_0}{T_0} T^i \right]</script></p><p><i><b> <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> Note that the <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq16701808279315941168.png" alt="$H_0$"></span><script type="math/tex">H_0</script> term does not have <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq14047577632175690031.png" alt="$T$"></span><script type="math/tex">T</script> embedded, and therefore has no propagating error. Subtracting 2nd from 1st equation:</b></i></p><p><span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq13308909126190418173.png" alt="$\displaystyle \epsilon^{i+1} = \epsilon^i - \frac{\Delta t}{C} \frac{Q_0}{T_0} \epsilon^i \Leftrightarrow$"></span><script type="math/tex">\displaystyle \epsilon^{i+1} = \epsilon^i - \frac{\Delta t}{C} \frac{Q_0}{T_0} \epsilon^i \Leftrightarrow</script></p><p><span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq06384454529875430051.png" alt="$\displaystyle \epsilon^{i+1} = \epsilon^i (1 - \frac{\Delta t}{C} \frac{Q_0}{T_0}) \Leftrightarrow$"></span><script type="math/tex">\displaystyle \epsilon^{i+1} = \epsilon^i (1 - \frac{\Delta t}{C} \frac{Q_0}{T_0}) \Leftrightarrow</script></p><p><span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq05357592166481301283.png" alt="$\displaystyle \frac{\epsilon^{i+1}}{\epsilon^i} = 1 - \frac{\Delta t}{C} \frac{Q_0}{T_0}$"></span><script type="math/tex">\displaystyle \frac{\epsilon^{i+1}}{\epsilon^i} = 1 - \frac{\Delta t}{C} \frac{Q_0}{T_0}</script></p><p><i><b> Demanding the new error to be smaller than the old one:</b></i>    <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq16792264141000026191.png" alt="$\displaystyle |\frac{\epsilon^{i+1}}{\epsilon^i}| < 1$"></span><script type="math/tex">\displaystyle |\frac{\epsilon^{i+1}}{\epsilon^i}| < 1</script></p><p><i><b> gives:</b></i></p><p><span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq09009562439877334786.png" alt="$\displaystyle |1 - \frac{\Delta t}{C}\frac{Q_0}{T_0}|<1$"></span><script type="math/tex">\displaystyle |1 - \frac{\Delta t}{C}\frac{Q_0}{T_0}|<1</script></p><p><i><b> or:</b></i></p><p><span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq05998671042615351467.png" alt="$\displaystyle -1 < 1 - \frac{\Delta t}{C}\frac{Q_0}{T_0} < 1$"></span><script type="math/tex">\displaystyle -1 < 1 - \frac{\Delta t}{C}\frac{Q_0}{T_0} < 1</script></p><p><i><b> Elaborating the left inequation:</b></i></p><p><span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq16312451035503839273.png" alt="$\displaystyle -2 < - \frac{\Delta t}{C}\frac{Q_0}{T_0}$"></span><script type="math/tex">\displaystyle -2 < - \frac{\Delta t}{C}\frac{Q_0}{T_0}</script></p><p><i><b> Multiplying by <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq09495369197506271969.png" alt="$-1$"></span><script type="math/tex">-1</script> (which swaps <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq05893550106668201694.png" alt="$<$"></span><script type="math/tex"><</script> and <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq06505957384204771693.png" alt="$&gt;$"></span><script type="math/tex">></script> signs!) and re-arranging terms gives the final answer:</b></i></p><p><span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq10801712472557203321.png" alt="$\displaystyle \Delta t < \frac{2 T_0 C}{Q_0}$"></span><script type="math/tex">\displaystyle \Delta t < \frac{2 T_0 C}{Q_0}</script></p><h2 id="7">2. The Whin sill</h2><p>A sill is an intrusion of magma parallel to the stratigraphic bedding. The hot magma intrudes into the much cooler country rock, and forms a new, often horizontal layer (Figure 1). This initially hot layer will release its heat into the surrounding rock. This can be described as a heat diffusion process. A nearby example of a sill is the Whin sill, which dominates the landscape in North England (for example at Hadrian&#8217;s wall, Lindisfarne, and High Force, see Figure 1). In the Teesdale, the Whin sill has a maximum thickness of around 70 m.</p><p><img vspace="5" hspace="5" src="https://duo.dur.ac.uk/bbcswebdav/xid-21525402_2" alt=""> </p><p><img vspace="5" hspace="5" src="https://duo.dur.ac.uk/bbcswebdav/xid-21525401_2" alt=""> </p><p>Figure 1) Top: Picture of the Whin Sill (light-coloured top formation) at High Force, Teesdale. Bottom: sketch of a sill emplaced into surrounding country rock, and fed by a dike (source: www.wikipedia.org).</p><p>The Whin sill intruded shallowly, about 1.5 km below the surface, around 300 Ma, and the combined effect of sensible and latent heat of the magma in the sill can be represented by a sill temperature of <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq09690398742463627734.png" alt="$1300^o$"></span><script type="math/tex">1300^o</script> C. We will assume that, before the sill intrusion, the country rock had a temperature profile that extended downwards from <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq02213353459022179634.png" alt="$10^o$"></span><script type="math/tex">10^o</script> C at the surface, with a thermal gradient of <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq03669445177689109512.png" alt="$30$"></span><script type="math/tex">30</script> K/km.</p><p>To model the heat diffusion in and around the Whin sill, the relevant differential equation for heat diffusion is:</p><p><span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq09856382539557773179.png" alt="$\displaystyle \frac{\partial T}{\partial t} = \kappa \frac{\partial^2T}{\partial z^2}$"></span><script type="math/tex">\displaystyle \frac{\partial T}{\partial t} = \kappa \frac{\partial^2T}{\partial z^2}</script></p><p>with <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq00348027191971993639.png" alt="$\kappa = 10^{-6}$"></span><script type="math/tex">\kappa = 10^{-6}</script> m <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq02702860382536398872.png" alt="$\mathrm{sec^{-2}}$"></span><script type="math/tex">\mathrm{sec^{-2}}</script> the heat diffusivity.</p><p>Your task is to produce a vertical, one-dimensional numerical model that calculates the temperature distribution in and around the Whin sill immediately after it intruded instantaneously. The vertical grid extends from the surface to 2 km depth. Assume an initial condition that fits with the thermal profile as described above, and the presence of the sill with a temperature of <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq09690398742463627734.png" alt="$1300^o$"></span><script type="math/tex">1300^o</script> C between <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq04165180374097163782.png" alt="$1500$"></span><script type="math/tex">1500</script> and <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq00610212856695377153.png" alt="$1570$"></span><script type="math/tex">1570</script> m depth. The model will have the following boundary conditions:</p><div><ul><li>a fixed temperature at the surface that fits the initial condition</li><li>a constant heatflux into the model at the bottom of the model that fits   the initial thermal gradient.</li></ul></div><p>The model should use the backward Euler method to calculate the time evolution between 0 and 500 years immediately after the intrusion of the sill.</p><p>2a) Before implementing anything in Matlab, consider representing the physical system described above with just 5 grid points. The thermal solution for every timestep is calculated by solving a matrix-vector system. Write out (on paper or using a word processor) this matrix-vector set of equations. Explain your answer.</p><p><i><b> <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script></b></i></p><p><i><b> The matrix-vector system has the following characteristics:</b></i></p><div><ul><li><i><b> a 5-point system needs a 5-by-5 matrix and a 5-by-1 column vector for   the unknown temperature and the right-hand side vector</b></i></li><li><i><b> The surface has a fixed temperature of <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq02213353459022179634.png" alt="$10^o$"></span><script type="math/tex">10^o</script> C, so the top line of the matrix-vector system will read as <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq15991029117241203764.png" alt="$1 \times T^{new}_1 = 10$"></span><script type="math/tex">1 \times T^{new}_1 = 10</script></b></i></li><li><i><b> The bottom boundary has an imposed heat flux that corresponds to a   vertical temperature gradient of <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq03669445177689109512.png" alt="$30$"></span><script type="math/tex">30</script> K/km, which is <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq05063484122466384974.png" alt="$0.03$"></span><script type="math/tex">0.03</script> K/m. So   thermal gradient <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq08422257486649890878.png" alt="$c$"></span><script type="math/tex">c</script> is defined as <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq12850008839108333092.png" alt="$\displaystyle \frac{dT}{dz}=0.03$"></span><script type="math/tex">\displaystyle \frac{dT}{dz}=0.03</script>.</b></i></li><li><i><b> Using the ghost point theory, discussed in week 6, and   <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq04264949167992486865.png" alt="$\displaystyle r=\frac{\kappa \Delta t}{\Delta z^2}$"></span><script type="math/tex">\displaystyle r=\frac{\kappa \Delta t}{\Delta z^2}</script>, this can be   elaborated as:</b></i></li></ul></div><p><span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq17484142567546267306.png" alt="$T_{nz}^{new} -T_{nz}^{old} = r       \left( T_{nz-1}^{old} + 2\Delta zc - 2T_{nz}^{old} + T_{nz-1}^{old} \right)$"></span><script type="math/tex">T_{nz}^{new} -T_{nz}^{old} = r       \left( T_{nz-1}^{old} + 2\Delta zc - 2T_{nz}^{old} + T_{nz-1}^{old} \right)</script> <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq11206115615656929943.png" alt="$\Leftrightarrow$"></span><script type="math/tex">\Leftrightarrow</script></p><p><span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq16984712421866340882.png" alt="$T_{nz}^{new} -T_{nz}^{old} = r       \left( 2T_{nz-1}^{old} - 2T_{nz}^{old} + 2\Delta zc \right)$"></span><script type="math/tex">T_{nz}^{new} -T_{nz}^{old} = r       \left( 2T_{nz-1}^{old} - 2T_{nz}^{old} + 2\Delta zc \right)</script></p><p><i><b> in which <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq16116883948308937309.png" alt="$nz=5$"></span><script type="math/tex">nz=5</script> in this particular case of a 5-point system.</b></i></p><p><i><b> The matrix-vector notation for this problem looks like:</b></i> <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq05122865198101287115.png" alt="$\displaystyle \left(  \matrix{1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \cr          -r &amp; 1+2r &amp; -r &amp; 0 &amp; 0 \cr          0 &amp; -r &amp; 1+2r &amp; -r &amp; 0 \cr          0 &amp; 0 &amp; -r &amp; 1+2r &amp; -r 0 \cr          0 &amp; 0 &amp; 0 &amp; -2r &amp; 1+2r}  \right)  \left(  \matrix{T_1^{new} \cr          T_2^{new} \cr          T_3^{new} \cr          T_4^{new} \cr          T_5^{new}}  \right) =  \left(  \matrix{10 \cr          T_2^{old} \cr          T_3^{old} \cr          T_4^{old} \cr          T_5^{old}+2r\Delta z c}  \right)$"></span><script type="math/tex">\displaystyle \left(  \matrix{1 & 0 & 0 & 0 & 0 \cr          -r & 1+2r & -r & 0 & 0 \cr          0 & -r & 1+2r & -r & 0 \cr          0 & 0 & -r & 1+2r & -r 0 \cr          0 & 0 & 0 & -2r & 1+2r}  \right)  \left(  \matrix{T_1^{new} \cr          T_2^{new} \cr          T_3^{new} \cr          T_4^{new} \cr          T_5^{new}}  \right) =  \left(  \matrix{10 \cr          T_2^{old} \cr          T_3^{old} \cr          T_4^{old} \cr          T_5^{old}+2r\Delta z c}  \right)</script></p><p>2b) Write (in Matlab) a code that calculates and plots the temperature distribution of this cooling Whin sill system for 500 years. Make sure the code works for an arbitrary number of grid points, <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq00194318555633356830.png" alt="$nz$"></span><script type="math/tex">nz</script>. In case you cannot produce a working code, write down your planned implementation of the problem.</p><p><i><b> <span class="MathJax_Preview"><img src="MEPtest_201120_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> Possible code model answer:</b></i></p><pre class="codeinput"><span class="keyword">function</span> whinnNov20BE
+
+<span class="comment">% spatial discretization:</span>
+h = 2000;                     <span class="comment">% height of box: 2000 m</span>
+nz = 101;                     <span class="comment">% nr of grid points in grid</span>
+z = linspace(0,h,nz);        <span class="comment">% array for the finite difference mesh</span>
+dz = z(2)-z(1);              <span class="comment">% grid spacing (assumed fixed)</span>
+
+<span class="comment">% Temperature vector and initial &amp; boundary conditions:</span>
+Ttop = 10;                    <span class="comment">% surface T</span>
+dTdz = 0.03;                 <span class="comment">% thermal gradient = 30K/km = 0.03 K/m</span>
+Tbot = Ttop + dTdz*h;        <span class="comment">% bottom T, calculated</span>
+Told = linspace(Ttop,Tbot,nz);  <span class="comment">% T_ini: linearly increasing with depth</span>
+Tsill = 1300;
+Told(z&gt;=1500 &amp; z&lt;=1570) = Tsill;
+ToldBE=Told';                <span class="comment">% note: ToldBE ToldCN are column vectors</span>
+kappa = 1e-6;                <span class="comment">% thermal diffusivity</span>
+
+<span class="comment">% time discretization:</span>
+dt = 0.9*dz^2/2/kappa
+tmax = 500;            <span class="comment">% max time in yrs</span>
+secinyr = 365*24*3600;  <span class="comment">% amount of seconds in 1 Myr</span>
+tmax = tmax*secinyr;            <span class="comment">% unit conversion to SI: time in sec</span>
+nt = floor(tmax/dt+1)
+time = linspace(0,tmax,nt);  <span class="comment">% create time array</span>
+<span class="comment">%nt=20</span>
+
+<span class="comment">% Create and Fill matrix: WinnNov20</span>
+A_BE = Build_Implicit_Diffusion_Matrix_BE(kappa, dz, nz, dt);
+
+<span class="comment">% timestepping</span>
+<span class="keyword">for</span> it=2:nt
+    <span class="comment">% Numerical solution for backward Euler:</span>
+    rhs = ToldBE;
+    rhs(end) = rhs(end) + 2*kappa*dt/dz*dTdz;
+    TnewBE = A_BE\rhs; <span class="comment">% Solve system</span>
+
+    <span class="comment">% plot solution (plot -z so that surface is at top of plot):</span>
+    figure(1), clf
+    tyrs = floor(time(it)/secinyr);   <span class="comment">% and in yrs</span>
+    plot (TnewBE,-z,<span class="string">'+-'</span>)
+    xlabel(<span class="string">'T [^oC]'</span>)
+    ylabel(<span class="string">'z [m]'</span>)
+    title([<span class="string">' T after '</span>,num2str(tyrs),<span class="string">' yrs'</span>])
+    drawnow
+
+    <span class="comment">% prepare for next time step:</span>
+    ToldBE = TnewBE;
+<span class="keyword">end</span>
+
+<span class="comment">%**************************************************************************</span>
+
+<span class="keyword">function</span> A = Build_Implicit_Diffusion_Matrix_BE(kappa, dz, nz, dt)
+</pre><pre class="codeinput"><span class="comment">% Create and fill array for implicit 1D heat diffusion with fixed T</span>
+<span class="comment">% boundary conditions</span>
+
+A        = zeros(nz,nz);  <span class="comment">% sparse() works as zeros(), but more suitable</span>
+                          <span class="comment">% for sparse (i.e. almost empty) matrices</span>
+r        = kappa*dt/dz^2; <span class="comment">% help variable</span>
+A(1,1)   = 1;             <span class="comment">% Fixed T boundary condition</span>
+A(nz,nz) = 1 + 2*r;       <span class="comment">% natural boundary condition</span>
+A(nz,nz-1) = -2*r;
+<span class="comment">% Fill interior points for 1D diffusion:</span>
+<span class="keyword">for</span> iz=2:nz-1
+    A(iz,iz)   = 1 + 2*r; <span class="comment">% fills diagonal of matrix A</span>
+    A(iz,iz-1) = -r;      <span class="comment">% fills position left of diag (not above diag)</span>
+    A(iz,iz+1) = -r;
+<span class="keyword">end</span>
+<span class="comment">%</span>
+</pre><h2 id="11">Submitting your work</h2><p>Please make sure that each page of your written answers has your name clearly stated, and that your Matlab codes :</p><div><ul><li>have a clear structure (aided by indentation and, if appropriate, the use of functions),</li><li>use sensibly-chosen and clear variable names,</li><li>have sufficient comments to explain the variables and what is calculated,</li><li>produce clear, annotated plots.</li></ul></div><p>a) If you have hand-written text to submit, make <i>legible</i> scans of it to submit on DUO. Submit your text answers (scanned handwritten text or word processor text) in the DUO assignment 'Class test Nov 2020, text' of the Modelling Earth Processes 20/21 Assessments folder on DUO.</p><p>b) Submit the Matlab scripts for questions 1b and 1c (as one code) and 2b via the DUO turnitin assignments   'Class test Nov 2020, question 1b+c' and 'Class test Nov 2020, question 2b', respectively, in the Assignment folder    of the Modelling Earth Processes 20/21 Assessments folder on DUO.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Modelling Earth Processes - class test due Friday 20th November 2020
+% _*Model answers in bold font*_
+% 
+% Prof Jeroen van Hunen
+%
+% Department of Earth Sciences
+%
+% Durham University
+%
+%% Test setup
+% 
+% * Estimated completion time: 2-3 hours. 
+% * Submission deadline is Friday 20th November, 10 pm via DUO, see further
+%   submission details at the end of this test. 
+% * Allowed Resources: All teaching material available on DUO, your own codes and notes, 
+%   Matlab's help documentation, internet sources are allowed. 
+% No communication (electronic or otherwise, including email, social media etc.) 
+% related to the test is allowed between students. Your submission must be your own work.
+%
+%% Assignment
+% *Please read the whole test before answering any questions, and make 
+% sure you explain all your answers.*
+% 
+%% 1. Earth's internal thermal evolution through time
+%
+% The Earth's internal temperature is basically controlled by a balance
+% between heat added by radiogenic elements $H$ and heat released through the
+% surface $Q$. To first order, this temperature can be expressed by the 
+% scalar quantity that is referred to as the _potential temperature_ $T$. 
+% Today, that temperature is around $T_0=1350^o$ C,
+% but was probably a few hundred degrees hotter several billion years ago. This
+% heat balance can be expressed mathematically
+% as: 
+% 
+% $\displaystyle C\frac{dT}{dt} = H(t) - Q(t)$, 
+% 
+% with $C=7\times10^{27}$ $\mathrm{J K^{-1}}$
+% the Earth's total heat capacity. $T$, $H$, and $Q$ generally are all 
+% functions of time $t$. Time refers to the time since the origin of the Earth, $4.6$ billion years ago.
+% The heat production is, to first order, described
+% by a combined effect of several heat producing elements in the following
+% form: $H(t) = H_0 \exp(-at)$, in which $H_0 = 46$ TW the amount of heat 
+% production when the Earth first formed, and $a=0.325$ $\mathrm{Gyr^{-1}}$ is 
+% a representative radioactive decay constant of the major radiogenic elements 
+% in the Earth combined.
+% Surface heatflow is assumed to be a function of the internal temperature
+% in the following expression: $\displaystyle Q(t) = \frac{Q_0}{T_0}T$, in
+% which $Q_0=36$ TW is today's global surface heat flow (i.e. Earth's heat loss).
+% 
+% Your task is to build a numerical model that calculates and plots the
+% evolution of the Earth's potential temperature $T$ between time $t=0$ (4.5 billion 
+% years ago) and today ($t=4.5$ Gyrs) using the method and description above.
+% Heat production through time is calculated _analytically_ using $H(t) = H_0
+% \exp(-at)$, but the temperature evolution needs to be calculated 
+% using a forward Euler timestepping solution method. 
+% 
+% 1a) Derive (on paper or using a word processor, whichever you prefer) the forward Euler finite difference form of the
+%    governing equation. Explain your answer.
+% 
+% _* $\Rightarrow$ The FE solution is:*_
+%   
+% $\displaystyle T^{new} = T^{old} + \frac{\Delta t}{C} \left[ H_0 \exp(-at) - \frac{Q_0}{T_0} T^{old} \right]$
+%
+% 1b) Produce a Matlab script that calculates and plots the solution for the problem
+%     described above. Furthermore, use a potential temperature of $1600^o$ C for time $t=0$ 
+%     and a numerical timestep of 0.1 Gyr. In case you cannot produce a
+%     working code, write down your planned implementation of the problem.
+%
+% _* $\Rightarrow$ Code example:*_
+%%
+function thermevol2020
+
+tmax   = 4.5;            % total timespan = 4/5 Gyrs
+dt     = 0.1;            % 0.1 Gyr stime steps
+secingyr = 1e9*365*24*3600;
+tmax   = tmax*secingyr;
+dt     = dt*secingyr;
+nt     = ceil(tmax/dt)+1; % calc. nr. of timesteps to span Earth history
+time   = linspace(0,tmax,nt);
+
+% create initial arrays of size nt, all empty 
+T    = zeros(size(time)); 
+
+% model parameters:
+lambda = 0.325/secingyr;  % radigenic heat production decay constant
+Q0     = 36e12;  % today's surface heat flux 
+H0     = 46e12;  % heat production at t=0 = early Earth
+H      = H0*exp(-lambda*time);
+C      = 7e27;   % heat capacity of the Earth
+
+
+% initial condition:
+T0   = 1350;
+T(1) = 1600;
+
+for it = 2:nt
+    % Forward Euler timestep for parent isotope:
+    T(it)      = T(it-1) + dt/C * (H(it) - Q0/T0*T(it-1));
+end
+
+% read in data from Herzberg
+data=xlsread('Herzberg_etal10.xlsx');
+datayr=tmax/secingyr - data(:,1)/1000;
+dataT=data(:,2);
+
+% plot results: 
+plot (time/secingyr,T,'-',datayr,dataT,'ro' )
+xlabel('t(Gyrs)')
+ylabel('T(degC)')
+
+%%
+% _* $\Rightarrow$ Plot example:*_
+% 
+% <<plot_1b.png>>
+% 
+% 1c) A dataset with geological observations of the Earth's potential
+%     temperature through its geological history (Herzberg et al., 2010) 
+%     is available on DUO in the Assessments folder
+%     in the left-hand menu of Modelling Earth Processes (20/21) and is
+%     linked
+%     here:
+%     <https://duo.dur.ac.uk/bbcswebdav/xid-21524908_2 Herzberg_etal10.xlsx>.
+%     The file gives ages of the observations (in _millions_ of years _from today_!),
+%     and mantle potential temperatures (in degrees Celcius). 
+%     Modify your Matlab script from question 1b to add the data to
+%     the produced thermal evolution plot, for direct comparison against your modelled results. 
+%
+% _* $\Rightarrow$ See above*_
+% 
+% 1d) Using the timestep stability criterion, what would be the maximum stable 
+%     timestep that could be used? Explain your answer.
+%
+% _* $\Rightarrow$ Model answer:*_
+% 
+% $\displaystyle T^{i+1} + \epsilon_{i+1} = T^i + \epsilon^i + \frac{\Delta t}{C} \left[ H_0 \exp(-at) - \frac{Q_0}{T_0} (T^{i}+ \epsilon_i) \right]$
+% 
+% $\displaystyle T^{i+1} = T^i + \frac{\Delta t}{C} \left[ H_0 \exp(-at) - \frac{Q_0}{T_0} T^i \right]$
+% 
+% _* $\Rightarrow$ Note that the $H_0$ term does not have $T$ embedded, and therefore has no propagating error. Subtracting 2nd from 1st equation:*_
+% 
+% $\displaystyle \epsilon^{i+1} = \epsilon^i - \frac{\Delta t}{C}
+% \frac{Q_0}{T_0} \epsilon^i \Leftrightarrow$
+% 
+% $\displaystyle \epsilon^{i+1} = \epsilon^i (1 - \frac{\Delta t}{C}
+% \frac{Q_0}{T_0}) \Leftrightarrow$
+% 
+% $\displaystyle \frac{\epsilon^{i+1}}{\epsilon^i} = 1 - \frac{\Delta t}{C}
+% \frac{Q_0}{T_0}$ 
+% 
+% _* Demanding the new error to be smaller than the old one:*_
+%    $\displaystyle |\frac{\epsilon^{i+1}}{\epsilon^i}| < 1$
+% 
+% _* gives:*_ 
+% 
+% $\displaystyle |1 - \frac{\Delta t}{C}\frac{Q_0}{T_0}|<1$
+% 
+% _* or:*_
+% 
+% $\displaystyle -1 < 1 - \frac{\Delta t}{C}\frac{Q_0}{T_0} < 1$
+% 
+% _* Elaborating the left inequation:*_
+% 
+% $\displaystyle -2 < - \frac{\Delta t}{C}\frac{Q_0}{T_0}$
+%
+% _* Multiplying by $-1$ (which swaps $<$ and $>$ signs!) and re-arranging terms gives the final answer:*_
+% 
+% $\displaystyle \Delta t < \frac{2 T_0 C}{Q_0}$
+% 
+%% 2. The Whin sill
+% A sill is an intrusion of magma parallel to the stratigraphic bedding. 
+% The hot magma intrudes into the much cooler country rock, and forms a new,
+% often horizontal layer (Figure 1). This initially hot layer will release 
+% its heat into the surrounding rock. This can be described as a heat 
+% diffusion process. A nearby example of a sill is the Whin sill, which 
+% dominates the landscape in North England (for example at Hadrian’s wall, 
+% Lindisfarne, and High Force, see Figure 1). In the Teesdale, the Whin 
+% sill has a maximum thickness of around 70 m. 
+%
+% <<https://duo.dur.ac.uk/bbcswebdav/xid-21525402_2>>
+% 
+% <<https://duo.dur.ac.uk/bbcswebdav/xid-21525401_2>>
+%
+% Figure 1) Top: Picture of the Whin Sill (light-coloured top formation) 
+% at High Force, Teesdale. Bottom: sketch of a sill emplaced into surrounding 
+% country rock, and fed by a dike (source: www.wikipedia.org). 
+% 
+% The Whin sill intruded shallowly, about 1.5 km below the surface, around
+% 300 Ma, and the combined effect of sensible and latent heat of the magma
+% in the sill can be represented by a sill temperature of $1300^o$ C.
+% We will assume that, before the sill intrusion, the country rock had a temperature profile that
+% extended downwards from $10^o$ C at the surface, with a thermal gradient of $30$
+% K/km.
+% 
+% To model the heat diffusion in and around the Whin sill, the relevant differential equation for heat diffusion is:
+% 
+% $\displaystyle \frac{\partial T}{\partial t} = \kappa \frac{\partial^2T}{\partial z^2}$
+% 
+% with $\kappa = 10^{-6}$ m $\mathrm{sec^{-2}}$ the heat diffusivity.
+% 
+% Your task is to produce a vertical, one-dimensional numerical model that 
+% calculates the temperature distribution in and around the Whin sill
+% immediately after it intruded instantaneously. The vertical grid extends
+% from the surface to 2 km depth. 
+% Assume an initial condition that fits with the thermal profile as described above, 
+% and the presence of the sill with a temperature of $1300^o$ C between 
+% $1500$ and $1570$ m depth. 
+% The model will have the following boundary conditions: 
+% 
+% * a fixed temperature at the surface that fits the initial condition
+% * a constant heatflux into the model at the bottom of the model that fits
+%   the initial thermal gradient.
+% 
+% The model should use the backward Euler method to calculate the time
+% evolution between 0 and 500 years immediately after the intrusion of the sill.
+% 
+% 2a) Before implementing anything in Matlab, consider 
+% representing the physical system described above with just 5 grid points.
+% The thermal solution for every timestep is calculated by solving a
+% matrix-vector system. 
+% Write out (on paper or using a word processor) this matrix-vector set of equations. 
+% Explain your answer.
+% 
+% _* $\Rightarrow$*_ 
+% 
+% _* The matrix-vector system has the following characteristics:*_
+% 
+% * _* a 5-point system needs a 5-by-5 matrix and a 5-by-1 column vector for
+%   the unknown temperature and the right-hand side vector*_
+% * _* The surface has a fixed temperature of $10^o$ C, so the top line of the
+% matrix-vector system will read as $1 \times T^{new}_1 = 10$*_
+% * _* The bottom boundary has an imposed heat flux that corresponds to a
+%   vertical temperature gradient of $30$ K/km, which is $0.03$ K/m. So 
+%   thermal gradient $c$ is defined as $\displaystyle \frac{dT}{dz}=0.03$.*_ 
+% * _* Using the ghost point theory, discussed in week 6, and 
+%   $\displaystyle r=\frac{\kappa \Delta t}{\Delta z^2}$, this can be
+%   elaborated as:*_
+% 
+% $T_{nz}^{new} -T_{nz}^{old} = r 
+%       \left( T_{nz-1}^{old} + 2\Delta zc - 2T_{nz}^{old} + T_{nz-1}^{old} \right)$
+% $\Leftrightarrow$
+%
+% $T_{nz}^{new} -T_{nz}^{old} = r 
+%       \left( 2T_{nz-1}^{old} - 2T_{nz}^{old} + 2\Delta zc \right)$
+%
+% _* in which $nz=5$ in this particular case of a 5-point system.*_
+%
+% 
+% _* The matrix-vector notation for this problem looks like:*_
+% $\displaystyle \left( 
+%  \matrix{1 & 0 & 0 & 0 & 0 \cr
+%          -r & 1+2r & -r & 0 & 0 \cr
+%          0 & -r & 1+2r & -r & 0 \cr
+%          0 & 0 & -r & 1+2r & -r 0 \cr
+%          0 & 0 & 0 & -2r & 1+2r} 
+%  \right)
+%  \left( 
+%  \matrix{T_1^{new} \cr
+%          T_2^{new} \cr
+%          T_3^{new} \cr
+%          T_4^{new} \cr
+%          T_5^{new}} 
+%  \right) = 
+%  \left( 
+%  \matrix{10 \cr
+%          T_2^{old} \cr
+%          T_3^{old} \cr
+%          T_4^{old} \cr
+%          T_5^{old}+2r\Delta z c}
+%  \right)$ 
+% 
+% 2b) Write (in Matlab) a code that calculates and plots the temperature 
+% distribution of this cooling Whin sill system for 500 years.
+% Make sure the code works
+% for an arbitrary number of grid points, $nz$. In case you cannot produce a
+% working code, write down your planned implementation of the problem.
+%
+% _* $\Rightarrow$ Possible code model answer:*_
+%%
+function whinnNov20BE
+
+% spatial discretization:
+h = 2000;                     % height of box: 2000 m
+nz = 101;                     % nr of grid points in grid
+z = linspace(0,h,nz);        % array for the finite difference mesh
+dz = z(2)-z(1);              % grid spacing (assumed fixed)
+
+% Temperature vector and initial & boundary conditions:
+Ttop = 10;                    % surface T
+dTdz = 0.03;                 % thermal gradient = 30K/km = 0.03 K/m
+Tbot = Ttop + dTdz*h;        % bottom T, calculated
+Told = linspace(Ttop,Tbot,nz);  % T_ini: linearly increasing with depth
+Tsill = 1300; 
+Told(z>=1500 & z<=1570) = Tsill;
+ToldBE=Told';                % note: ToldBE ToldCN are column vectors
+kappa = 1e-6;                % thermal diffusivity
+
+% time discretization:
+dt = 0.9*dz^2/2/kappa
+tmax = 500;            % max time in yrs
+secinyr = 365*24*3600;  % amount of seconds in 1 Myr
+tmax = tmax*secinyr;            % unit conversion to SI: time in sec
+nt = floor(tmax/dt+1)
+time = linspace(0,tmax,nt);  % create time array
+%nt=20
+
+% Create and Fill matrix: WinnNov20
+A_BE = Build_Implicit_Diffusion_Matrix_BE(kappa, dz, nz, dt);
+
+% timestepping
+for it=2:nt
+    % Numerical solution for backward Euler:
+    rhs = ToldBE;
+    rhs(end) = rhs(end) + 2*kappa*dt/dz*dTdz;
+    TnewBE = A_BE\rhs; % Solve system 
+    
+    % plot solution (plot -z so that surface is at top of plot):
+    figure(1), clf
+    tyrs = floor(time(it)/secinyr);   % and in yrs
+    plot (TnewBE,-z,'+-')
+    xlabel('T [^oC]')
+    ylabel('z [m]')
+    title([' T after ',num2str(tyrs),' yrs'])
+    drawnow
+    
+    % prepare for next time step:
+    ToldBE = TnewBE;
+end
+
+%**************************************************************************
+
+function A = Build_Implicit_Diffusion_Matrix_BE(kappa, dz, nz, dt)
+% Create and fill array for implicit 1D heat diffusion with fixed T
+% boundary conditions
+
+A        = zeros(nz,nz);  % sparse() works as zeros(), but more suitable 
+                          % for sparse (i.e. almost empty) matrices
+r        = kappa*dt/dz^2; % help variable
+A(1,1)   = 1;             % Fixed T boundary condition
+A(nz,nz) = 1 + 2*r;       % natural boundary condition
+A(nz,nz-1) = -2*r;
+% Fill interior points for 1D diffusion:
+for iz=2:nz-1
+    A(iz,iz)   = 1 + 2*r; % fills diagonal of matrix A
+    A(iz,iz-1) = -r;      % fills position left of diag (not above diag)
+    A(iz,iz+1) = -r;
+end
+% 
+%% Submitting your work
+%
+% Please make sure that each page of your written answers has your name clearly stated, 
+% and that your Matlab codes :
+% 
+% * have a clear structure (aided by indentation and, if appropriate, the
+% use of functions),
+% * use sensibly-chosen and clear variable names,
+% * have sufficient comments to explain the variables and what is calculated, 
+% * produce clear, annotated plots.
+% 
+% a) If you have hand-written text to submit, make _legible_ scans of it to
+% submit on DUO. Submit your text answers (scanned handwritten text or word
+% processor text) in the DUO assignment 'Class test Nov 2020,
+% text' of the Modelling Earth Processes 20/21 Assessments folder on DUO. 
+% 
+% b) Submit the Matlab scripts for questions 1b and 1c (as one code) and 2b via the DUO turnitin assignments 
+%   'Class test Nov 2020, question 1b+c' and 'Class test Nov 2020, question 2b', respectively, in the Assignment folder 
+%    of the Modelling Earth Processes 20/21 Assessments folder on DUO. 
+##### SOURCE END #####
+--></body></html>
