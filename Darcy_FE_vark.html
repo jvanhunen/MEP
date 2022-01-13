@@ -1,0 +1,163 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Darcy_FE_vark</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-02-19"><meta name="DC.source" content="Darcy_FE_vark.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><p>For the general case of variable permeability <span class="MathJax_Preview"><img src="Darcy_FE_vark_eq15636846968047188835.png" alt="$k$"></span><script type="math/tex">k</script> and variable grid spacing, the finite difference notation for the porous media equation becomes a rather long expression:</p><p>\begin{equation}     \displaystyle P_{i,j}^{new} = P_{i,j}^{old} + \frac{\Delta t}{\phi \beta \eta}      \left(       \frac{  k_{i,j+\frac{1}{2}} \frac{P_{i,j+1}^{old} - P_{i,j}^{old}}{x_{i,j+1} - x_{i,j}}                    - k_{i,j-\frac{1}{2}} \frac{P_{i,j}^{old} - P_{i,j-1}^{old}}{x_{i,j} - x_{i,j-1}}}                   {x_{i,j+\frac{1}{2}} - x_{i,j-\frac{1}{2}}}      +\frac{  k_{i+\frac{1}{2},j} \frac{P_{i+1,j}^{old} - P_{i,j}^{old}}{y_{i+1,j} - y_{i,j}}                    - k_{i-\frac{1}{2},j} \frac{P_{i,j}^{old} - P_{i-1,j}^{old}}{y_{i,j} - y_{i-1,j}}}                   {y_{i+\frac{1}{2},j} - y_{i-\frac{1}{2},j}}      \right) + \frac{H_{i,j}}{\phi \beta} \end{equation}</p><p>For the left boundary (i.e. <span class="MathJax_Preview"><img src="Darcy_FE_vark_eq02428377147652471681.png" alt="$x=x_{min}$"></span><script type="math/tex">x=x_{min}</script>, where <span class="MathJax_Preview"><img src="Darcy_FE_vark_eq06245980113452043648.png" alt="$j=1$"></span><script type="math/tex">j=1</script>), and without a source or sink term, this becomes:</p><p>\begin{equation}     \displaystyle P_{i,1}^{new} = P_{i,1}^{old} + \frac{\Delta t}{\phi \beta \eta}      \left(       \frac{  k_{i,1\frac{1}{2}} \frac{P_{i,2}^{old} - P_{i,1}^{old}}{x_{i,2} - x_{i,1}}                    - k_{i,\frac{1}{2}} \frac{P_{i,1}^{old} - P_{i,0}^{old}}{x_{i,1} - x_{i,0}}}                   {x_{i,1\frac{1}{2}} - x_{i,\frac{1}{2}}}      +\frac{  k_{i+\frac{1}{2},1} \frac{P_{i+1,1}^{old} - P_{i,1}^{old}}{y_{i+1,1} - y_{i,1}}                    - k_{i-\frac{1}{2},1} \frac{P_{i,1}^{old} - P_{i-1,1}^{old}}{y_{i,1} - y_{i-1,1}}}                   {y_{i+\frac{1}{2},1} - y_{i-\frac{1}{2},1}}      \right) \end{equation}</p><p>Making use of symmetry conditions across the boundary (same permeability and grid spacing on either side of the boundary, i.e. between points <span class="MathJax_Preview"><img src="Darcy_FE_vark_eq03140587431249146413.png" alt="$j=0$"></span><script type="math/tex">j=0</script> (the ghost point) and <span class="MathJax_Preview"><img src="Darcy_FE_vark_eq06245980113452043648.png" alt="$j=1$"></span><script type="math/tex">j=1</script> as between points <span class="MathJax_Preview"><img src="Darcy_FE_vark_eq06245980113452043648.png" alt="$j=1$"></span><script type="math/tex">j=1</script> and <span class="MathJax_Preview"><img src="Darcy_FE_vark_eq08807755924315145065.png" alt="$j=2$"></span><script type="math/tex">j=2</script>) as well as <span class="MathJax_Preview"><img src="Darcy_FE_vark_eq09474213522264607169.png" alt="$P_{i,0}=P_{i,2}$"></span><script type="math/tex">P_{i,0}=P_{i,2}</script> gives:</p><p>\begin{equation}     \displaystyle P_{i,1}^{new} = P_{i,1}^{old} + \frac{\Delta t}{\phi \beta \eta}      \left(       \frac{  k_{i,1\frac{1}{2}} \frac{P_{i,2}^{old} - P_{i,1}^{old}}{\Delta x}             - k_{i,1\frac{1}{2}} \frac{P_{i,1}^{old} - P_{i,2}^{old}}{\Delta x}}                   {\Delta x}      +\frac{  k_{i+\frac{1}{2},1} \frac{P_{i+1,1}^{old} - P_{i,1}^{old}}{y_{i+1,1} - y_{i,1}}                    - k_{i-\frac{1}{2},1} \frac{P_{i,1}^{old} - P_{i-1,1}^{old}}{y_{i,1} - y_{i-1,1}}}                   {y_{i+\frac{1}{2},1} - y_{i-\frac{1}{2},1}}      \right) \end{equation}</p><p>with <span class="MathJax_Preview"><img src="Darcy_FE_vark_eq00605102892312154960.png" alt="$\Delta x = x_{i,2} - x_{i,1}$"></span><script type="math/tex">\Delta x = x_{i,2} - x_{i,1}</script>. This significantly simplifies the x-component between the brackets:</p><p>\begin{equation}     \displaystyle P_{i,1}^{new} = P_{i,1}^{old} + \frac{\Delta t}{\phi \beta \eta}      \left(       k_{i,1\frac{1}{2}} \frac{2 P_{i,2}^{old} - 2 P_{i,1}^{old}}{\Delta x^2}      +\frac{  k_{i+\frac{1}{2},1} \frac{P_{i+1,1}^{old} - P_{i,1}^{old}}{y_{i+1,1} - y_{i,1}}                    - k_{i-\frac{1}{2},1} \frac{P_{i,1}^{old} - P_{i-1,1}^{old}}{y_{i,1} - y_{i-1,1}}}                   {y_{i+\frac{1}{2},1} - y_{i-\frac{1}{2},1}}      \right) \end{equation}</p><p>A similar solution for the other 3 boundaries can be obtained. For an <span class="MathJax_Preview"><img src="Darcy_FE_vark_eq12987808912322504032.png" alt="$nx \times ny$"></span><script type="math/tex">nx \times ny</script> mesh, the expressions for the <span class="MathJax_Preview"><img src="Darcy_FE_vark_eq05185587797060483709.png" alt="$x_{max}$"></span><script type="math/tex">x_{max}</script>, <span class="MathJax_Preview"><img src="Darcy_FE_vark_eq09340091557199160600.png" alt="$y_{min}$"></span><script type="math/tex">y_{min}</script>, and <span class="MathJax_Preview"><img src="Darcy_FE_vark_eq14480125942659545194.png" alt="$y_{max}$"></span><script type="math/tex">y_{max}</script> boundaries become:</p><p>\begin{equation}     \displaystyle P_{i,nx}^{new} = P_{i,nx}^{old} + \frac{\Delta t}{\phi \beta \eta}      \left(       k_{i,nx-\frac{1}{2}} \frac{2 P_{i,nx-1}^{old} - 2 P_{i,nx}^{old}}{\Delta x^2}      +\frac{  k_{i+\frac{1}{2},nx} \frac{P_{i+1,nx}^{old} - P_{i,nx}^{old}}{y_{i+1,nx} - y_{i,nx}}                    - k_{i-\frac{1}{2},nx} \frac{P_{i,nx}^{old} - P_{i-1,nx}^{old}}{y_{i,nx} - y_{i-1,nx}}}                   {y_{i+\frac{1}{2},nx} - y_{i-\frac{1}{2},nx}}      \right) \end{equation}</p><p>\begin{equation}     \displaystyle P_{1,j}^{new} = P_{1,j}^{old} + \frac{\Delta t}{\phi \beta \eta}      \left(       \frac{  k_{ny,j+\frac{1}{2}} \frac{P_{ny,j+1}^{old} - P_{ny,j}^{old}}{x_{ny,j+1} - x_{ny,j}}                    - k_{ny,j-\frac{1}{2}} \frac{P_{ny,j}^{old} - P_{ny,j-1}^{old}}{x_{ny,j} - x_{ny,j-1}}}                   {x_{ny,j+\frac{1}{2}} - x_{ny,j-\frac{1}{2}}}        + k_{1\frac{1}{2},j} \frac{2 P_{2,j}^{old} - 2 P_{1,j}^{old}}{\Delta y^2}      \right) \end{equation}</p><p>\begin{equation}     \displaystyle P_{ny,j}^{new} = P_{ny,j}^{old} + \frac{\Delta t}{\phi \beta \eta}      \left(       \frac{  k_{i,j+\frac{1}{2}} \frac{P_{i,j+1}^{old} - P_{i,j}^{old}}{x_{i,j+1} - x_{i,j}}                    - k_{i,j-\frac{1}{2}} \frac{P_{i,j}^{old} - P_{i,j-1}^{old}}{x_{i,j} - x_{i,j-1}}}                   {x_{i,j+\frac{1}{2}} - x_{i,j-\frac{1}{2}}}        + k_{ny-\frac{1}{2},j} \frac{2 P_{ny-1,j}^{old} - 2 P_{ny,j}^{old}}{\Delta y^2}      \right) \end{equation}</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%
+% For the general case of variable permeability $k$ and variable grid spacing, 
+% the finite difference notation for the porous media equation becomes a rather long expression:
+% 
+% \begin{equation}
+%     \displaystyle P_{i,j}^{new} = P_{i,j}^{old} + \frac{\Delta t}{\phi \beta \eta} 
+%      \left( 
+%       \frac{  k_{i,j+\frac{1}{2}} \frac{P_{i,j+1}^{old} - P_{i,j}^{old}}{x_{i,j+1} - x_{i,j}}
+%                    - k_{i,j-\frac{1}{2}} \frac{P_{i,j}^{old} - P_{i,j-1}^{old}}{x_{i,j} - x_{i,j-1}}}
+%                   {x_{i,j+\frac{1}{2}} - x_{i,j-\frac{1}{2}}}
+%      +\frac{  k_{i+\frac{1}{2},j} \frac{P_{i+1,j}^{old} - P_{i,j}^{old}}{y_{i+1,j} - y_{i,j}}
+%                    - k_{i-\frac{1}{2},j} \frac{P_{i,j}^{old} - P_{i-1,j}^{old}}{y_{i,j} - y_{i-1,j}}}
+%                   {y_{i+\frac{1}{2},j} - y_{i-\frac{1}{2},j}}
+%      \right) + \frac{H_{i,j}}{\phi \beta}
+% \end{equation}
+%
+% For the left boundary (i.e. $x=x_{min}$, where $j=1$), and without a source or sink term, this becomes:
+%
+% \begin{equation}
+%     \displaystyle P_{i,1}^{new} = P_{i,1}^{old} + \frac{\Delta t}{\phi \beta \eta} 
+%      \left( 
+%       \frac{  k_{i,1\frac{1}{2}} \frac{P_{i,2}^{old} - P_{i,1}^{old}}{x_{i,2} - x_{i,1}}
+%                    - k_{i,\frac{1}{2}} \frac{P_{i,1}^{old} - P_{i,0}^{old}}{x_{i,1} - x_{i,0}}}
+%                   {x_{i,1\frac{1}{2}} - x_{i,\frac{1}{2}}}
+%      +\frac{  k_{i+\frac{1}{2},1} \frac{P_{i+1,1}^{old} - P_{i,1}^{old}}{y_{i+1,1} - y_{i,1}}
+%                    - k_{i-\frac{1}{2},1} \frac{P_{i,1}^{old} - P_{i-1,1}^{old}}{y_{i,1} - y_{i-1,1}}}
+%                   {y_{i+\frac{1}{2},1} - y_{i-\frac{1}{2},1}}
+%      \right)
+% \end{equation}
+% 
+% Making use of symmetry conditions across the boundary (same permeability
+% and grid spacing on either side of the boundary, i.e. between points $j=0$ 
+% (the ghost point) and $j=1$ as between points $j=1$ and $j=2$) as well as 
+% $P_{i,0}=P_{i,2}$ gives:
+%
+% \begin{equation}
+%     \displaystyle P_{i,1}^{new} = P_{i,1}^{old} + \frac{\Delta t}{\phi \beta \eta} 
+%      \left( 
+%       \frac{  k_{i,1\frac{1}{2}} \frac{P_{i,2}^{old} - P_{i,1}^{old}}{\Delta x}
+%             - k_{i,1\frac{1}{2}} \frac{P_{i,1}^{old} - P_{i,2}^{old}}{\Delta x}}
+%                   {\Delta x}
+%      +\frac{  k_{i+\frac{1}{2},1} \frac{P_{i+1,1}^{old} - P_{i,1}^{old}}{y_{i+1,1} - y_{i,1}}
+%                    - k_{i-\frac{1}{2},1} \frac{P_{i,1}^{old} - P_{i-1,1}^{old}}{y_{i,1} - y_{i-1,1}}}
+%                   {y_{i+\frac{1}{2},1} - y_{i-\frac{1}{2},1}}
+%      \right) 
+% \end{equation}
+% 
+% with $\Delta x = x_{i,2} - x_{i,1}$. This significantly simplifies the x-component between the brackets: 
+% 
+% \begin{equation}
+%     \displaystyle P_{i,1}^{new} = P_{i,1}^{old} + \frac{\Delta t}{\phi \beta \eta} 
+%      \left( 
+%       k_{i,1\frac{1}{2}} \frac{2 P_{i,2}^{old} - 2 P_{i,1}^{old}}{\Delta x^2}
+%      +\frac{  k_{i+\frac{1}{2},1} \frac{P_{i+1,1}^{old} - P_{i,1}^{old}}{y_{i+1,1} - y_{i,1}}
+%                    - k_{i-\frac{1}{2},1} \frac{P_{i,1}^{old} - P_{i-1,1}^{old}}{y_{i,1} - y_{i-1,1}}}
+%                   {y_{i+\frac{1}{2},1} - y_{i-\frac{1}{2},1}}
+%      \right)
+% \end{equation}
+% 
+% A similar solution for the other 3 boundaries can be obtained. For an 
+% $nx \times ny$ mesh, the expressions for the $x_{max}$, $y_{min}$,
+% and $y_{max}$ boundaries become:
+% 
+% \begin{equation}
+%     \displaystyle P_{i,nx}^{new} = P_{i,nx}^{old} + \frac{\Delta t}{\phi \beta \eta} 
+%      \left( 
+%       k_{i,nx-\frac{1}{2}} \frac{2 P_{i,nx-1}^{old} - 2 P_{i,nx}^{old}}{\Delta x^2}
+%      +\frac{  k_{i+\frac{1}{2},nx} \frac{P_{i+1,nx}^{old} - P_{i,nx}^{old}}{y_{i+1,nx} - y_{i,nx}}
+%                    - k_{i-\frac{1}{2},nx} \frac{P_{i,nx}^{old} - P_{i-1,nx}^{old}}{y_{i,nx} - y_{i-1,nx}}}
+%                   {y_{i+\frac{1}{2},nx} - y_{i-\frac{1}{2},nx}}
+%      \right)
+% \end{equation}
+% 
+% \begin{equation}
+%     \displaystyle P_{1,j}^{new} = P_{1,j}^{old} + \frac{\Delta t}{\phi \beta \eta} 
+%      \left( 
+%       \frac{  k_{ny,j+\frac{1}{2}} \frac{P_{ny,j+1}^{old} - P_{ny,j}^{old}}{x_{ny,j+1} - x_{ny,j}}
+%                    - k_{ny,j-\frac{1}{2}} \frac{P_{ny,j}^{old} - P_{ny,j-1}^{old}}{x_{ny,j} - x_{ny,j-1}}}
+%                   {x_{ny,j+\frac{1}{2}} - x_{ny,j-\frac{1}{2}}}
+%        + k_{1\frac{1}{2},j} \frac{2 P_{2,j}^{old} - 2 P_{1,j}^{old}}{\Delta y^2}
+%      \right)
+% \end{equation}
+% 
+% \begin{equation}
+%     \displaystyle P_{ny,j}^{new} = P_{ny,j}^{old} + \frac{\Delta t}{\phi \beta \eta} 
+%      \left( 
+%       \frac{  k_{i,j+\frac{1}{2}} \frac{P_{i,j+1}^{old} - P_{i,j}^{old}}{x_{i,j+1} - x_{i,j}}
+%                    - k_{i,j-\frac{1}{2}} \frac{P_{i,j}^{old} - P_{i,j-1}^{old}}{x_{i,j} - x_{i,j-1}}}
+%                   {x_{i,j+\frac{1}{2}} - x_{i,j-\frac{1}{2}}}
+%        + k_{ny-\frac{1}{2},j} \frac{2 P_{ny-1,j}^{old} - 2 P_{ny,j}^{old}}{\Delta y^2}
+%      \right)
+% \end{equation}
+##### SOURCE END #####
+--></body></html>

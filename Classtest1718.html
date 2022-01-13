@@ -1,0 +1,175 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Modelling Earth Processes, class test for 26th April 2018</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-04-25"><meta name="DC.source" content="Classtest1718.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Modelling Earth Processes, class test for 26th April 2018</h1><!--introduction--><p>Prof Jeroen van Hunen</p><p>Department of Earth Sciences</p><p>Durham University</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Test setup</a></li><li><a href="#2">Assignment</a></li><li><a href="#3">Part 1: wave equation:</a></li><li><a href="#4">Part 2: porous media flow in 1D:</a></li><li><a href="#5">Submitting your work</a></li></ul></div><h2>Test setup<a name="1"></a></h2><div><ul><li>Time: 2 hours</li><li>Submission: a) submit your code via DUO and b) submit your written   answers on paper.</li><li>Allowed Resources: All teaching material available on duo, your own codes and notes,   and Matlab's help documentation. You may <b>not</b> use Google or other online   sources. No electronic communication (email, Facebook etc) is allowed during the test.</li><li>An electronic version of this test is available at:   <tt>https://community.dur.ac.uk/jeroen.van-hunen/Classtest1718.html</tt></li></ul></div><h2>Assignment<a name="2"></a></h2><p><b>Please read the whole test before answering any questions, and make sure you explain all your answers</b></p><h2>Part 1: wave equation:<a name="3"></a></h2><p>1. The differential equation for the 1-D wave equation can be written as:</p><p><span class="MathJax_Preview"><img src="Classtest1718_eq12344620483058121946.png" alt="$\displaystyle \frac{\partial^2 u}{\partial t^2} = v^2 \frac{\partial^2 u}{\partial z^2}$"></span><script type="math/tex">\displaystyle \frac{\partial^2 u}{\partial t^2} = v^2 \frac{\partial^2 u}{\partial z^2}</script>,</p><p>which solves for displacement <span class="MathJax_Preview"><img src="Classtest1718_eq11776305044305525613.png" alt="$u$"></span><script type="math/tex">u</script>, and in which <span class="MathJax_Preview"><img src="Classtest1718_eq12656067504604335951.png" alt="$t$"></span><script type="math/tex">t</script> is time, <span class="MathJax_Preview"><img src="Classtest1718_eq17119888974628994297.png" alt="$z$"></span><script type="math/tex">z</script> is the spatial coordinate, and <span class="MathJax_Preview"><img src="Classtest1718_eq03158747792916826732.png" alt="$v$"></span><script type="math/tex">v</script> the wave speed. When applying this wave equation to waves in a hanging rope that is fixed to the ceiling at the top and having a free end at the bottom, what would be suitable boundary conditions for the top and for the bottom end of the rope? [ <i>15 points</i> ]</p><p>2. The 2-D version of this equation looks like this:</p><p><span class="MathJax_Preview"><img src="Classtest1718_eq05335549183911355058.png" alt="$\displaystyle \frac{\partial^2 u}{\partial t^2} = v^2 \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial z^2}\right)$"></span><script type="math/tex">\displaystyle \frac{\partial^2 u}{\partial t^2} = v^2 \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial z^2}\right)</script>,</p><p>with <span class="MathJax_Preview"><img src="Classtest1718_eq12428413953531653171.png" alt="$x$"></span><script type="math/tex">x</script> and <span class="MathJax_Preview"><img src="Classtest1718_eq17119888974628994297.png" alt="$z$"></span><script type="math/tex">z</script> the two spatial dimensions. Derive the forward Euler discretization for this equation, assuming the simplest scenario with constant and equal grid spacing in both spatial dimensions (i.e. <span class="MathJax_Preview"><img src="Classtest1718_eq17792725402970623567.png" alt="$\Delta x = \Delta z =$"></span><script type="math/tex">\Delta x = \Delta z =</script> constant), and a constant, isotropic wave speed <span class="MathJax_Preview"><img src="Classtest1718_eq03158747792916826732.png" alt="$v$"></span><script type="math/tex">v</script>. [ <i>15 points</i> ]</p><p>3. When discretizing the 1-D wave equation from question 1 using the forward Euler method, constant grid spacing, and constant wave velocity, the maximum stable timestep is given as <span class="MathJax_Preview"><img src="Classtest1718_eq04669462102145479619.png" alt="$\Delta t = \frac{\Delta z}{v}$"></span><script type="math/tex">\Delta t = \frac{\Delta z}{v}</script>. This is based on the fact that the worst propagating error alternatives between subsequent grid points in both space and time, as was explained in the lecture notes of week 18. Derive the stable timestep criterion for the 2-D case described in question 2 (again for forward Euler, constant and equal grid spacing in both spatial dimensions, and a constant, isotropic wave speed)? [ <i>20 points</i> ]</p><h2>Part 2: porous media flow in 1D:<a name="4"></a></h2><p>Assume a horizontal 1-D porous medium of <span class="MathJax_Preview"><img src="Classtest1718_eq03457793364622004078.png" alt="$w=400$"></span><script type="math/tex">w=400</script> m wide. Fluid flow through the pores is based on Darcy&#146;s law, and, in the presence of a spatially varying fluid source/sink <span class="MathJax_Preview"><img src="Classtest1718_eq17354617462179732091.png" alt="$H$"></span><script type="math/tex">H</script>, can be described by the following d.e.:</p><p><span class="MathJax_Preview"><img src="Classtest1718_eq18361022696156312977.png" alt="$\displaystyle \frac{\partial P}{\partial t} =   \frac{k}{\phi \beta \eta}     \left(\frac{\partial^2 P}{\partial x^2}     \right) + \frac{H}{\beta \phi}$"></span><script type="math/tex">\displaystyle \frac{\partial P}{\partial t} =   \frac{k}{\phi \beta \eta}     \left(\frac{\partial^2 P}{\partial x^2}     \right) + \frac{H}{\beta \phi}</script></p><p>in 1-D, where <span class="MathJax_Preview"><img src="Classtest1718_eq02661806082982697695.png" alt="$P$"></span><script type="math/tex">P</script> is the (non-hydrostatic) pressure, <span class="MathJax_Preview"><img src="Classtest1718_eq08977680020366616796.png" alt="$k=10^{-12}$"></span><script type="math/tex">k=10^{-12}</script> <span class="MathJax_Preview"><img src="Classtest1718_eq05719260699303681663.png" alt="$\mathrm{m^2}$"></span><script type="math/tex">\mathrm{m^2}</script> the rock permeability, <span class="MathJax_Preview"><img src="Classtest1718_eq15414309942675905366.png" alt="$\phi=0.05$"></span><script type="math/tex">\phi=0.05</script> is the porosity, <span class="MathJax_Preview"><img src="Classtest1718_eq13803706165471745808.png" alt="$\beta=10^{-8}$"></span><script type="math/tex">\beta=10^{-8}</script> <span class="MathJax_Preview"><img src="Classtest1718_eq06994772077036652055.png" alt="$\mathrm{Pa^{-1}}$"></span><script type="math/tex">\mathrm{Pa^{-1}}</script> the fluid compressibility, and <span class="MathJax_Preview"><img src="Classtest1718_eq07033051892588266402.png" alt="$\eta=10^{-4}$"></span><script type="math/tex">\eta=10^{-4}</script> Pa s the fluid viscosity, and <span class="MathJax_Preview"><img src="Classtest1718_eq15636846968047188835.png" alt="$k$"></span><script type="math/tex">k</script>, <span class="MathJax_Preview"><img src="Classtest1718_eq06401276552089372917.png" alt="$\phi$"></span><script type="math/tex">\phi</script>, <span class="MathJax_Preview"><img src="Classtest1718_eq17331442575217596290.png" alt="$\beta$"></span><script type="math/tex">\beta</script>, and <span class="MathJax_Preview"><img src="Classtest1718_eq17615028512695387165.png" alt="$\eta$"></span><script type="math/tex">\eta</script> are all constants. The model has a zero pore pressure everywhere at time <span class="MathJax_Preview"><img src="Classtest1718_eq16912281546434447644.png" alt="$t=0$"></span><script type="math/tex">t=0</script>, and has fixed pressure essential boundary conditions <span class="MathJax_Preview"><img src="Classtest1718_eq07386184503153841976.png" alt="$P=0$"></span><script type="math/tex">P=0</script> Pa on both boundaries.</p><p>The source/sink term <span class="MathJax_Preview"><img src="Classtest1718_eq17354617462179732091.png" alt="$H$"></span><script type="math/tex">H</script> is zero everywhere, except for the following point source <span class="MathJax_Preview"><img src="Classtest1718_eq03938785651708717727.png" alt="$H = H_{src} =$"></span><script type="math/tex">H = H_{src} =</script> 1 <span class="MathJax_Preview"><img src="Classtest1718_eq02890350535204026369.png" alt="$\mathrm{m/sec}$"></span><script type="math/tex">\mathrm{m/sec}</script> at <span class="MathJax_Preview"><img src="Classtest1718_eq05717322896867557173.png" alt="$\displaystyle x = \frac{w}{2}$"></span><script type="math/tex">\displaystyle x = \frac{w}{2}</script>. In other words, a '1-D volume' of 1 m/s of fluid is continuously entering the middle of the domain.</p><p>4. Describe in words and/or with a sketch how you think the pressure distribution will evolve in the model. Do you think the model will approach a steady-state solution? [ <i>10 points</i> ]</p><p>5. Build a Matlab code for the porous media flow model described above. It is probably easiest to build this code from one of the existing codes that you built previously or are available in the MEP model answers. [ <i>40 points: a fully working, well written and documented code will give full marks, but in case you cannot create a working code in time, make sure to describe the approach you took or were planning to take, and where the problem with implementation lies. This will be worth some marks too</i> ].</p><h2>Submitting your work<a name="5"></a></h2><p>a) Submit your written answers on paper at the end of the class test.</p><p>b) Submit the Matlab m-file with your code via the DUO turnitin page in    the assignment called 'class test M-file' in the Assignment folder    of the Modelling Earth Processes 17/18 folder on DUO.    Before submitting your code on DUO, make sure your code has:</p><div><ul><li>A clear structure</li><li>Logical variable names</li><li>Sufficient comment</li><li>At least one subfunction</li></ul></div><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Modelling Earth Processes, class test for 26th April 2018
+% 
+% Prof Jeroen van Hunen
+%
+% Department of Earth Sciences
+%
+% Durham University
+%
+%% Test setup
+% 
+% * Time: 2 hours
+% * Submission: a) submit your code via DUO and b) submit your written 
+%   answers on paper.
+% * Allowed Resources: All teaching material available on duo, your own codes and notes, 
+%   and Matlab's help documentation. You may *not* use Google or other online
+%   sources. No electronic communication (email, Facebook etc) is allowed during the test.
+% * An electronic version of this test is available at:
+%   |https://community.dur.ac.uk/jeroen.van-hunen/Classtest1718.html|
+%
+%% Assignment
+% *Please read the whole test before answering any questions, and make 
+% sure you explain all your answers*
+%
+%% Part 1: wave equation:
+% 1. The differential equation for the 1-D wave equation can be written as:
+% 
+% $\displaystyle \frac{\partial^2 u}{\partial t^2} = v^2 \frac{\partial^2
+% u}{\partial z^2}$, 
+% 
+% which solves for displacement $u$, and in which $t$ is time, $z$
+% is the spatial coordinate, and $v$ the wave speed. 
+% When applying this wave equation to waves in a hanging rope that is fixed 
+% to the ceiling at the top and having a free end at the bottom, what would
+% be suitable boundary conditions for the top and for the bottom end of the
+% rope? [ _15 points_ ]
+% 
+% 2. The 2-D version of this equation looks like this: 
+% 
+% $\displaystyle \frac{\partial^2 u}{\partial t^2} = v^2 \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial z^2}\right)$,
+% 
+% with $x$ and $z$ the two spatial dimensions. Derive the forward Euler
+% discretization for this equation, assuming the simplest scenario with constant and equal grid
+% spacing in both spatial dimensions (i.e. $\Delta x = \Delta z =$ constant), 
+% and a constant, isotropic wave speed $v$. [ _15 points_ ]
+% 
+% 3. When discretizing the 1-D wave equation from question 1 using the forward Euler 
+% method, constant grid spacing, and constant wave velocity, the maximum 
+% stable timestep is given as $\Delta t = \frac{\Delta z}{v}$. This is based on the fact
+% that the worst propagating error alternatives between subsequent grid points in both
+% space and time, as was explained in the lecture notes of week 18. 
+% Derive the stable timestep criterion for the 2-D case described in question 2 
+% (again for forward Euler, constant and equal grid spacing in both spatial dimensions, 
+% and a constant, isotropic wave speed)? [ _20 points_ ]
+% 
+%% Part 2: porous media flow in 1D:
+%
+% Assume a horizontal 1-D porous medium of $w=400$ m wide. 
+% Fluid flow through the pores is based on
+% Darcys law, and, in the presence of a spatially varying fluid source/sink $H$,
+% can be described by the following d.e.:
+% 
+% $\displaystyle \frac{\partial P}{\partial t} = 
+%   \frac{k}{\phi \beta \eta}
+%     \left(\frac{\partial^2 P}{\partial x^2}
+%     \right) + \frac{H}{\beta \phi}$
+% 
+% in 1-D, where $P$ is the (non-hydrostatic) pressure, 
+% $k=10^{-12}$ $\mathrm{m^2}$ the rock permeability, 
+% $\phi=0.05$ is the porosity, 
+% $\beta=10^{-8}$ $\mathrm{Pa^{-1}}$ the fluid compressibility, and 
+% $\eta=10^{-4}$ Pa s the fluid viscosity, and $k$, $\phi$, $\beta$, and $\eta$ are all constants.
+% The model has a zero pore pressure everywhere at time $t=0$, and 
+% has fixed pressure essential boundary conditions $P=0$ Pa on both boundaries.
+% 
+% The source/sink term $H$ is zero everywhere, except for the following
+% point source $H = H_{src} =$ 1 $\mathrm{m/sec}$ at $\displaystyle x = \frac{w}{2}$.
+% In other words, a '1-D volume' of 1 m/s of fluid is continuously entering 
+% the middle of the domain.
+% 
+% 4. Describe in words and/or with a sketch how you think the pressure distribution will evolve in 
+% the model. Do you think the model will approach a steady-state solution?
+% [ _10 points_ ]
+% 
+% 5. Build a Matlab code for the porous media flow model described above.
+% It is probably easiest to build this code from one of the existing codes
+% that you built previously or are available in the MEP model answers.
+% [ _40 points: a fully working, well written and documented code will give full marks, 
+% but in case you cannot create a working code in time, make sure to describe 
+% the approach you took or were planning to take, and where the problem with implementation lies.
+% This will be worth some marks too_ ]. 
+% 
+%% Submitting your work
+% 
+% a) Submit your written answers on paper at the end of the class test.
+% 
+% b) Submit the Matlab m-file with your code via the DUO turnitin page in 
+%    the assignment called 'class test M-file' in the Assignment folder 
+%    of the Modelling Earth Processes 17/18 folder on DUO. 
+%    Before submitting your code on DUO, make sure your code has:
+% 
+% * A clear structure
+% * Logical variable names
+% * Sufficient comment
+% * At least one subfunction
+##### SOURCE END #####
+--></body></html>

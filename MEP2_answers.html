@@ -6,7 +6,7 @@
    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Model answers for: Modelling Earth Processes, week 2 - Diffusion</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="https://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-10-11"><meta name="DC.source" content="MEP2_answers.m"><style type="text/css">
+      --><title>Model answers for: Modelling Earth Processes, week 2 - Diffusion</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="https://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-10-14"><meta name="DC.source" content="MEP2_answers.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -123,12 +123,7 @@ different version name, e.g. <code>myfunction_v1</code>, <code>myfunction_v2</co
 </font>
 </td>
 </table>
-</p><pre class="codeinput"><span class="comment">% A general advice when modifying your code: regularly make copies of your</span>
-<span class="comment">% Matlab scripts. Certainly if you have a script working, then save it</span>
-<span class="comment">% under a different name, so that you can go back to it later on if needed.</span>
-<span class="comment">% Or give each version of your code or function a</span>
-<span class="comment">% different version name, e.g. |myfunction_v1|, |myfunction_v2| etc.</span>
-</pre><p><i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> A possible solution could be:</b></i></p><pre class="codeinput"><span class="keyword">function</span> Tnew = oneD_Tdiff (Told,dz,kappa,dt)
+</p><p><i><b> <span class="MathJax_Preview"><img src="MEP2_answers_eq08167819575950343543.png" alt="$\Rightarrow$"></span><script type="math/tex">\Rightarrow</script> A possible solution could be:</b></i></p><pre class="codeinput"><span class="keyword">function</span> Tnew = oneD_Tdiff (Told,dz,kappa,dt)
    <span class="comment">% Calculate diffusion on an array of interior points:</span>
    d2Tdz2 = zeros(1,5);
    d2Tdz2(2:4) = (Told(3:5) - 2*Told(2:4) + Told(1:3)) / dz^2;
@@ -585,13 +580,6 @@ end
 % </td>
 % </table>
 % </html>
-
-% A general advice when modifying your code: regularly make copies of your
-% Matlab scripts. Certainly if you have a script working, then save it
-% under a different name, so that you can go back to it later on if needed.
-% Or give each version of your code or function a
-% different version name, e.g. |myfunction_v1|, |myfunction_v2| etc.
-
 %%
 % _* $\Rightarrow$ A possible solution could be:*_
 

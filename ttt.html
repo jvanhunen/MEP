@@ -1,0 +1,204 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Modelling Earth Processes, week 21 - Class test for 2016/2017</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-05-03"><meta name="DC.source" content="Week21test.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Modelling Earth Processes, week 21 - Class test for 2016/2017</h1><!--introduction--><p>Dr Jeroen van Hunen</p><p>Department of Earth Sciences</p><p>Durham University</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Test setup</a></li><li><a href="#2">Assignment</a></li><li><a href="#3">Crystal diffusion in magma chambers.</a></li><li><a href="#4">Submitting your work</a></li></ul></div><h2>Test setup<a name="1"></a></h2><div><ul><li>Time: 2 hours</li><li>Submission: a) submit your code via DUO and b) submit your written   answers on paper.</li><li>Allowed Resources: All teaching material available on duo, your own codes and notes,   and Matlab's help documentation. You may <b>not</b> use Google or other online   sources. No electronic communication (email, Facebook etc) is allowed during the test.</li></ul></div><h2>Assignment<a name="2"></a></h2><p><b>Please read the whole test before answering any questions</b></p><h2>Crystal diffusion in magma chambers.<a name="3"></a></h2><p>Not only heat diffuses through rocks, but material can diffuse as well, although usually at a much smaller rate than heat diffusion An example of this is that of a crystal floating in a hot magma chamber, in which iron (Fe) diffuses out of the Fe-rich crystal into the Fe-poor melt in the magma chamber. This leads to crystals with a low-Fe rim (Fig.1).</p><p><img vspace="5" hspace="5" src="crystal_diff.png" alt=""> </p><p><img vspace="5" hspace="5" src="crystal_diff2.png" alt=""> </p><p><i>Figure 1) Examples of zoning at the rim of crystals due to compositional diffusion (from Costa and Morgan, 2010).</i></p><p>This Fe diffusion continues for as long as the crystal is embedded in the hot magma chamber, but stops as soon as the crystal erupts and cools down. So the diffusive rim width together with the Fe-diffusion speed can be used to estimate the residence time of the crystal (and surrounding magma) in the magma chamber. In this class test, we will aim to build a simple, one-dimensional numerical model to calculate this crystal diffusion and estimate magma chamber residence times.</p><p>Fe and Mg end members of olivine are fayelite (no Mg) and forsterite (no Fe).  The amount of Fe is represented by the mol fraction of forsterite <span class="MathJax_Preview"><img src="Week21test_eq12781152083871829750.png" alt="$X_{fo}$"></span><script type="math/tex">X_{fo}</script>.</p><p>In our model setup, diffusion of Fe from the high-Fe crystal into the low-Fe melt is governed by the following diffusion equation:</p><p><span class="MathJax_Preview"><img src="Week21test_eq00312927893093610405.png" alt="$\displaystyle \frac{\partial X_{fo}}{\partial t} = \frac{\partial}{\partial x}\left(D\frac{\partial X_{fo}}{\partial x}\right)$"></span><script type="math/tex">\displaystyle \frac{\partial X_{fo}}{\partial t} = \frac{\partial}{\partial x}\left(D\frac{\partial X_{fo}}{\partial x}\right)</script></p><p>in which <span class="MathJax_Preview"><img src="Week21test_eq12428413953531653171.png" alt="$x$"></span><script type="math/tex">x</script> is the distance into the crystal from the crystal rim (in <span class="MathJax_Preview"><img src="Week21test_eq11319871188381094158.png" alt="$m$"></span><script type="math/tex">m</script>), and <span class="MathJax_Preview"><img src="Week21test_eq16171345478199012472.png" alt="$D$"></span><script type="math/tex">D</script> the Fe-diffusion coefficient (in <span class="MathJax_Preview"><img src="Week21test_eq13635516929237671649.png" alt="$\mathrm{m^2/s}$"></span><script type="math/tex">\mathrm{m^2/s}</script>). In this diffusion process, the crystal is assumed to have an initial uniform <span class="MathJax_Preview"><img src="Week21test_eq12781152083871829750.png" alt="$X_{fo}$"></span><script type="math/tex">X_{fo}</script> value <span class="MathJax_Preview"><img src="Week21test_eq03565228903107404941.png" alt="$X_{fo}=X_{fo,init}$"></span><script type="math/tex">X_{fo}=X_{fo,init}</script>, the crystal is assumed not to grow or shrink during the diffusion process, and the melt surrounding the crystal is assumed to keep a constant <span class="MathJax_Preview"><img src="Week21test_eq12781152083871829750.png" alt="$X_{fo}$"></span><script type="math/tex">X_{fo}</script> value <span class="MathJax_Preview"><img src="Week21test_eq00433864973729083944.png" alt="$X_{fo}=X_{fo,melt}$"></span><script type="math/tex">X_{fo}=X_{fo,melt}</script>.</p><p>The following Excel data file contains measured <span class="MathJax_Preview"><img src="Week21test_eq12781152083871829750.png" alt="$X_{fo}$"></span><script type="math/tex">X_{fo}</script> values (in mol fraction) against distance from the crystal boundary (in metres) for the outer ~21 <span class="MathJax_Preview"><img src="Week21test_eq10400765448234033473.png" alt="$\mathrm{\mu m}$"></span><script type="math/tex">\mathrm{\mu m}</script> of the crystal: <tt>https://community.dur.ac.uk/jeroen.van-hunen/MEP/crystal_diff_data.xlsx</tt> . This data set suggests <span class="MathJax_Preview"><img src="Week21test_eq07918254207018897574.png" alt="$X_{fo,init}$"></span><script type="math/tex">X_{fo,init}</script> to be 0.79, and <span class="MathJax_Preview"><img src="Week21test_eq16314799093904112453.png" alt="$X_{fo,melt}$"></span><script type="math/tex">X_{fo,melt}</script> to be 0.68.</p><p>21.1. Write out the finite difference discretisation for the governing equation using the Forward Euler method, and assuming a constant grid spacing and constant value <span class="MathJax_Preview"><img src="Week21test_eq10145827984828201794.png" alt="$D_0$"></span><script type="math/tex">D_0</script> for the diffusion coefficient <span class="MathJax_Preview"><img src="Week21test_eq16171345478199012472.png" alt="$D$"></span><script type="math/tex">D</script>.</p><p>21.2. Assuming a model domain that ranges from the crystal boundary to a point in the crystal interior where diffusion does not affect the Fe content anymore, what would be appropriate initial and boundary conditions for this model?</p><p>21.3. Repeat 21.1 for the case of the Backward Euler method.</p><p>21.4. Rewrite 21.3 into a matrix-vector system for a 5-point grid that could be implemented as a numerical model.</p><p>21.5. Write a Matlab script that models the Fe diffusion process through the crystal using the <i>Forward</i> Euler method. Assume a model domain that extends from the crystal boundary to 30 <span class="MathJax_Preview"><img src="Week21test_eq10400765448234033473.png" alt="$\mathrm{\mu m}$"></span><script type="math/tex">\mathrm{\mu m}</script> into the crystal interior, initial and boundary conditions as described in 21.2, and a constant Fe diffusion coefficient <span class="MathJax_Preview"><img src="Week21test_eq05988773672634912905.png" alt="$D=D_0=5 \times 10^{18}$"></span><script type="math/tex">D=D_0=5 \times 10^{18}</script> <span class="MathJax_Preview"><img src="Week21test_eq13635516929237671649.png" alt="$\mathrm{m^2/s}$"></span><script type="math/tex">\mathrm{m^2/s}</script>. Use the diffusion timestep stability criterion to calculate an appropriate timestep. The output of the script should be a time-dependent plot, showing <span class="MathJax_Preview"><img src="Week21test_eq12781152083871829750.png" alt="$X_{fo}$"></span><script type="math/tex">X_{fo}</script> across the model domain and the diffusion data from the Excel spreadsheet.</p><p>21.6. Instead of a constant value, the diffusion coefficient might be better described by the following equation: <span class="MathJax_Preview"><img src="Week21test_eq13127912428053259484.png" alt="$D=D_0 \times 10^{2.37-3X_{fo}}$"></span><script type="math/tex">D=D_0 \times 10^{2.37-3X_{fo}}</script> (i.e. which <span class="MathJax_Preview"><img src="Week21test_eq16171345478199012472.png" alt="$D$"></span><script type="math/tex">D</script> depends on the <span class="MathJax_Preview"><img src="Week21test_eq12781152083871829750.png" alt="$X_{fo}$"></span><script type="math/tex">X_{fo}</script> value). Describe how the discretiation and implementation needs to be modified in order to implement the diffusion process using this more complex diffusion coefficient, and implement this in your Matlab script.</p><p>21.7. The plots created in 21.5 or 21.6 will allow you to estimate approximately how long the crystal diffusion process operated in the case of the provided data. But to provide a more quantitative estimate, calculate the <i>root-mean-square</i> difference between model and data <span class="MathJax_Preview"><img src="Week21test_eq08404229554319017391.png" alt="$\displaystyle \epsilon_{rms} = \sqrt{\sum_n \frac{\left(X_{fo,model}^2-X_{fo,data}^2\right)}{n}}$"></span><script type="math/tex">\displaystyle \epsilon_{rms} = \sqrt{\sum_n \frac{\left(X_{fo,model}^2-X_{fo,data}^2\right)}{n}}</script> in which <span class="MathJax_Preview"><img src="Week21test_eq08984225997457563733.png" alt="$n$"></span><script type="math/tex">n</script> is the number of model grid points. To calculate this quantity, take the following steps:</p><div><ul><li>to compare model and data points, the data points need to be resampled   to the computatational model grid points. This can be done using the intrinsic Matlab function   <tt>interp1</tt>, for which a Help page is available in the Matlab help   facility.</li><li>Since the data points are covering only part of the computational model   grid, interpolating to the full computational grid will lead to <tt>NaN</tt>   values in the interpolation. So, before interpolating, create a   subset of the computational domain <span class="MathJax_Preview"><img src="Week21test_eq16156590670594425883.png" alt="$x_{sub}$"></span><script type="math/tex">x_{sub}</script> that only spans the <span class="MathJax_Preview"><img src="Week21test_eq12428413953531653171.png" alt="$x$"></span><script type="math/tex">x</script>-range of the data.</li><li>Calculate <span class="MathJax_Preview"><img src="Week21test_eq08703652193937163527.png" alt="$\epsilon_{rms}$"></span><script type="math/tex">\epsilon_{rms}</script> between the (re-sampled) <span class="MathJax_Preview"><img src="Week21test_eq11702900603561248185.png" alt="$X_{fo,data}$"></span><script type="math/tex">X_{fo,data}</script> data points and the   modelled <span class="MathJax_Preview"><img src="Week21test_eq10400790372301299670.png" alt="$X_{fo,model}$"></span><script type="math/tex">X_{fo,model}</script> values on the <span class="MathJax_Preview"><img src="Week21test_eq16156590670594425883.png" alt="$x_{sub}$"></span><script type="math/tex">x_{sub}</script> domain.</li><li>Use this to find the model time that shows the minimum <span class="MathJax_Preview"><img src="Week21test_eq08703652193937163527.png" alt="$\epsilon_{rms}$"></span><script type="math/tex">\epsilon_{rms}</script>   as the best estimate for the crystal diffusion time in the data set.</li></ul></div><p>What is the best-fitting diffusion time (in days) for both diffusion coefficient functions, and which of these functions fits the data better?</p><h2>Submitting your work<a name="4"></a></h2><p>a) Submit your written answers on paper before leaving the computer room.</p><p>b) Submit the Matlab m-file with your code via the DUO turnitin page.</p><p>Before submitting your code on DUO, make sure your code has:</p><div><ul><li>A clear structure</li><li>Logical variable names</li><li>Sufficient comment</li><li>At least one subfunction</li></ul></div><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Modelling Earth Processes, week 21 - Class test for 2016/2017
+% 
+% Dr Jeroen van Hunen
+%
+% Department of Earth Sciences
+%
+% Durham University
+%
+%% Test setup
+% 
+% * Time: 2 hours
+% * Submission: a) submit your code via DUO and b) submit your written 
+%   answers on paper.
+% * Allowed Resources: All teaching material available on duo, your own codes and notes, 
+%   and Matlab's help documentation. You may *not* use Google or other online
+%   sources. No electronic communication (email, Facebook etc) is allowed during the test.
+%
+%% Assignment
+% *Please read the whole test before answering any questions*
+% 
+%% Crystal diffusion in magma chambers.
+% Not only heat diffuses through rocks, but material can diffuse as well,
+% although usually at a much smaller rate than heat diffusion
+% An example of this is that of a crystal floating in a hot magma chamber, 
+% in which iron (Fe) diffuses out of the Fe-rich crystal into the Fe-poor 
+% melt in the magma chamber. This leads to crystals with a low-Fe rim (Fig.1).
+% 
+% <<crystal_diff.png>>
+%
+% <<crystal_diff2.png>>
+% 
+% _Figure 1) Examples of zoning at the rim of crystals due to compositional
+% diffusion (from Costa and Morgan, 2010)._
+%
+% This Fe diffusion continues for as long as the crystal is embedded in the 
+% hot magma chamber, but stops as soon as the crystal erupts and cools down. So the 
+% diffusive rim width together with the Fe-diffusion speed can be used to estimate the 
+% residence time of the crystal (and surrounding magma) in the magma chamber. 
+% In this class test, we will aim to build a simple, one-dimensional numerical model to
+% calculate this crystal diffusion and estimate magma chamber residence times.
+% 
+% Fe and Mg end members of olivine are fayelite (no Mg) and
+% forsterite (no Fe).  The amount of Fe is represented by the mol fraction
+% of forsterite $X_{fo}$. 
+% 
+% In our model setup, 
+% diffusion of Fe from the high-Fe crystal into the low-Fe melt is
+% governed by the following diffusion equation: 
+%
+% $\displaystyle \frac{\partial X_{fo}}{\partial t} 
+% = \frac{\partial}{\partial x}\left(D\frac{\partial X_{fo}}{\partial x}\right)$
+%
+% in which $x$ is the distance into the crystal from the crystal rim (in $m$), 
+% and $D$ the Fe-diffusion coefficient (in $\mathrm{m^2/s}$). 
+% In this diffusion process, the crystal is assumed to have an initial uniform 
+% $X_{fo}$ value $X_{fo}=X_{fo,init}$, the crystal
+% is assumed not to grow or shrink during the diffusion process, and the
+% melt surrounding the crystal is assumed to keep a constant $X_{fo}$ value 
+% $X_{fo}=X_{fo,melt}$.
+% 
+% The following Excel data file contains measured $X_{fo}$ values (in mol fraction) 
+% against distance from the crystal boundary (in metres) for the outer 
+% ~21 $\mathrm{\mu m}$ of the crystal:
+% |https://community.dur.ac.uk/jeroen.van-hunen/MEP/crystal_diff_data.xlsx|
+% . This data set suggests $X_{fo,init}$ to be 0.79, and $X_{fo,melt}$ to be 0.68.
+% 
+% 21.1. Write out the finite difference discretisation for the governing
+% equation using the Forward Euler method, and assuming a constant grid
+% spacing and constant value $D_0$ for the diffusion coefficient $D$.
+% 
+% 21.2. Assuming a model domain that ranges from the crystal boundary to 
+% a point in the crystal interior where diffusion does not affect the Fe content
+% anymore, what would be appropriate initial and boundary conditions for
+% this model?
+% 
+% 21.3. Repeat 21.1 for the case of the Backward Euler method.
+% 
+% 21.4. Rewrite 21.3 into a matrix-vector system for a 5-point grid 
+% that could be implemented as a numerical model. 
+% 
+% 21.5. Write a Matlab script that models the Fe diffusion process 
+% through the crystal using the _Forward_ Euler
+% method. Assume a model domain that extends from the crystal boundary to
+% 30 $\mathrm{\mu m}$ into the crystal interior, initial and boundary conditions as 
+% described in 21.2, and a constant Fe diffusion 
+% coefficient $D=D_0=5 \times 10^{18}$ $\mathrm{m^2/s}$. Use the diffusion 
+% timestep stability criterion to calculate an appropriate timestep. 
+% The output of the script should be a time-dependent plot, showing 
+% $X_{fo}$ across the model domain and the diffusion data from the Excel spreadsheet. 
+% 
+% 21.6. Instead of a constant value, the diffusion coefficient might be
+% better described by the following equation: 
+% $D=D_0 \times 10^{2.37-3X_{fo}}$ (i.e. which $D$ depends on the $X_{fo}$ value). 
+% Describe how the discretiation and implementation needs to be modified in
+% order to implement the diffusion process using this more complex
+% diffusion coefficient, and implement this in your Matlab script.
+% 
+% 21.7. The plots created in 21.5 or 21.6 will allow you to estimate approximately 
+% how long the crystal diffusion process operated in the case of the
+% provided data. But to provide a more quantitative estimate, calculate the
+% _root-mean-square_ difference between model and data 
+% $\displaystyle \epsilon_{rms} = \sqrt{\sum_n \frac{\left(X_{fo,model}^2-X_{fo,data}^2\right)}{n}}$
+% in which $n$ is the number of model grid points. To calculate this
+% quantity, take the following steps: 
+% 
+% * to compare model and data points, the data points need to be resampled 
+%   to the computatational model grid points. This can be done using the intrinsic Matlab function 
+%   |interp1|, for which a Help page is available in the Matlab help
+%   facility.
+% * Since the data points are covering only part of the computational model
+%   grid, interpolating to the full computational grid will lead to |NaN|
+%   values in the interpolation. So, before interpolating, create a
+%   subset of the computational domain $x_{sub}$ that only spans the $x$-range of the data. 
+% * Calculate $\epsilon_{rms}$ between the (re-sampled) $X_{fo,data}$ data points and the
+%   modelled $X_{fo,model}$ values on the $x_{sub}$ domain.
+% * Use this to find the model time that shows the minimum $\epsilon_{rms}$
+%   as the best estimate for the crystal diffusion time in the data set.
+% 
+% What is the best-fitting diffusion time (in days) for both diffusion 
+% coefficient functions, and which of these functions fits the data better? 
+% 
+%% Submitting your work
+% 
+% a) Submit your written answers on paper before leaving the computer room.
+% 
+% b) Submit the Matlab m-file with your code via the DUO turnitin page.
+% 
+% Before submitting your code on DUO, make sure your code has:
+% 
+% * A clear structure
+% * Logical variable names
+% * Sufficient comment
+% * At least one subfunction
+##### SOURCE END #####
+--></body></html>

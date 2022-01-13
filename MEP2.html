@@ -107,7 +107,7 @@ different version name, e.g. <code>myfunction_v1</code>, <code>myfunction_v2</co
 </font>
 </td>
 </table>
-</p><p>A general advice when modifying your code: regularly make copies of your Matlab scripts. Certainly if you have a script working, then save it under a different name, so that you can go back to it later on if needed. Or give each version of your code or function a different version name, e.g. <tt>myfunction_v1</tt>, <tt>myfunction_v2</tt> etc.</p><p>You should always try to make your functions as generally applicable as possible so that you can re-use your function for different situations and parameters. A few tips to make functions more applicable:</p><div><ul><li>The variable passed from a main function to a subfuction via the   argument list doesn't have to have the same name throughout. So a variable <tt>T</tt> (e.g. referring to temperature in one application) could be named <tt>var</tt> in a sub-function, and if the same function can later on be used to calculate, say, pressure <tt>p</tt>, then the generic name <tt>var</tt> is an appropriate one. For example:</li></ul></div><pre class="codeinput"><span class="keyword">function</span> calc_area
+</p><p>You should always try to make your functions as generally applicable as possible so that you can re-use your function for different situations and parameters. A few tips to make functions more applicable:</p><div><ul><li>The variable passed from a main function to a subfuction via the   argument list doesn't have to have the same name throughout. So a variable <tt>T</tt> (e.g. referring to temperature in one application) could be named <tt>var</tt> in a sub-function, and if the same function can later on be used to calculate, say, pressure <tt>p</tt>, then the generic name <tt>var</tt> is an appropriate one. For example:</li></ul></div><pre class="codeinput"><span class="keyword">function</span> calc_area
    length=5
    area = mysquare(length)
 <span class="keyword">end</span>
@@ -274,12 +274,6 @@ different version name, e.g. <code>myfunction_v1</code>, <code>myfunction_v2</co
 % </td>
 % </table>
 % </html>
-%
-% A general advice when modifying your code: regularly make copies of your
-% Matlab scripts. Certainly if you have a script working, then save it
-% under a different name, so that you can go back to it later on if needed.
-% Or give each version of your code or function a
-% different version name, e.g. |myfunction_v1|, |myfunction_v2| etc.
 % 
 % You should always try to make your functions as generally applicable as possible
 % so that you can re-use your function for different situations and parameters.
