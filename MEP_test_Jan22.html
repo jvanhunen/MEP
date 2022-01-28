@@ -1,0 +1,197 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Modelling Earth Processes - summative class test Friday 28th January 2022</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="https://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-01-27"><meta name="DC.source" content="MEP_test_Jan22.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Modelling Earth Processes - summative class test Friday 28th January 2022</h1><!--introduction--><p>Prof Jeroen van Hunen, Department of Earth Sciences, Durham University</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Test setup</a></li><li><a href="#2">Assignment</a></li><li><a href="#3">Part A. Erosion - sedimentation</a></li><li><a href="#4">Part B. Two-dimensional wave equation</a></li><li><a href="#5">Submitting your work</a></li></ul></div><h2 id="1">Test setup</h2><div><ul><li>Estimated completion time: 2 hours. Maximum allowed time: 4 hours</li><li>Submission via Ultra: a) submit your codes separately and b) submit your text   answers on paper</li><li>Allowed Resources: all teaching material available on Ultra, your own codes and notes,   Matlab's help documentation, internet sources. No (electronic   or in-person) communication (email, social media etc.)   related to the test is allowed.</li></ul></div><h2 id="2">Assignment</h2><p><b>Please read the whole test before answering any questions, and make sure you explain all your answers.</b></p><h2 id="3">Part A. Erosion - sedimentation</h2><p>Landscape topography evolves due to erosion of material, which then undergoes transport and sedimentation elsewhere. This process is complex, and depends on a lot of different material properties (e.g. chemical and mechanical resistance against erosion) and circumstances (e.g. tectonics, climate, vegetation). But the first-order topography evolution due to erosion-sedimentation processes in one dimension (1-D) can be described using the following differential equation:</p><p><span class="MathJax_Preview"><img src="MEP_test_Jan22_eq12583700057848286079.png" alt="$\displaystyle \frac{\partial h}{\partial t} = v_z + \frac{\partial}{\partial x}    \left( K_s \frac{\partial h}{\partial x} \right)$"></span><script type="math/tex">\displaystyle \frac{\partial h}{\partial t} = v_z + \frac{\partial}{\partial x}    \left( K_s \frac{\partial h}{\partial x} \right)</script></p><p>in which <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq08062630503172331818.png" alt="$h$"></span><script type="math/tex">h</script> is the topography in metres as a function of the horizontal coordinate <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq12428413953531653171.png" alt="$x$"></span><script type="math/tex">x</script> (also in metres), <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq12656067504604335951.png" alt="$t$"></span><script type="math/tex">t</script> is time (in seconds), <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq09344586553559315210.png" alt="$v_z$"></span><script type="math/tex">v_z</script> is the (spatially variable) tectonic uplift rate in m/s, and <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq11562511375986638879.png" alt="$K_s$"></span><script type="math/tex">K_s</script> the effective topography diffusion coefficient (in <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq05935760659265298123.png" alt="${\mathrm{m^2/s}}$"></span><script type="math/tex">{\mathrm{m^2/s}}</script>).</p><p>1. Write out (on paper) the discretised form of this equation using the forward Euler finite difference method.</p><p>We want to model the topography <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq00122809350775879298.png" alt="$h(x)$"></span><script type="math/tex">h(x)</script> through time for the following set of model parameters:</p><div><ul><li>1-D model domain stretching from x=0 km to x=1000 km</li><li>total modelling time = 1 million years</li><li>a uniform effective topography diffusion coefficient <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq10419141829966895164.png" alt="$K_s=10^4$"></span><script type="math/tex">K_s=10^4</script> <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq11626872390762072963.png" alt="${\mathrm{m^2/yr}}$"></span><script type="math/tex">{\mathrm{m^2/yr}}</script></li><li>an uplift rate of <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq03809307758541346384.png" alt="$v_z=1$"></span><script type="math/tex">v_z=1</script> mm/yr for 400 km <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq11044894854986473965.png" alt="$< x <$"></span><script type="math/tex">< x <</script> 600 km, and <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq00004557218035780724.png" alt="$v_z=0$"></span><script type="math/tex">v_z=0</script>   elsewhere</li><li>fixed <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq15063799077685528195.png" alt="$h=0$"></span><script type="math/tex">h=0</script> boundary conditions</li><li>no initial topography, so <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq03410233957705431532.png" alt="$h(t=0)=0$"></span><script type="math/tex">h(t=0)=0</script> everywhere.</li></ul></div><p>For this forward Euler discretisation, the maximum stable timestep <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq07479334403923390645.png" alt="$t_{max}$"></span><script type="math/tex">t_{max}</script> for this problem is defined as <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq02196749718663175337.png" alt="$\displaystyle t_{max} = \frac{\Delta x^2}{2 K_s}$"></span><script type="math/tex">\displaystyle t_{max} = \frac{\Delta x^2}{2 K_s}</script>, where <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq16319215787732310329.png" alt="$\Delta x$"></span><script type="math/tex">\Delta x</script> is the grid spacing in the numerical model.</p><p>2. Write a Matlab script that efficiently models this erosion-sedimentation process according to the information given, and plots the solution as a function of time. You can either write a new code from scratch, or use one of your previous codes or model answers from previous practicals as a starting point. Make sure your code is robust enough to handle different spatial resolutions.</p><h2 id="4">Part B. Two-dimensional wave equation</h2><p>The 2-D version of the wave equation can be written as:</p><p><span class="MathJax_Preview"><img src="MEP_test_Jan22_eq00266823347106732153.png" alt="$\displaystyle \frac{\partial^2 u}{\partial t^2} =      v^2 \left(\frac{\partial^2 u}{\partial x^2}              + \frac{\partial^2 u}{\partial y^2}\right)$"></span><script type="math/tex">\displaystyle \frac{\partial^2 u}{\partial t^2} =      v^2 \left(\frac{\partial^2 u}{\partial x^2}              + \frac{\partial^2 u}{\partial y^2}\right)</script></p><p>in which <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq11776305044305525613.png" alt="$u$"></span><script type="math/tex">u</script> is the displacement, <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq12656067504604335951.png" alt="$t$"></span><script type="math/tex">t</script> is time, <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq12428413953531653171.png" alt="$x$"></span><script type="math/tex">x</script> and <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq08830444604280721118.png" alt="$y$"></span><script type="math/tex">y</script> is the spatial coordinate, and <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq03158747792916826732.png" alt="$v$"></span><script type="math/tex">v</script> is the constant wave speed.</p><p>3. Derive the forward Euler discretisation for this 2-D wave equation for a given timestep <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq07651498126111630170.png" alt="$\Delta t$"></span><script type="math/tex">\Delta t</script> and spatial discretisations <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq16319215787732310329.png" alt="$\Delta x$"></span><script type="math/tex">\Delta x</script> and <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq17122388711982029676.png" alt="$\Delta y$"></span><script type="math/tex">\Delta y</script>.</p><p>4. Derive the critical timestep for <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq07817200389858227336.png" alt="$\Delta t_c$"></span><script type="math/tex">\Delta t_c</script> for this discretisation.</p><p>5. Build a Matlab code for the 2-D wave equation with the following characteristics:</p><div><ul><li>The length and width of the two-dimensional model domain are both   <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq01347376619004447871.png" alt="$L = 5000$"></span><script type="math/tex">L = 5000</script> m.</li><li>Use displacement <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq05722455336418904729.png" alt="$u=0$"></span><script type="math/tex">u=0</script> as boundary conditions on all boundaries</li><li>Use a static 2-D Gaussian pulse as initial condition:   <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq16380859848808574930.png" alt="$\displaystyle u=U \exp \left(-\left(\frac{xx-x_0}{w} \right)^2 \right)                           \exp \left(-\left(\frac{yy-y_0}{w} \right)^2 \right)$"></span><script type="math/tex">\displaystyle u=U \exp \left(-\left(\frac{xx-x_0}{w} \right)^2 \right)                           \exp \left(-\left(\frac{yy-y_0}{w} \right)^2 \right)</script>,   with <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq05881592472879863134.png" alt="$U=1$"></span><script type="math/tex">U=1</script> m the amplitude of the pulse, <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq11990854658363159832.png" alt="$xx$"></span><script type="math/tex">xx</script> and <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq15083347689439254800.png" alt="$yy$"></span><script type="math/tex">yy</script> the locations of the   grid points (probably in the form of two-dimensional arrays), <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq09135758496521860513.png" alt="$(x_0, y_0)=(0.2L,0.2L)$"></span><script type="math/tex">(x_0, y_0)=(0.2L,0.2L)</script>   the location of the centre of the pulse,   and <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq05630753439427487316.png" alt="$w=0.03L$"></span><script type="math/tex">w=0.03L</script> a measure for the width of the pulse.</li><li>Apply this initial condition to both the 'present' and 'old' initial condition.</li><li>Use a wave speed <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq17874945646210353461.png" alt="$v = 1000$"></span><script type="math/tex">v = 1000</script> m/s</li><li>Use the critical timestep <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq07817200389858227336.png" alt="$\Delta t_c$"></span><script type="math/tex">\Delta t_c</script> derived in question 4. If you   don't know <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq07817200389858227336.png" alt="$\Delta t_c$"></span><script type="math/tex">\Delta t_c</script>, then use a timestep <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq16107481299548265895.png" alt="$\Delta t = 0.01$"></span><script type="math/tex">\Delta t = 0.01</script> seconds.</li><li>Run the model for a total model time of 3 seconds.</li><li>plot the solution <span class="MathJax_Preview"><img src="MEP_test_Jan22_eq01780038918056681044.png" alt="$u(x,y)$"></span><script type="math/tex">u(x,y)</script> as a function of time, e.g. using the   <tt>pcolor()</tt> Matlab function that we used in weeks 8-11 of the MEP practicals.</li><li>Make sure your code is robust enough to handle different spatial   resolutions.</li></ul></div><p>You can either write a new code from scratch, or use one of your previous codes or model answers from previous practicals as a starting point.</p><h2 id="5">Submitting your work</h2><p>Before submission, please make sure that your Matlab codes:</p><div><ul><li>have a clear structure (aided by indentation and, if appropriate, the use of functions)</li><li>use logical variable names</li><li>have sufficient comments</li><li>produce clear, annotated plots</li></ul></div><p>a) Hand in your written answers. Make sure your name is written on every piece of paper that you are    handing in.</p><p>b) Submit your Matlab code (.m files) for question 2 in the Ultra assignment 'Practical Assignment 2 In-class Test (Submission Point 1)' in the 'Assessment' folder of the Modelling Earth Processes 21/22 Assessment folder on Ultra.</p><p>c) Submit your Matlab code (.m files) for question 5 in the Ultra assignment 'Practical Assignment 2 In-class Test (Submission Point 2)' in the 'Assessment' folder of the Modelling Earth Processes 21/22 Assessment folder on Ultra.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Modelling Earth Processes - summative class test Friday 28th January 2022
+% 
+% Prof Jeroen van Hunen, Department of Earth Sciences, Durham University
+%
+%% Test setup
+% 
+% * Estimated completion time: 2 hours. Maximum allowed time: 4 hours
+% * Submission via Ultra: a) submit your codes separately and b) submit your text  
+%   answers on paper
+% * Allowed Resources: all teaching material available on Ultra, your own codes and notes, 
+%   Matlab's help documentation, internet sources. No (electronic 
+%   or in-person) communication (email, social media etc.) 
+%   related to the test is allowed.
+%
+%% Assignment
+% *Please read the whole test before answering any questions, and make 
+% sure you explain all your answers.*
+% 
+%% Part A. Erosion - sedimentation
+%
+% Landscape topography evolves due to erosion of material, which then undergoes
+% transport and sedimentation elsewhere. This process is complex, and
+% depends on a lot of different material properties (e.g. chemical and mechanical 
+% resistance against erosion) and circumstances (e.g. tectonics, climate, vegetation).
+% But the first-order topography evolution due to erosion-sedimentation
+% processes in one dimension (1-D) can be described using the following differential equation: 
+% 
+% $\displaystyle \frac{\partial h}{\partial t} = v_z + \frac{\partial}{\partial x}
+%    \left( K_s \frac{\partial h}{\partial x} \right)$
+% 
+% in which $h$ is the topography in metres as a function of the horizontal coordinate
+% $x$ (also in metres), $t$ is time (in seconds), $v_z$ is the (spatially
+% variable) tectonic uplift rate in m/s, and $K_s$ the effective topography diffusion 
+% coefficient (in ${\mathrm{m^2/s}}$).
+% 
+% 1. Write out (on paper) the discretised form of this equation using
+% the forward Euler finite difference method. 
+% 
+% We want to model the topography $h(x)$ through time for the 
+% following set of model parameters:
+% 
+% * 1-D model domain stretching from x=0 km to x=1000 km
+% * total modelling time = 1 million years
+% * a uniform effective topography diffusion coefficient $K_s=10^4$ ${\mathrm{m^2/yr}}$
+% * an uplift rate of $v_z=1$ mm/yr for 400 km $< x <$ 600 km, and $v_z=0$
+%   elsewhere
+% * fixed $h=0$ boundary conditions
+% * no initial topography, so $h(t=0)=0$ everywhere.
+% 
+% For this forward Euler discretisation, the maximum stable timestep $t_{max}$ for this problem is defined as
+% $\displaystyle t_{max} = \frac{\Delta x^2}{2 K_s}$, where $\Delta x$ is 
+% the grid spacing in the numerical model.
+% 
+% 2. Write a Matlab script that efficiently models this erosion-sedimentation process
+% according to the information given, and plots the solution as a function
+% of time. You can either write a new code from scratch, or use one of your
+% previous codes or model answers from previous practicals as a starting
+% point. Make sure your code is robust enough to handle different spatial
+% resolutions.
+%
+%% Part B. Two-dimensional wave equation
+% The 2-D version of the wave equation can be written as:
+% 
+% $\displaystyle \frac{\partial^2 u}{\partial t^2} = 
+%      v^2 \left(\frac{\partial^2 u}{\partial x^2} 
+%              + \frac{\partial^2 u}{\partial y^2}\right)$
+% 
+% in which $u$ is the displacement, $t$ is time, $x$ and $y$
+% is the spatial coordinate, and $v$ is the constant wave speed. 
+%
+% 3. Derive the forward Euler discretisation for this 2-D wave equation for
+% a given timestep $\Delta t$ and spatial discretisations $\Delta x$ and
+% $\Delta y$.
+% 
+% 4. Derive the critical timestep for $\Delta t_c$ for this discretisation.
+%
+% 5. Build a Matlab code for the 2-D wave equation with the following
+% characteristics: 
+% 
+% * The length and width of the two-dimensional model domain are both 
+%   $L = 5000$ m.
+% * Use displacement $u=0$ as boundary conditions on all boundaries
+% * Use a static 2-D Gaussian pulse as initial condition:  
+%   $\displaystyle u=U \exp \left(-\left(\frac{xx-x_0}{w} \right)^2 \right) 
+%                           \exp \left(-\left(\frac{yy-y_0}{w} \right)^2 \right)$, 
+%   with $U=1$ m the amplitude of the pulse, $xx$ and $yy$ the locations of the 
+%   grid points (probably in the form of two-dimensional arrays), $(x_0, y_0)=(0.2L,0.2L)$ 
+%   the location of the centre of the pulse, 
+%   and $w=0.03L$ a measure for the width of the pulse. 
+% * Apply this initial condition to both the 'present' and 'old' initial condition. 
+% * Use a wave speed $v = 1000$ m/s
+% * Use the critical timestep $\Delta t_c$ derived in question 4. If you
+%   don't know $\Delta t_c$, then use a timestep $\Delta t = 0.01$ seconds.
+% * Run the model for a total model time of 3 seconds.
+% * plot the solution $u(x,y)$ as a function of time, e.g. using the
+%   |pcolor()| Matlab function that we used in weeks 8-11 of the MEP practicals.
+% * Make sure your code is robust enough to handle different spatial
+%   resolutions.
+% 
+% You can either write a new code from scratch, or use one of your
+% previous codes or model answers from previous practicals as a starting
+% point. 
+%
+%% Submitting your work
+%
+% Before submission, please make sure that your Matlab codes:
+% 
+% * have a clear structure (aided by indentation and, if appropriate, the use of functions)
+% * use logical variable names
+% * have sufficient comments
+% * produce clear, annotated plots 
+% 
+% a) Hand in your written answers. Make sure your name is written on every piece of paper that you are
+%    handing in.
+% 
+% b) Submit your Matlab code (.m files) for question 2 in the Ultra assignment 
+% 'Practical Assignment 2 In-class Test (Submission Point 1)' 
+% in the 'Assessment' folder of the Modelling Earth Processes 21/22 Assessment folder on Ultra. 
+% 
+% c) Submit your Matlab code (.m files) for question 5 in the Ultra assignment 
+% 'Practical Assignment 2 In-class Test (Submission Point 2)' 
+% in the 'Assessment' folder of the Modelling Earth Processes 21/22 Assessment folder on Ultra. 
+
+
+##### SOURCE END #####
+--></body></html>
