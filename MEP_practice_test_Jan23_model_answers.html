@@ -1,0 +1,262 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Model answers for Modelling Earth Processes, January practice class test 2022/2023.</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="https://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-01-11"><meta name="DC.source" content="MEP_practice_test_Jan23_model_answers.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Model answers for Modelling Earth Processes, January practice class test 2022/2023.</h1><!--introduction--><p>Prof Jeroen van Hunen</p><p>Department of Earth Sciences</p><p>Durham University</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Test setup</a></li><li><a href="#2">Assignment</a></li><li><a href="#3">Part 1: The wave equation</a></li><li><a href="#4">Part 2: Porous media flow in 1D</a></li><li><a href="#5">Submitting your work</a></li></ul></div><h2 id="1">Test setup</h2><p>Try to do this practice test under the actual test conditions:</p><div><ul><li>Estimated completion time: 2 hours</li></ul></div><div><ul><li>Allowed Resources: All teaching material available on duo, your own codes and notes,   and Matlab's help documentation, as well as internet resources.   No electronic communication (email, chats, Facebook, Zoom, and similar etc) related to this test is allowed.</li></ul></div><h2 id="2">Assignment</h2><p><b>Please read the whole test before answering any questions, and make sure you explain all your answers</b></p><h2 id="3">Part 1: The wave equation</h2><p>1. The 1-D wave equation can be written as:</p><p><span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq12344620483058121946.png" alt="$\displaystyle \frac{\partial^2 u}{\partial t^2} = v^2 \frac{\partial^2 u}{\partial z^2}$"></span><script type="math/tex">\displaystyle \frac{\partial^2 u}{\partial t^2} = v^2 \frac{\partial^2 u}{\partial z^2}</script>,</p><p>in which <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq11776305044305525613.png" alt="$u$"></span><script type="math/tex">u</script> is the displacement, <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq12656067504604335951.png" alt="$t$"></span><script type="math/tex">t</script> is time, <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq17119888974628994297.png" alt="$z$"></span><script type="math/tex">z</script> is the spatial coordinate, and <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq03158747792916826732.png" alt="$v$"></span><script type="math/tex">v</script> is the constant wave speed. This equation is applied to an equidistant 5-point grid with essential boundary conditions u=0 on either end. Write out a) the backward Euler discretisation of this equation, and b) provide the matrix-vector system of equations that is needed to solve for the displacement at timestep <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq09659676998134929471.png" alt="$n+1$"></span><script type="math/tex">n+1</script> if the solution for all previous timesteps (<span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq08984225997457563733.png" alt="$n$"></span><script type="math/tex">n</script>, <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq16920812348637040623.png" alt="$n-1$"></span><script type="math/tex">n-1</script>, <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq03564603227750745948.png" alt="$n-2$"></span><script type="math/tex">n-2</script> etc.) are all known.</p><p><i><b> Model answer:</b></i></p><p><i><b> The backward Euler discretisation is as follows:</b></i></p><p><span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq09586472029434215106.png" alt="$\displaystyle \frac{u_i^{n+1} - 2u_i^n + u_i^{n-1}}{\Delta t^2} = v^2 \frac{u_{i+1}^{n+1}   - 2u_i^{n+1} + u_{i-1}^{n+1}}{\Delta z^2}$"></span><script type="math/tex">\displaystyle \frac{u_i^{n+1} - 2u_i^n + u_i^{n-1}}{\Delta t^2} = v^2 \frac{u_{i+1}^{n+1}   - 2u_i^{n+1} + u_{i-1}^{n+1}}{\Delta z^2}</script> <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq11206115615656929943.png" alt="$\Leftrightarrow$"></span><script type="math/tex">\Leftrightarrow</script></p><p><span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq14961064179879967504.png" alt="$\displaystyle u_i^{n+1} - 2u_i^n + u_i^{n-1} = \frac{v^2 \Delta t^2}{\Delta z^2} \left( u_{i+1}^{n+1}   - 2u_i^{n+1} + u_{i-1}^{n+1} \right)$"></span><script type="math/tex">\displaystyle u_i^{n+1} - 2u_i^n + u_i^{n-1} = \frac{v^2 \Delta t^2}{\Delta z^2} \left( u_{i+1}^{n+1}   - 2u_i^{n+1} + u_{i-1}^{n+1} \right)</script></p><p><i><b> With <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq02141317720843410824.png" alt="$r=\frac{v^2 \Delta t^2}{\Delta z^2}$"></span><script type="math/tex">r=\frac{v^2 \Delta t^2}{\Delta z^2}</script>, and putting all <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq09659676998134929471.png" alt="$n+1$"></span><script type="math/tex">n+1</script> terms on the left, while other terms go to the right, this gives:</b></i></p><p><span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq08560375649718772954.png" alt="$\displaystyle (1+2r)u_i^{n+1} - ru_{i+1}^{n+1} - ru_{i-1}^{n+1} = 2u_i^n - u_i^{n-1}$"></span><script type="math/tex">\displaystyle (1+2r)u_i^{n+1} - ru_{i+1}^{n+1} - ru_{i-1}^{n+1} = 2u_i^n - u_i^{n-1}</script></p><p><i><b> Implementing this in a 5-point systems with essential boundary conditions would give the following result:</b></i></p><p><span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq16537489502974342121.png" alt="$\displaystyle \left(  \matrix{1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \cr          -r &amp; 1+2r &amp; -r &amp; 0 &amp; 0 \cr          0 &amp; -r &amp; 1+2r &amp; -r &amp; 0 \cr          0 &amp; 0 &amp; -r &amp; 1+2r &amp; -r \cr          0 &amp; 0 &amp; 0 &amp; 0 &amp; 1}  \right)  \left(  \matrix{u_1^{n+1} \cr          u_2^{n+1} \cr          u_3^{n+1} \cr          u_4^{n+1} \cr          u_5^{n+1}}  \right) =  \left(  \matrix{0 \cr          2u_2^n - u_2^{n-1} \cr          2u_3^n - u_3^{n-1} \cr          2u_4^n - u_4^{n-1} \cr          0}  \right)$"></span><script type="math/tex">\displaystyle \left(  \matrix{1 & 0 & 0 & 0 & 0 \cr          -r & 1+2r & -r & 0 & 0 \cr          0 & -r & 1+2r & -r & 0 \cr          0 & 0 & -r & 1+2r & -r \cr          0 & 0 & 0 & 0 & 1}  \right)  \left(  \matrix{u_1^{n+1} \cr          u_2^{n+1} \cr          u_3^{n+1} \cr          u_4^{n+1} \cr          u_5^{n+1}}  \right) =  \left(  \matrix{0 \cr          2u_2^n - u_2^{n-1} \cr          2u_3^n - u_3^{n-1} \cr          2u_4^n - u_4^{n-1} \cr          0}  \right)</script></p><p>2. When an earthquake hits a skyscraper, a seismic 'wave' will travel through the building. a) Assuming we could model this with the 1-D vertical wave equation, what would be a suitable boundary condition for the top of the building?</p><p><i><b> The top of the building is free to move, and experiences no stress from differential movement with any part of the building above it, so the boundary condition <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq16130170963274634063.png" alt="$\displaystyle \frac{du}{dz}=0$"></span><script type="math/tex">\displaystyle \frac{du}{dz}=0</script> would be a suitable boundary condition.</b></i></p><p>b) If the amplitude of the 'wave' is 10 cm, what would be the displacement felt by a person standing on top of the skyscraper at the moment that the wave hits the top of the building? You could check your answer by looking at the results from your 1-D Matlab code from week 12.</p><p><i><b> The displacement of the final gridpoint with natural boundary conditions in a 1-D model experiences twice the displacement compared to internal grid points. So the amplitude would be 20 cm.</b></i></p><p>3. Write out the 2-D equivalent of the wave equation given in question 1, and discretize it with the Forward Euler discretisation, assuming the seismic wave velocity is equal in both directions, and the grid spacing in both directions is <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq13246257512811344235.png" alt="$\Delta x = \Delta z = \Delta$"></span><script type="math/tex">\Delta x = \Delta z = \Delta</script>. Write your answer in the simplest possible form.</p><p><i><b> Model answer:</b></i></p><p><span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq04465421164935195212.png" alt="$\displaystyle \frac{u_{i,j}^{n+1} - 2u_{i,j}^n + u_{i,j}^{n-1}}{\Delta t^2} = v^2 \left(   \frac{u_{i+1,j}^{n} - 2u_{i,j}^{n} + u_{i-1,j}^{n}}{\Delta^2}   +   \frac{u_{i,j+1}^{n} - 2u_{i,j}^{n} + u_{i,j-1}^{n}}{\Delta^2} \right)$"></span><script type="math/tex">\displaystyle \frac{u_{i,j}^{n+1} - 2u_{i,j}^n + u_{i,j}^{n-1}}{\Delta t^2} = v^2 \left(   \frac{u_{i+1,j}^{n} - 2u_{i,j}^{n} + u_{i-1,j}^{n}}{\Delta^2}   +   \frac{u_{i,j+1}^{n} - 2u_{i,j}^{n} + u_{i,j-1}^{n}}{\Delta^2} \right)</script>   <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq11206115615656929943.png" alt="$\Leftrightarrow$"></span><script type="math/tex">\Leftrightarrow</script></p><p><span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq12273222507946566678.png" alt="$\displaystyle u_{i,j}^{n+1} = 2u_{i,j}^n - u_{i,j}^{n-1} + \frac{v^2 \Delta t^2}{\Delta^2} \left(u_{i+1,j}^{n} + u_{i-1,j}^{n}       +       u_{i,j+1}^{n} + u_{i,j-1}^{n}       - 4u_{i,j}^{n} \right)$"></span><script type="math/tex">\displaystyle u_{i,j}^{n+1} = 2u_{i,j}^n - u_{i,j}^{n-1} + \frac{v^2 \Delta t^2}{\Delta^2} \left(u_{i+1,j}^{n} + u_{i-1,j}^{n}       +       u_{i,j+1}^{n} + u_{i,j-1}^{n}       - 4u_{i,j}^{n} \right)</script></p><h2 id="4">Part 2: Porous media flow in 1D</h2><p>Assume a horizontal 1-D porous medium of <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq03457793364622004078.png" alt="$w=400$"></span><script type="math/tex">w=400</script> m wide. Fluid flow through the pores is based on Darcy&#146;s law, and, in the presence of a spatially varying fluid source/sink <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq17354617462179732091.png" alt="$H$"></span><script type="math/tex">H</script>, can be described by the following d.e.:</p><p><span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq18361022696156312977.png" alt="$\displaystyle \frac{\partial P}{\partial t} =   \frac{k}{\phi \beta \eta}     \left(\frac{\partial^2 P}{\partial x^2}     \right) + \frac{H}{\beta \phi}$"></span><script type="math/tex">\displaystyle \frac{\partial P}{\partial t} =   \frac{k}{\phi \beta \eta}     \left(\frac{\partial^2 P}{\partial x^2}     \right) + \frac{H}{\beta \phi}</script></p><p>in 1-D, where <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq02661806082982697695.png" alt="$P$"></span><script type="math/tex">P</script> is the (non-hydrostatic) pressure, <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq08977680020366616796.png" alt="$k=10^{-12}$"></span><script type="math/tex">k=10^{-12}</script> <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq05719260699303681663.png" alt="$\mathrm{m^2}$"></span><script type="math/tex">\mathrm{m^2}</script> the rock permeability, <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq15414309942675905366.png" alt="$\phi=0.05$"></span><script type="math/tex">\phi=0.05</script> is the porosity, <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq13803706165471745808.png" alt="$\beta=10^{-8}$"></span><script type="math/tex">\beta=10^{-8}</script> <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq06994772077036652055.png" alt="$\mathrm{Pa^{-1}}$"></span><script type="math/tex">\mathrm{Pa^{-1}}</script> the fluid compressibility, and <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq07033051892588266402.png" alt="$\eta=10^{-4}$"></span><script type="math/tex">\eta=10^{-4}</script> Pa s the fluid viscosity, and <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq15636846968047188835.png" alt="$k$"></span><script type="math/tex">k</script>, <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq06401276552089372917.png" alt="$\phi$"></span><script type="math/tex">\phi</script>, <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq17331442575217596290.png" alt="$\beta$"></span><script type="math/tex">\beta</script>, and <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq17615028512695387165.png" alt="$\eta$"></span><script type="math/tex">\eta</script> are all constants. The model has a zero pore pressure everywhere at time <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq16912281546434447644.png" alt="$t=0$"></span><script type="math/tex">t=0</script>, and has fixed pressure essential boundary conditions <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq07386184503153841976.png" alt="$P=0$"></span><script type="math/tex">P=0</script> Pa on both boundaries.</p><p>The source/sink term <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq17354617462179732091.png" alt="$H$"></span><script type="math/tex">H</script> is zero everywhere, except for the following point source <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq03938785651708717727.png" alt="$H = H_{src} =$"></span><script type="math/tex">H = H_{src} =</script> 1 <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq02890350535204026369.png" alt="$\mathrm{m/sec}$"></span><script type="math/tex">\mathrm{m/sec}</script> at <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq05717322896867557173.png" alt="$\displaystyle x = \frac{w}{2}$"></span><script type="math/tex">\displaystyle x = \frac{w}{2}</script>. In other words, a '1-D volume' of 1 m/s of fluid is continuously entering the middle of the domain.</p><p>4. Describe in words and with a sketch how you think the pressure distribution will evolve in the model. Do you think the model will approach a steady-state solution?</p><p><i><b> The pressure is fixed at either end, so the solution must remain <span class="MathJax_Preview"><img src="MEP_practice_test_Jan23_model_answers_eq07386184503153841976.png" alt="$P=0$"></span><script type="math/tex">P=0</script> for all times. Fluid is injected in the middle, so that will increase the fluid pressure there. This will give rise to a fluid pressure gradient on either side of the middle point, sloping away from the middle, and according to Darcy's law, will lead to fluid flowing from the middle to the endge of the 1-D domain. Initially, the flow (and the non-zero pressure gradient) will be just in the vicinity of the injection point, but after a while the flow will have spread out to the boundaries. Eventually, a steady-sate situation will develop in which flow into each grid point equals flow out of that point (to avoid accumulation), so flow everywhere to the left of the injection point will be the same everywhere, and flow everywhere to the right as well. This will lead to a constant pressure gradient which results in a chevron-shaped (^-shaped) pressure distribution:</b></i></p><p><img vspace="5" hspace="5" src="https://blackboard.durham.ac.uk/bbcswebdav/xid-2390671_1" alt=""> </p><p>5. Build a Matlab code for the porous media flow model described above. It is probably easiest to build this code from one of the existing codes that you built previously or are available in the MEP model answers. [a fully working, well written and documented code would give full marks, but in case you cannot create a working code in time, make sure to describe the approach you took or were planning to take, and where the problem with implementation lies].</p><p><i><b> A possible solution code for this question is available <a href="https://blackboard.durham.ac.uk/bbcswebdav/xid-2390670_1">here</a> .</b></i></p><h2 id="5">Submitting your work</h2><p>a) As this is a practice test, and model answers are available for you to    check, there is no need to submit your answers. But if you have any questions    that are not covered in the model answers, feel free to email me at <a href="mailto:jeroen.van-hunen@durham.ac.uk">jeroen.van-hunen@durham.ac.uk</a></p><p>b) Similarly, if your Matlab code of Question 5 doesn't work, and you cannot    figure out why, or you have any other questions about your code, you can email it to me.</p><p>Keep in mind that, in order to get a maximum amount of marks for your code, it should have:</p><div><ul><li>A clear structure</li><li>Logical variable names</li><li>Sufficient comments</li></ul></div><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Model answers for Modelling Earth Processes, January practice class test 2022/2023.
+% 
+% Prof Jeroen van Hunen
+%
+% Department of Earth Sciences
+%
+% Durham University
+%
+%% Test setup
+% 
+% Try to do this practice test under the actual test conditions: 
+% 
+% * Estimated completion time: 2 hours 
+%   
+% * Allowed Resources: All teaching material available on duo, your own codes and notes, 
+%   and Matlab's help documentation, as well as internet resources.
+%   No electronic communication (email, chats, Facebook, Zoom, and similar etc) related to this test is allowed.
+%
+%% Assignment
+% *Please read the whole test before answering any questions, and make 
+% sure you explain all your answers*
+%
+%% Part 1: The wave equation
+% 1. The 1-D wave equation can be written as:
+% 
+% $\displaystyle \frac{\partial^2 u}{\partial t^2} = v^2 \frac{\partial^2
+% u}{\partial z^2}$, 
+% 
+% in which $u$ is the displacement, $t$ is time, $z$
+% is the spatial coordinate, and $v$ is the constant wave speed. 
+% This equation is applied to an equidistant 5-point grid
+% with essential boundary conditions u=0 on either end. 
+% Write out a) the backward Euler discretisation of this equation, and b) provide
+% the matrix-vector system of equations that is needed to solve for the
+% displacement at timestep $n+1$ if the solution for all previous timesteps
+% ($n$, $n-1$, $n-2$ etc.) are all known.
+% 
+% _* Model answer:*_
+% 
+% _* The backward Euler discretisation is as follows:*_
+% 
+% $\displaystyle \frac{u_i^{n+1} - 2u_i^n + u_i^{n-1}}{\Delta t^2} = v^2
+% \frac{u_{i+1}^{n+1}
+%   - 2u_i^{n+1} + u_{i-1}^{n+1}}{\Delta z^2}$ $\Leftrightarrow$
+% 
+% $\displaystyle u_i^{n+1} - 2u_i^n + u_i^{n-1} = \frac{v^2 \Delta t^2}{\Delta z^2} \left( u_{i+1}^{n+1}
+%   - 2u_i^{n+1} + u_{i-1}^{n+1} \right)$
+% 
+% _* With $r=\frac{v^2 \Delta t^2}{\Delta z^2}$, and putting all $n+1$ terms
+% on the left, while other terms go to the right, this gives:*_
+% 
+% $\displaystyle (1+2r)u_i^{n+1} - ru_{i+1}^{n+1} - ru_{i-1}^{n+1} =
+% 2u_i^n - u_i^{n-1}$
+% 
+% _* Implementing this in a 5-point systems with essential boundary
+% conditions would give the following result:*_
+% 
+% $\displaystyle \left( 
+%  \matrix{1 & 0 & 0 & 0 & 0 \cr
+%          -r & 1+2r & -r & 0 & 0 \cr
+%          0 & -r & 1+2r & -r & 0 \cr
+%          0 & 0 & -r & 1+2r & -r \cr
+%          0 & 0 & 0 & 0 & 1} 
+%  \right)
+%  \left( 
+%  \matrix{u_1^{n+1} \cr
+%          u_2^{n+1} \cr
+%          u_3^{n+1} \cr
+%          u_4^{n+1} \cr
+%          u_5^{n+1}} 
+%  \right) = 
+%  \left( 
+%  \matrix{0 \cr
+%          2u_2^n - u_2^{n-1} \cr
+%          2u_3^n - u_3^{n-1} \cr
+%          2u_4^n - u_4^{n-1} \cr
+%          0}
+%  \right)$ 
+% 
+% 2. When an earthquake hits a skyscraper, a seismic 'wave' will travel through the building. 
+% a) Assuming we could model this with the 1-D vertical wave equation, what would
+% be a suitable boundary condition for the top of the building? 
+% 
+% _* The top of the building is free to move, and experiences
+% no stress from differential movement with any part of the building above
+% it, so the boundary condition $\displaystyle \frac{du}{dz}=0$ would be a
+% suitable boundary condition.*_
+% 
+% b) If the amplitude of the 'wave' is 10 cm, what would be the displacement felt by
+% a person standing on top of the skyscraper at the moment that the wave
+% hits the top of the building? You could check your answer by looking at
+% the results from your 1-D Matlab code from week 12.
+% 
+% _* The displacement of the final gridpoint with natural boundary conditions in a 1-D model experiences
+% twice the displacement compared to internal grid points. So the amplitude
+% would be 20 cm.*_ 
+% 
+% 3. Write out the 2-D equivalent of the wave equation given in question 1,
+% and discretize it with the Forward Euler discretisation, assuming the seismic 
+% wave velocity is equal in both directions, and the grid spacing in both directions 
+% is $\Delta x = \Delta z = \Delta$. Write your answer in the simplest
+% possible form.
+% 
+% _* Model answer:*_
+% 
+% $\displaystyle \frac{u_{i,j}^{n+1} - 2u_{i,j}^n + u_{i,j}^{n-1}}{\Delta t^2} = v^2
+% \left(
+%   \frac{u_{i+1,j}^{n} - 2u_{i,j}^{n} + u_{i-1,j}^{n}}{\Delta^2}
+%   + 
+%   \frac{u_{i,j+1}^{n} - 2u_{i,j}^{n} + u_{i,j-1}^{n}}{\Delta^2}
+% \right)$
+%   $\Leftrightarrow$
+% 
+% $\displaystyle u_{i,j}^{n+1} = 2u_{i,j}^n - u_{i,j}^{n-1} +
+% \frac{v^2 \Delta t^2}{\Delta^2}
+% \left(u_{i+1,j}^{n} + u_{i-1,j}^{n}
+%       + 
+%       u_{i,j+1}^{n} + u_{i,j-1}^{n}
+%       - 4u_{i,j}^{n}
+% \right)$
+% 
+%% Part 2: Porous media flow in 1D
+%
+% Assume a horizontal 1-D porous medium of $w=400$ m wide. 
+% Fluid flow through the pores is based on
+% Darcys law, and, in the presence of a spatially varying fluid source/sink $H$,
+% can be described by the following d.e.:
+% 
+% $\displaystyle \frac{\partial P}{\partial t} = 
+%   \frac{k}{\phi \beta \eta}
+%     \left(\frac{\partial^2 P}{\partial x^2}
+%     \right) + \frac{H}{\beta \phi}$
+% 
+% in 1-D, where $P$ is the (non-hydrostatic) pressure, 
+% $k=10^{-12}$ $\mathrm{m^2}$ the rock permeability, 
+% $\phi=0.05$ is the porosity, 
+% $\beta=10^{-8}$ $\mathrm{Pa^{-1}}$ the fluid compressibility, and 
+% $\eta=10^{-4}$ Pa s the fluid viscosity, and $k$, $\phi$, $\beta$, and $\eta$ are all constants.
+% The model has a zero pore pressure everywhere at time $t=0$, and 
+% has fixed pressure essential boundary conditions $P=0$ Pa on both boundaries.
+% 
+% The source/sink term $H$ is zero everywhere, except for the following
+% point source $H = H_{src} =$ 1 $\mathrm{m/sec}$ at $\displaystyle x = \frac{w}{2}$.
+% In other words, a '1-D volume' of 1 m/s of fluid is continuously entering 
+% the middle of the domain.
+% 
+% 4. Describe in words and with a sketch how you think the pressure distribution will evolve in 
+% the model. Do you think the model will approach a steady-state solution?
+% 
+% _* The pressure is fixed at either end, so the solution must remain $P=0$
+% for all times. Fluid is injected in the middle, so that will increase the
+% fluid pressure there. This will give rise to a fluid pressure gradient on
+% either side of the middle point, sloping away from the middle, and
+% according to Darcy's law, will lead to fluid flowing from the middle to
+% the endge of the 1-D domain. Initially, the flow (and the non-zero pressure gradient) 
+% will be just in the vicinity of the injection point, but after a while
+% the flow will have spread out to the boundaries. Eventually, a
+% steady-sate situation will develop in which flow into each grid point
+% equals flow out of that point (to avoid accumulation), so flow everywhere
+% to the left of the injection point will be the same everywhere, and flow
+% everywhere to the right as well. This will lead to a constant pressure gradient
+% which results in a chevron-shaped (^-shaped) pressure distribution:*_
+%
+% <<https://blackboard.durham.ac.uk/bbcswebdav/xid-2390671_1>>
+% 
+% 5. Build a Matlab code for the porous media flow model described above.
+% It is probably easiest to build this code from one of the existing codes
+% that you built previously or are available in the MEP model answers.
+% [a fully working, well written and documented code would give full marks, 
+% but in case you cannot create a working code in time, make sure to describe 
+% the approach you took or were planning to take, and where the problem with implementation lies]. 
+%
+% _* A possible solution code for this question is available
+% <https://blackboard.durham.ac.uk/bbcswebdav/xid-2390670_1 here> .*_
+% 
+%% Submitting your work
+% 
+% a) As this is a practice test, and model answers are available for you to 
+%    check, there is no need to submit your answers. But if you have any questions 
+%    that are not covered in the model answers, feel free to email me at jeroen.van-hunen@durham.ac.uk
+% 
+% b) Similarly, if your Matlab code of Question 5 doesn't work, and you cannot 
+%    figure out why, or you have any other questions about your code, you can email it to me. 
+% 
+% Keep in mind that, in order to get a maximum amount of marks for your code, it should have: 
+% 
+% * A clear structure
+% * Logical variable names
+% * Sufficient comments
+##### SOURCE END #####
+--></body></html>
